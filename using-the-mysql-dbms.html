@@ -1,0 +1,2474 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An Introduction to PHP7 Through Examples">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/en-php7-juillet-2019/using-the-mysql-dbms.html">
+      
+      
+        <link rel="prev" href="practice-exercise---version-4.html">
+      
+      
+        <link rel="next" href="practical-exercise---version-5.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>12. Using the MySQL DBMS - An Introduction to PHP7 Through Examples</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "An Introduction to PHP7 Through Examples";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#12-using-the-mysql-dbms" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="An Introduction to PHP7 Through Examples" class="md-header__button md-logo" aria-label="An Introduction to PHP7 Through Examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            An Introduction to PHP7 Through Examples
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              12. Using the MySQL DBMS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/en-php7-juillet-2019" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="An Introduction to PHP7 Through Examples" class="md-nav__button md-logo" aria-label="An Introduction to PHP7 Through Examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    An Introduction to PHP7 Through Examples
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/en-php7-juillet-2019" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction-to-php-7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction to PHP 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setting-up-a-development-environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Setting up a development environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="the-basics-of-php.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. The Basics of PHP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice-exercise---versions-1-and-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Practice Exercise – Versions 1 and 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="interfaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exceptions-and-errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Exceptions and Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Application Exercise – Version 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="traits.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Traits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="layered-applications.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Layered Applications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice-exercise---version-4.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Practice Exercise – Version 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Using the MySQL DBMS
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="using-the-mysql-dbms.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Using the MySQL DBMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#121-creating-a-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.1. Creating a Database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#122-connecting-to-a-mysql-database" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.2. Connecting to a MySQL database
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#123-creating-a-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.3. Creating a table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#124-filling-a-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.4. Filling a table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#125-executing-arbitrary-sql-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.5. Executing arbitrary SQL statements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#126-using-prepared-sql-statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.6. Using Prepared SQL Statements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="12.6. Using Prepared SQL Statements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1261-example-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.6.1. Example 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1262-example-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.6.2. Example 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practical-exercise---version-5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Practical Exercise – Version 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Application Exercise – Version 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Application Exercise – Version 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="network-functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Network Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="web-services.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice-exercise---version-8.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. Practice Exercise – Version 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-9.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. Application Exercise – Version 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Application Exercise – Version 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processing-xml-documents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Processing XML Documents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Application Exercise – Version 11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practical-exercise---version-12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. Practical Exercise – Version 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. Application Exercise – Version 13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="refheading399121881943603"></a>
+<a id="toc42690705"></a>
+<a id="toc42690319"></a>
+<a id="toc42689933"></a></p>
+<h1 id="12-using-the-mysql-dbms">12. <span style="color: #365f91">Using the MySQL DBMS</span></h1>
+<p><img src="images/10000000000001C9000002DA767154B2.png" style="width:4.232cm;height:6.757cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C9000002DA767154B2.png" /></p>
+<p>We will now write PHP scripts using a MySQL database:</p>
+<p><img src="images/1000000000000719000001077C316F72.png" style="width:14.422cm;height:2.087cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000719000001077C316F72.png" /></p>
+<p>In the architecture above, the PHP script (1) does not communicate directly with the DBMS (Database Management System) (3). It communicates with an intermediary called a DBMS <strong>driver</strong>. PHP provides a standard interface for these drivers, the <strong>PDO</strong> (PHP Data Objects) interface. This interface is implemented by different classes tailored to each DBMS: one class for the MySQL DBMS, another for the PostgreSQL DBMS… To switch DBMSes, we switch drivers:</p>
+<p><img src="images/10000000000006AE0000011454A7B884.png" style="width:13.57cm;height:2.191cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006AE0000011454A7B884.png" /></p>
+<p>The PDO driver isolates the PHP script (1) from the DBMS (3, 6). Since these drivers implement a standard interface, one might expect the PHP script (1) to remain unchanged when switching from the MySQL DBMS (3) to the PostgreSQL DBMS (6). In reality, this ideal does not exist. In fact, to communicate with the DBMS, the PHP script sends SQL (Structured Query Language) commands. This is a language implemented by all DBMSs but is incomplete. Consequently, DBMSs have added proprietary commands to it. This is a primary cause of incompatibility between DBMSs. Furthermore, the data types that can be used in databases may differ from one DBMS to another. For example, PostgreSQL supports a much wider range of data types than the MySQL DBMS. This is a second cause of incompatibility. Another cause is the handling of automatic primary keys (generated by the DBMS): virtually every DBMS has its own policy. Etc… There are numerous causes of incompatibility.</p>
+<p>If you want to avoid rewriting the PHP script (1) when switching from MySQL (3) to PostgreSQL (6), you generally need to insert a new layer between the PHP script (1) and the PDO driver (2, 5), whose role will be to resolve the incompatibilities between the two DBMSs. However, in the simple cases we will encounter, this additional layer will not be necessary.</p>
+<p>We will now use the MySQL DBMS. This is included in the Laragon package (see <a href="#installationdelaragon"><u><span style="color: #0563c1">link</span></u></a> section).</p>
+<p>If the reader is new to the concepts of databases and SQL, they may find the document <strong>[http://sergetahe.com/cours-tutoriels-de-programmation/cours-tutoriel-sql-avec-le-sgbd-firebird/]</strong> helpful. This document uses the Firebird DBMS rather than MySQL but covers the fundamentals of databases and SQL. Like MySQL, Firebird offers a freely available version with a small memory footprint.</p>
+<p><a id="toc42690706"></a>
+<a id="toc42690320"></a>
+<a id="toc42689934"></a>
+<a id="refheadingtoc837491549297239"></a>
+<a id="creationdunebase"></a></p>
+<h2 id="121-creating-a-database">12.1. <span style="color: #4f81bd">Creating a Database</span></h2>
+<p>We will now show you how to create a database and a MySQL user using the Laragon tool.</p>
+<p><img src="images/1000000000000553000004751CF0B2F5.png" style="width:10.82cm;height:9.058cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000553000004751CF0B2F5.png" /></p>
+<ul>
+  <li>Once launched, Laragon <b>[1] </b>can be managed from a menu <b>[2]</b>;
+  </li>
+  <li>In <b>[3-5]</b>, install the MySQL administration tool <b>[phpMyAdmin] </b>if it has not already been installed;
+  </li>
+</ul>
+
+<p><img src="images/10000000000006FC0000011798DFFB55.png" style="width:14.19cm;height:2.214cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006FC0000011798DFFB55.png" /></p>
+<ul>
+  <li>In <b>[6]</b>, start the Apache web server and the MySQL DBMS;
+  </li>
+  <li>In <b>[7]</b>, the Apache server is started;
+  </li>
+  <li>In <b>[8]</b>, the MySQL database server is launched;
+  </li>
+</ul>
+
+<p><img src="images/10000000000007B8000003231C1634CE.png" style="width:15.679cm;height:6.371cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000007B8000003231C1634CE.png" /></p>
+<ul>
+  <li>In <b>[8-10]</b>, create a database named <b>[dbpersonnes] [11]</b>. We will build a database of people;
+  </li>
+</ul>
+
+<p><img src="images/1000000000000372000000A9BC1F927F.png" style="width:7.003cm;height:1.342cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000372000000A9BC1F927F.png" /></p>
+<ul>
+  <li>in <b>[11]</b>, we will manage the database we just created;
+  </li>
+</ul>
+
+<p><img src="images/1000000000000517000003778417D691.png" style="width:10.342cm;height:7.04cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000517000003778417D691.png" /></p>
+<ul>
+  <li>The <b>[Databases] </b>operation sends a web request to the URL <b>[http://localhost/phpmyadmin]</b>. Laragon’s Apache web server responds. The URL <b>[http://localhost/phpmyadmin] </b>is the URL for the <b>[phpMyAdmin] </b>utility that we installed earlier <b>[5]</b>. This utility allows you to manage MySQL databases;
+  </li>
+  <li>by default, the database administrator’s login credentials are: <b>root [13] </b>with no password <b>[14]</b>;
+  </li>
+</ul>
+
+<p><img src="images/10000000000004270000023D24733D5A.png" style="width:8.44cm;height:4.551cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004270000023D24733D5A.png" /></p>
+<ul>
+  <li>in <b>[16]</b>, the database we created earlier;
+  </li>
+</ul>
+
+<p><img src="images/10000000000004FE000001A2825F24A3.png" style="width:10.141cm;height:3.318cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004FE000001A2825F24A3.png" /></p>
+<ul>
+  <li>for now, we have a database <b>[dbpersonnes] [17] </b>that is empty <b>[18]</b>;
+  </li>
+</ul>
+
+<p>We create a user <strong>[admpersonnes]</strong> with the password <strong>[nobody]</strong> who will have full privileges on the <strong>[dbpersonnes]</strong> database:</p>
+<p><img src="images/100000000000060A000002558164BA30.png" style="width:12.27cm;height:4.738cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000060A000002558164BA30.png" /></p>
+<ul>
+  <li>in <b>[19]</b>, we are positioned on the database <b>[dbpersonnes]</b>;
+  </li>
+  <li>in <b>[20]</b>, we select the <b>[Privileges] </b>tab;
+  </li>
+  <li>in <b>[21-22]</b>, we see that the user <b>[root] </b>has full privileges on the <b>[dbpersonnes] </b>database;
+  </li>
+  <li>in <b>[23]</b>, we create a new user;
+  </li>
+</ul>
+
+<p><img src="images/10000000000006FD0000045029126D5B.png" style="width:14.199cm;height:8.763cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006FD0000045029126D5B.png" /></p>
+<ul>
+  <li>in <b>[25-26]</b>, the user will have the username <b>[admdbpersonnes]</b>;
+  </li>
+  <li>in <b>[27-29]</b>, their password will be <b>[nobody]</b>;
+  </li>
+  <li>In <b>[30]</b>, phpMyAdmin reports that the password is very weak (easy to crack). In a production environment, it is best to generate a strong password using <b>[31]</b>;
+  </li>
+  <li>In <b>[32]</b>, it is specified that the user <b>[admdbpersonnes] </b>must have full privileges on the <b>[dbpersonnes] </b>database;
+  </li>
+  <li>In <b>[33]</b>, the information provided is validated;
+  </li>
+</ul>
+
+<p><img src="images/10000000000008B600000156F61E68AF.png" style="width:17.701cm;height:2.715cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000008B600000156F61E68AF.png" /></p>
+<ul>
+  <li>In <b>[35]</b>, phpMyAdmin indicates that the user has been created;
+  </li>
+  <li>In <b>[36]</b>, the SQL query that was executed on the database;
+  </li>
+  <li>In <b>[37]</b>, the user <b>[admpersonnes] </b>has full privileges on the <b>[dbpersonnes] </b>database;
+  </li>
+</ul>
+
+<p>Now we have:</p>
+<ul>
+  <li>a MySQL database <b>[dbpersonnes]</b>;
+  </li>
+  <li>a user <b>[admpersonnes/nobody] </b>who has full access to this database;
+  </li>
+</ul>
+
+<p>We will write PHP scripts to interact with the database. PHP has various libraries for managing databases. We will use the PDO (PHP Data Objects) library, which acts as an intermediary between the PHP code and the DBMS:</p>
+<p><img src="images/10000000000006F200000102F5E4EDD3.png" style="width:14.109cm;height:2.048cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006F200000102F5E4EDD3.png" /></p>
+<p>The PDO library allows the PHP script to abstract itself from the exact nature of the DBMS being used. Thus, as shown above, the <strong>MySQL</strong> DBMS can be replaced by the <strong>PostgreSQL</strong> DBMS with minimal impact on the PHP script code. This library is not available by default. You can check its availability as follows:</p>
+<p><img src="images/10000000000005EF000003B0A69838B8.png" style="width:12.06cm;height:7.495cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005EF000003B0A69838B8.png" /></p>
+<ul>
+  <li>In <b>[1-4]</b>, check the active PDO extensions;
+  </li>
+  <li>in <b>[5]</b>, you can see that the PDO extension for the MySQL DBMS is active. The others are not. Simply click on them to activate them;
+  </li>
+</ul>
+
+<p>Another way to enable an extension is to directly edit the <strong>[php.ini]</strong> file (see <a href="#configurationdephp"><u><span style="color: #0563c1">link</span></u></a>) that configures PHP:</p>
+<p><img src="images/1000000000000457000003E823FB7DD9.png" style="width:8.819cm;height:7.939cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000457000003E823FB7DD9.png" /></p>
+<ul>
+  <li>in <b>[1]</b>, the MySQL PDO extension is enabled;
+  </li>
+  <li>In <b>[2]</b>, the Firebird PDO extension is disabled;
+  </li>
+</ul>
+
+<p>After modifying the <strong>[php.ini]</strong> file, you must <strong>restart</strong> Laragon’s PHP for the changes to take effect.</p>
+<p><a id="refheading399141881943603"></a>
+<a id="toc42690707"></a>
+<a id="toc42690321"></a>
+<a id="toc42689935"></a></p>
+<h2 id="122-connecting-to-a-mysql-database">12.2. <span style="color: #4f81bd">Connecting to a MySQL database</span></h2>
+<p>Connecting to a DBMS is done by constructing a PDO object. The constructor accepts various parameters:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">$</span><span class="n">dbh</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PDO</span><span class="p">(</span><span class="nb">string</span><span class="w"> </span><span class="o">$</span><span class="n">dsn</span><span class="p">,</span><span class="w"> </span><span class="nb">string</span><span class="w"> </span><span class="o">$</span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="nb">string</span><span class="w"> </span><span class="o">$</span><span class="n">passwd</span><span class="p">,</span><span class="w"> </span><span class="nb">array</span><span class="w"> </span><span class="o">$</span><span class="n">driver_options</span><span class="p">)</span>
+</code></pre></div>
+<p>The parameters have the following meanings:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>$dsn</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">(Data Source Name) is a string specifying the type of DBMS and its location on the internet. The string &quot;<i>mysql:host=localhost</i>&quot; indicates that we are dealing with a MySQL DBMS running on the local server. This string may include other parameters, such as the DBMS listening port and the name of the database to which we want to connect: &quot;<i>mysql:host=localhost:port=3306:dbname=dbpersonnes</i>&quot;;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>$user</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">username of the user logging in;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>$passwd</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">their password;</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>$driver_options</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">an array of options for the DBMS driver;</div></td></tr></table>
+
+<p>Only the first parameter is required. The object created in this way will then serve as the basis for all operations performed on the database to which you have connected. If the PDO object could not be created, a <strong>PDOException</strong> is thrown.</p>
+<p>Here is an example of a connection <strong>[mysql-01.php]</strong>:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// connection to a local MySQL database</span>
+<span class="odt-code-line">// the user ID is (admpersonnes,nobody)</span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>ID = &quot;admpersonnes&quot;;</span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>PWD = <span style="color:#008000">&quot;nobody&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>HOST = <span style="color:#008000">&quot;localhost&quot;</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">try {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// connection</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$dbh </span>= <span style="font-weight:bold">new </span>PDO(<span style="color:#008000">&quot;mysql:host=&quot;</span>.HOST, ID, PWD);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">print </span>&quot;Connection successful\n&quot;;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// Close the connection</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$dbh </span>= <span style="font-weight:bold">NULL</span>;</span>
+<span class="odt-code-line">} <span style="font-weight:bold">catch </span>(PDOException <span style="color:#0000ff">$e</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Error: &quot; </span>. $e-&gt;getMessage() . <span style="color:#008000">&quot;\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">exit</span>();</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p><strong>Results</strong>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>Connection successful
+</code></pre></div></td></tr></table></div>
+<p><strong>Comments</strong></p>
+<ul>
+  <li>Line 11: The connection to a DBMS is established by creating a PDO object. The constructor is used here with the following parameters:
+    <ul>
+      <li>a string specifying the type of DBMS and its location on the internet. The string &quot;<i>mysql:host=localhost</i>&quot; indicates that we are dealing with a MySQL DBMS running on the local server. The port has not been specified. Port 3306 is then used by default. The database name is not specified either. A connection will then be established to the MySQL DBMS, with the selection of a specific database to be made later;
+      </li>
+      <li>a user ID;
+      </li>
+      <li>its password;
+      </li>
+    </ul>
+  </li>
+  <li>line 14: the connection is closed by destroying the PDO object created initially;
+  </li>
+  <li>line 15: the connection to a DBMS may fail. In this case, a PDOException is thrown. This exception is derived from the PHP <b>[RuntimeException]</b>;
+  </li>
+  <li>line 16: the exception’s error message is displayed;
+  </li>
+</ul>
+
+<p>Let’s rerun the script by entering an incorrect password on line 6. The result is as follows:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">Error: SQLSTATE<span style="font-weight:bold">[HY000] [1045] </span>Access denied for user &#x27;admpersonnes&#x27;@&#x27;localhost&#x27; (using password: YES)</span>
+</code></pre></div>
+
+<p><a id="refheading399161881943603"></a>
+<a id="toc42690708"></a>
+<a id="toc42690322"></a>
+<a id="toc42689936"></a></p>
+<h2 id="123-creating-a-table">12.3. <span style="color: #4f81bd">Creating a table</span></h2>
+<p>The script <strong>[mysql-02.php]</strong> demonstrates how to create a table in a database:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// database identity</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>DSN = <span style="color:#008000">&quot;mysql:host=localhost;dbname=dbpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// user credentials</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>ID = <span style="color:#008000">&quot;admpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>PWD = <span style="color:#008000">&quot;nobody&quot;</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">try </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// Connect to the MySQL database</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">new </span>PDO(DSN, ID, PWD);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// delete the &#x27;people&#x27; table if it exists</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$sql </span>= <span style="color:#008000">&quot;drop table people&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$connection-&gt;exec(<span style="color:#0000ff">$sql</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// Create the people table</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$sql </span>= <span style="color:#008000">&quot;create table people (first_name varchar(30) NOT NULL, last_name varchar(30) NOT NULL, age integer NOT NULL, primary key(last_name, first_name))&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$connection-&gt;exec(<span style="color:#0000ff">$sql</span>);</span>
+<span class="odt-code-line">} <span style="font-weight:bold">catch </span>(PDOException <span style="color:#0000ff">$ex</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// display error</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Error: &quot; </span>. $ex-&gt;getMessage() . <span style="color:#008000">&quot;\n&quot;</span>;</span>
+<span class="odt-code-line">} <span style="font-weight:bold">finally </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// disconnect if necessary</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">NULL</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// end</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Done\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">exit</span>;</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>line 11: connect to the database. This is always the first thing to do. The result of the connection is a <b>[PDO] </b>object through which database operations will be performed;
+  </li>
+  <li>line 13: the SQL statement <b>[drop table people] </b>will delete the <b>[people] </b>table from the <b>[people_db] </b>database. If the <b>[people] </b>table does not exist, this does not cause an error;
+  </li>
+  <li>line 14: execution of the previous SQL statement on the <b>[dbpersonnes] </b>database. This execution may throw a <b>[PDOException], </b>which will be caught on line 18;
+  </li>
+  <li>Line 16: This SQL statement creates a table <b>named [people]</b>. A table consists of rows and columns. The columns make up what is called the table <b>structure</b>. The rows make up the table’s <b>content</b>. A database can contain one or more tables. The <b>[people] </b>table will have three columns:
+    <ul>
+      <li><b>first_name</b>: a person’s first name as a string of up to 30 characters;
+      </li>
+      <li><b>last_name</b>: the last name of that same person as a string of up to 30 characters;
+      </li>
+      <li><b>age</b>: the person’s age as an integer;
+      </li>
+      <li>The <b>NOT NULL </b>attribute on a column requires that the column have a value. Failing to provide one results in a <b>[PDOException]</b>;
+      </li>
+      <li><b>[primary key(last_name,first_name)] </b>sets a <b>primary key </b>for the <b>[people] </b>table. A primary key has a <b>unique</b> value for each row in the table. Here, the primary key is obtained by concatenating the <b>[last_name] </b>and <b>[first_name] </b>columns of the row. This constraint ensures that the table cannot contain two people with the same last and first names—i.e., two people with the same name. Creating a duplicate entry for a person in the table triggers a <b>[PDOException]</b>;
+      </li>
+    </ul>
+  </li>
+  <li>line 17: execution of the SQL query on the <b>[dbpersonnes] </b>database;
+  </li>
+  <li>line 20: if a <b>[PDOException] </b>occurs, the associated error message is displayed;
+  </li>
+  <li>lines 21–24: we enter the <b>[finally] </b>clause in all cases, whether an exception occurs or not, to close the database connection (line 23);
+  </li>
+</ul>
+
+<p><strong>Results</strong>:</p>
+<p>If the script executes without errors, the table can be seen in phpMyAdmin:</p>
+<p><img src="images/10000000000005B8000002B6E9CD2C8E.png" style="width:11.621cm;height:5.509cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005B8000002B6E9CD2C8E.png" /></p>
+<p><img src="images/1000000000000677000001B779F47741.png" style="width:13.139cm;height:3.485cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000677000001B779F47741.png" /></p>
+<ul>
+  <li>in <b>[3] </b>the database;
+  </li>
+  <li>in <b>[4]</b>, the table is displayed;
+  </li>
+  <li>in <b>[5]</b>, the table structure is displayed in the <b>[Structure] </b>tab;
+  </li>
+  <li>in <b>[6-8]</b>, the three columns of the table;
+  </li>
+  <li>in <b>[9]</b>, none of the three columns can be empty;
+  </li>
+</ul>
+
+<p><img src="images/10000000000005210000013C193B2870.png" style="width:10.419cm;height:2.508cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005210000013C193B2870.png" /></p>
+<ul>
+  <li>in <b>[10]</b>, the list of table indexes. An index allows you to find rows in the table with a specific index faster than if you were to sequentially scan the table’s rows. The primary key is always part of the indexes, but an index may not be a primary key;
+  </li>
+  <li>in <b>[11]</b>, the index is the primary key here;
+  </li>
+  <li>in <b>[12]</b>, the index consists of the <b>[last_name, first_name] </b>columns of each row;
+  </li>
+</ul>
+
+<p>Now, let’s see what happens if we create errors in the database name, the user name, and the password, respectively:</p>
+<p>If we enter a non-existent database name:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line">Error: SQLSTATE<span style="font-weight:bold">[HY000] [1044] </span>Access denied for user &#x27;admpersonnes&#x27;@&#x27;%&#x27; to database &#x27;dbpersonnes2&#x27;</span>
+</code></pre></div>
+
+<p>If we enter a non-existent username:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">Error: SQLSTATE<span style="font-weight:bold">[HY000] [1045] </span>Access denied for user &#x27;admpersonnes2&#x27;@&#x27;localhost&#x27; (using password: YES)</span>
+</code></pre></div>
+
+<p>If an incorrect password is entered:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-csharp">
+<span class="odt-code-line">Error: SQLSTATE<span style="font-weight:bold">[HY000] [1045] </span>Access denied for user &#x27;admpersonnes&#x27;@&#x27;localhost&#x27; (using password: YES)</span>
+</code></pre></div>
+
+<p><a id="refheading399201881943603"></a>
+<a id="toc42690709"></a>
+<a id="toc42690323"></a>
+<a id="toc42689937"></a></p>
+<h2 id="124-filling-a-table">12.4. <span style="color: #4f81bd">Filling a table</span></h2>
+<p>We will write a PHP script that executes SQL commands found in the following text file <strong>[creation.txt]</strong>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">drop</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="k">exists</span><span class="w"> </span><span class="n">people</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">SET</span><span class="w"> </span><span class="k">NAMES</span><span class="w"> </span><span class="s1">&#39;utf8&#39;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">create</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="p">(</span><span class="n">first_name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="w"> </span><span class="nb">varchar</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="nb">integer</span><span class="w"> </span><span class="k">not</span><span class="w"> </span><span class="k">null</span><span class="p">,</span><span class="w"> </span><span class="k">primary</span><span class="w"> </span><span class="k">key</span><span class="w"> </span><span class="p">(</span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="p">))</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;Paul&#39;</span><span class="p">,</span><span class="s1">&#39;Langevin&#39;</span><span class="p">,</span><span class="mi">48</span><span class="p">)</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Sylvie&#39;</span><span class="p">,</span><span class="s1">&#39;Lefur&#39;</span><span class="p">,</span><span class="mi">70</span><span class="p">)</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Sylvie&#39;</span><span class="p">,</span><span class="s1">&#39;Lefur&#39;</span><span class="p">,</span><span class="mi">70</span><span class="p">)</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Pierre&#39;</span><span class="p">,</span><span class="s1">&#39;Nicazou&#39;</span><span class="p">,</span><span class="mi">35</span><span class="p">)</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Géraldine&#39;</span><span class="p">,</span><span class="s1">&#39;Colou&#39;</span><span class="p">,</span><span class="mi">26</span><span class="p">)</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Paulette&#39;</span><span class="p">,</span><span class="s1">&#39;Girond&#39;</span><span class="p">,</span><span class="mi">56</span><span class="p">)</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="p">(</span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="k">values</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Paulette&#39;</span><span class="p">,</span><span class="s1">&#39;Girond&#39;</span><span class="p">,</span><span class="mi">56</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+<p><strong>Comments</strong></p>
+<ul>
+  <li>SQL (Structured Query Language) is not case-sensitive (upper/lowercase) for SQL commands;
+  </li>
+  <li>Line 1: We drop the <b>[people] </b>table if it exists;
+  </li>
+  <li>Line 2: We tell the MySQL server that we will be sending it characters encoded in UTF-8. This MySQL-specific SQL command is necessary here, for example, to ensure that the &quot;é&quot; in Géraldine appears correctly in the database. If we omit line 2, the &quot;é&quot; will be converted into a sequence of two strange characters. The client is the PHP script written in NetBeans. This script encodes the files in UTF-8 <b>[1-4] </b>as shown below:
+  </li>
+</ul>
+
+<p><img src="images/10000000000007B600000446BCEF1139.png" style="width:15.67cm;height:8.685cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000007B600000446BCEF1139.png" /></p>
+<ul>
+  <li>line 3: creation of the <b>[people] </b>table with three columns (first_name, last_name, age) and the primary key (last_name, first_name);
+  </li>
+  <li>lines 4–10: insertion of 7 rows into the <b>[people] </b>table;
+  </li>
+  <li>line 6: this insertion statement should fail because it attempts the same insertion as line 5. The primary key constraint should prevent this insertion: two people cannot have the same first and last names;
+  </li>
+  <li>line 10: this insert statement should fail because it attempts the same insertion as line 9;
+  </li>
+</ul>
+
+<p>The PHP script responsible for executing the SQL statements in this text file is as follows <strong>[mysql-03.php]</strong>:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// database credentials</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>DSN = <span style="color:#008000">&quot;mysql:host=localhost;dbname=dbpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// user credentials</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>ID = <span style="color:#008000">&quot;admpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>PWD = <span style="color:#008000">&quot;nobody&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// filename of the text file containing SQL commands to execute</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>SQL_COMMANDS_FILENAME = <span style="color:#008000">&quot;creation.txt&quot;</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// Open connection to the MySQL database</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">try </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">new </span>PDO(DSN, ID, PWD);</span>
+<span class="odt-code-line">} <span style="font-weight:bold">catch </span>(PDOException <span style="color:#0000ff">$ex</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// display error</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Error: &quot; </span>. $ex-&gt;getMessage() . <span style="color:#008000">&quot;\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">exit</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// We want an exception to be thrown for every DBMS error</span></span>
+<span class="odt-code-line">$connection-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// execute the SQL command file</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">$errors </span>= executeCommands(<span style="color:#0000ff">$connection</span>, SQL_COMMANDS_FILENAME, <span style="font-weight:bold">TRUE</span>, <span style="font-weight:bold">FALSE</span>);</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// close connection</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">NULL</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// display number of errors</span></span>
+<span class="odt-code-line">printf(<span style="color:#008000">&quot;\n-----------------------\nThere were %d error(s)\n&quot;</span>, count(<span style="color:#0000ff">$errors</span>));</span>
+<span class="odt-code-line"><span style="font-weight:bold">for </span>(<span style="color:#0000ff">$i </span>=<span style="color:#000080"> 0</span>; <span style="color:#0000ff">$i </span>&lt; count(<span style="color:#0000ff">$errors</span>); $i++) {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;</span><span style="color:#0000ff">$errors</span><span style="font-weight:bold;color:#0000ff">[$i]</span><span style="color:#008000">\n&quot;</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// Done</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Done\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">exit</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>executeCommands(PDO <span style="color:#0000ff">$connection</span>, <span style="font-weight:bold">string </span><span style="color:#0000ff">$SQLFileName</span>, <span style="font-weight:bold">bool </span><span style="color:#0000ff">$trace </span>= <span style="font-weight:bold">FALSE</span>, <span style="font-weight:bold">bool </span><span style="color:#0000ff">$stop </span>= <span style="font-weight:bold">TRUE</span>): <span style="font-weight:bold">array </span>{</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// use the $connection connection</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// executes the SQL commands contained in the text file SQLFileName</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// this file is a file of SQL commands to be executed, one per line</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// if $tracking=1, then each execution of an SQL command is followed by a message indicating whether it succeeded or failed</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// if $stop=1, the function stops at the first error encountered; otherwise, it executes all SQL commands</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// the function returns an array (number of errors, error1, error2…)</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// Check if the file SQLFileName exists</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">if </span>(!file_exists(<span style="color:#0000ff">$SQLFileName</span>)) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return [&quot;The file [$SQLFileName] </span><span style="color:#008000">does not exist&quot;</span>];</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// Execute the SQL queries contained in SQLFileName</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// put them into an array</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$queries </span>= file(<span style="color:#0000ff">$SQLFileName</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// error?</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">if </span>(<span style="color:#0000ff">$queries </span>=== <span style="font-weight:bold">FALSE</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return [&quot;Error while processing the SQL file [$SQLFileName]</span><span style="color:#008000">&quot;</span>];</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// execute the queries one by one - initially no errors</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$errors </span>= [];</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$i </span>=<span style="color:#000080"> 0</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$done </span>= <span style="font-weight:bold">FALSE</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">while </span>(<span style="color:#0000ff">$i </span>&lt; count(<span style="color:#0000ff">$requests</span>) &amp;&amp; !<span style="color:#0000ff">$done</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// retrieve the text of the query</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// trim removes the line break</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#0000ff">$request </span>= trim(<span style="color:#0000ff">$requests</span><span style="font-weight:bold">[$i]</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// Is the query empty?</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">if </span>(strlen(<span style="color:#0000ff">$query</span>) ==<span style="color:#000080"> 0</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// skip the query and move on to the next one</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span>$i++;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">continue</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">try </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// execute the query - an exception may be thrown</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span>$connection-&gt;exec(<span style="color:#0000ff">$query</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// display output or not?</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">if </span>(<span style="color:#0000ff">$logging</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;</span><span style="color:#0000ff">$request</span><span style="color:#008000">: Execution successful\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>} <span style="font-weight:bold">catch </span>(PDOException <span style="color:#0000ff">$ex</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// An error occurred</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span>addError(<span style="color:#0000ff">$errors</span>, <span style="color:#0000ff">$query</span>, $ex-&gt;getMessage(), <span style="color:#0000ff">$tracking</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// should we stop?</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="color:#0000ff">$finished </span>= <span style="color:#0000ff">$stop</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// next request</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$i++;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// result</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">return </span><span style="color:#0000ff">$errors</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>addError(<span style="font-weight:bold">array </span><span style="color:#0000ff">&amp;$errors</span>, <span style="font-weight:bold">string </span><span style="color:#0000ff">$request</span>, <span style="font-weight:bold">string </span><span style="color:#0000ff">$msg</span>, <span style="font-weight:bold">bool </span><span style="color:#0000ff">$track</span>): void {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// add an error message</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$msg </span>= <span style="color:#008000">&quot;</span><span style="color:#0000ff">$request</span><span style="color:#008000">: Error (&quot; </span>. <span style="color:#0000ff">$msg </span>. <span style="color:#008000">&quot;)&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$errors</span>[] = <span style="color:#0000ff">$msg</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// Track on screen or not?</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">if </span>(<span style="color:#0000ff">$log</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;</span><span style="color:#0000ff">$msg</span><span style="color:#008000">\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p><strong><span style="color: #000000">Comments</span></strong></p>
+<ul>
+  <li><span style="color: #000000">The </span><b><span style="color: #000000">[executeCommands] </span></b><span style="color: #000000">function (lines 36–89) is responsible for executing the SQL commands found in the text file </span><b><span style="color: #000000">[$SQLFileName] </span></b><span style="color: #000000">(parameter 2). To execute them, it uses the open connection </span><b><span style="color: #000000">[$connection] </span></b><span style="color: #000000">(parameter 1) to the MySQL server. The third parameter </span><b><span style="color: #000000">[$log] </span></b><span style="color: #000000">is a boolean that controls screen output: if TRUE, the executed SQL statement is displayed on the screen along with its success or failure; otherwise, the execution of the SQL statement is silent. The fourth parameter </span><b><span style="color: #000000">[$stop] </span></b><span style="color: #000000">controls what to do when an SQL command fails: if TRUE, it indicates that the execution of SQL commands must stop; otherwise, it continues. The </span><b><span style="color: #000000">[executeCommands] </span></b><span style="color: #000000">function returns an array of error messages, empty if there were no errors;</span>
+  </li>
+  <li><span style="color: #000000">lines 11–18: we open the connection to the MySQL database </span><b><span style="color: #000000">[dbpersonnes]</span></b><span style="color: #000000">. If opening the connection fails, an error message is displayed and the process stops (lines 14–18);</span>
+  </li>
+  <li><span style="color: #000000">line 22: We then pass an open connection to the </span><b><span style="color: #000000">[executeCommands] </span></b><span style="color: #000000">function. It will be closed when the function returns (line 24);</span>
+  </li>
+  <li><span style="color: #000000">line 20: Before passing it to the </span><b><span style="color: #000000">[executeCommands] </span></b><span style="color: #000000">function, the connection is configured. In case of an error, SQL operations with a </span><b><span style="color: #000000">[PDO] </span></b><span style="color: #000000">object can either return the boolean </span><b><span style="color: #000000">FALSE </span></b><span style="color: #000000">(default value) or throw an exception. Line 20 chooses the latter option. Indeed, it is easy to “forget” to check the Boolean result of executing an SQL command. This will eventually cause an error elsewhere in the </span><span style="color: #000000">code, making it harder to trace back to the original source. In the case of an unhandled exception (no </span><i><span style="color: #000000">catch block</span></i><span style="color: #000000">), the exception will propagate up the code chain until it encounters a </span><i><span style="color: #000000">catch block </span></i><span style="color: #000000">or reaches the PHP interpreter, which will intercept the exception. In this case, the nature of the exception and its origin in the code are displayed;</span>
+  </li>
+  <li><span style="color: #000000">line 22: the </span><b><span style="color: #000000">[executeCommands] </span></b><span style="color: #000000">function is called to execute the SQL command file </span><b><span style="color: #000000">[$SQLFileName]</span></b><span style="color: #000000">;</span>
+  </li>
+  <li><span style="color: #000000">lines 45–47: we verify that the SQL command file actually exists. If not, we log the error and return this result;</span>
+  </li>
+  <li><span style="color: #000000">line 51: the SQL commands are placed in an array </span><b><span style="color: #000000">[$queries]</span></b><span style="color: #000000">. Lines 53–55: if the operation fails, an error array containing a single message is returned;</span>
+  </li>
+  <li><span style="color: #000000">line 57: we accumulate the errors in the array </span><b><span style="color: #000000">[$errors]</span></b><span style="color: #000000">;</span>
+  </li>
+  <li><span style="color: #000000">line 58: query number;</span>
+  </li>
+  <li><span style="color: #000000">line 59: the boolean </span><b><span style="color: #000000">[$finished] </span></b><span style="color: #000000">controls the execution of the SQL statements in the array </span><b><span style="color: #000000">[$queries]</span></b><span style="color: #000000">. When it becomes TRUE, execution stops;</span>
+  </li>
+  <li><span style="color: #000000">line 60: we loop through all queries;</span>
+  </li>
+  <li><span style="color: #000000">line 63: we extract the text of SQL command #i. The </span><b><span style="color: #000000">[trim] </span></b><span style="color: #000000">function removes the spaces before and after the SQL command text. By “spaces,” we mean the space character \b, the carriage return \r, the line feed \n, the form feed \f, the tab \t… What matters here is that the line feed in the SQL text will be removed;</span>
+  </li>
+  <li><span style="color: #000000">lines 65–69: if the SQL text is empty, then the query is ignored and we move on to the next one;</span>
+  </li>
+  <li><span style="color: #000000">line 72: we send the SQL command to the MySQL server. The </span><b><span style="color: #000000">[PDO::exec] </span></b><span style="color: #000000">method will throw an exception if execution fails. Note that this behavior is due to the configuration set on line 20;</span>
+  </li>
+  <li><span style="color: #000000">line 79: the error message is added to the error array;</span>
+  </li>
+  <li><span style="color: #000000">line 81: the boolean </span><b><span style="color: #000000">[$fini] </span></b><span style="color: #000000">that controls the loop is set. If the parameter </span><b><span style="color: #000000">[$arrêt] </span></b><span style="color: #000000">(line 36) is TRUE, the loop must be stopped;</span>
+  </li>
+  <li><span style="color: #000000">lines 74–76: if the SQL statement executed successfully, it is displayed on the screen if the parameter </span><b><span style="color: #000000">[$tracking] </span></b><span style="color: #000000">(line 36) is TRUE;</span>
+  </li>
+  <li><span style="color: #000000">Line 87: Once all SQL statements have been executed, the error array </span><b><span style="color: #000000">[$errors] </span></b><span style="color: #000000">is returned;</span>
+  </li>
+</ul>
+
+<p><span style="color: #000000">The </span><strong><span style="color: #000000">[adError] </span></strong><span style="color: #000000">function in lines 90–97 allows an error to be added to the error array </span><strong><span style="color: #000000">[$errors]</span></strong><span style="color: #000000">:</span></p>
+<ul>
+  <li><span style="color: #000000">line 90: the function takes 4 parameters:</span>
+    <ul>
+      <li><span style="color: #000000">the </span><b><span style="color: #000000">[$errors] </span></b><span style="color: #000000">parameter is passed by reference. This is because we want to modify the array passed as a parameter, not a copy of it;</span>
+      </li>
+      <li><span style="color: #000000">the </span><b><span style="color: #000000">[$query] </span></b><span style="color: #000000">parameter is the SQL text of the failed statement;</span>
+      </li>
+      <li><span style="color: #000000">the parameter </span><b><span style="color: #000000">[$msg] </span></b><span style="color: #000000">is the error message associated with the failed query;</span>
+      </li>
+      <li><span style="color: #000000">the boolean </span><b><span style="color: #000000">[$log] </span></b><span style="color: #000000">indicates whether the error message should be displayed ($log=TRUE) or not ($log=FALSE) on the console;</span>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p><span style="color: #000000">The </span><strong><span style="color: #000000">[executeCommands] </span></strong><span style="color: #000000">function is called by the script in lines 3–33:</span></p>
+<ul>
+  <li><span style="color: #000000">lines 11–18: a connection is established with the MySQL database </span><b><span style="color: #000000">[dbpersonnes]</span></b><span style="color: #000000">;</span>
+  </li>
+  <li><span style="color: #000000">line 20: the connection is configured;</span>
+  </li>
+  <li><span style="color: #000000">line 22: the SQL command file is then executed;</span>
+  </li>
+  <li><span style="color: #000000">line 24: the connection is closed;</span>
+  </li>
+  <li><span style="color: #000000">Lines 26–29: Display the errors returned by the </span><b><span style="color: #000000">[executeCommands] </span></b><span style="color: #000000">function;</span>
+  </li>
+</ul>
+
+<p>Screen <strong>output</strong>:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line">drop table if exists people: Execution successful</span>
+<span class="odt-code-line">SET NAMES &#x27;utf8&#x27;: Execution successful</span>
+<span class="odt-code-line">create table people (first_name varchar(30) not null, last_name varchar(30) not null, age integer not null, primary key (last_name, first_name)): Execution successful</span>
+<span class="odt-code-line">insert into people (first_name, last_name, age) values(&#x27;Paul&#x27;,&#x27;Langevin&#x27;,48): Execution successful</span>
+<span class="odt-code-line">insert into people (first_name, last_name, age) values (&#x27;Sylvie&#x27;,&#x27;Lefur&#x27;,70): Execution successful</span>
+<span class="odt-code-line">insert into people (first_name, last_name, age) values (&#x27;Sylvie&#x27;,&#x27;Lefur&#x27;,70) : Error (SQLSTATE<span style="font-weight:bold">[23000]</span>: Integrity constraint violation: 1062 Duplicate entry &#x27;Lefur-Sylvie&#x27; for key &#x27;PRIMARY&#x27;)</span>
+<span class="odt-code-line">insert into people (first_name, last_name, age) values (&#x27;Pierre&#x27;,&#x27;Nicazou&#x27;,35) : Execution successful</span>
+<span class="odt-code-line">insert into people (first_name, last_name, age) values (&#x27;Géraldine&#x27;,&#x27;Colou&#x27;,26) : Execution successful</span>
+<span class="odt-code-line">insert into people (first_name, last_name, age) values (&#x27;Paulette&#x27;,&#x27;Girond&#x27;,56) : Execution successful</span>
+<span class="odt-code-line">insert into people (first_name, last_name, age) values (&#x27;Paulette&#x27;,&#x27;Girond&#x27;,56) : Error (SQLSTATE<span style="font-weight:bold">[23000]</span>: Integrity constraint violation: 1062 Duplicate entry &#x27;Girond-Paulette&#x27; for key &#x27;PRIMARY&#x27;)</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">-----------------------</span>
+<span class="odt-code-line">There were 2 errors</span>
+<span class="odt-code-line">insert into people (first_name, last_name, age) values (&#x27;Sylvie&#x27;,&#x27;Lefur&#x27;,70) : Error (SQLSTATE<span style="font-weight:bold">[23000]</span>: Integrity constraint violation: 1062 Duplicate entry &#x27;Lefur-Sylvie&#x27; for key &#x27;PRIMARY&#x27;)</span>
+<span class="odt-code-line">insert into people (first_name, last_name, age) values (&#x27;Paulette&#x27;,&#x27;Girond&#x27;,56) : Error (SQLSTATE<span style="font-weight:bold">[23000]</span>: Integrity constraint violation: 1062 Duplicate entry &#x27;Girond-Paulette&#x27; for key &#x27;PRIMARY&#x27;)</span>
+<span class="odt-code-line">Done</span>
+</code></pre></div>
+
+<p>The inserted records are visible in phpMyAdmin:</p>
+<p><img src="images/100000000000031400000168D6F29E0B.png" style="width:6.249cm;height:2.856cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000031400000168D6F29E0B.png" /></p>
+<p><a id="toc42690710"></a>
+<a id="toc42690324"></a>
+<a id="toc42689938"></a>
+<a id="refheading399221881943603"></a>
+<a id="executiondordressql"></a></p>
+<h2 id="125-executing-arbitrary-sql-statements">12.5. <span style="color: #4f81bd">Executing arbitrary SQL statements</span></h2>
+<p>The following script demonstrates the execution of SQL statements from the following text file <strong>[sql.txt]</strong>:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span>
+<span class="normal"><a href="#__codelineno-3-5">5</a></span>
+<span class="normal"><a href="#__codelineno-3-6">6</a></span>
+<span class="normal"><a href="#__codelineno-3-7">7</a></span>
+<span class="normal"><a href="#__codelineno-3-8">8</a></span>
+<span class="normal"><a href="#__codelineno-3-9">9</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">people</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">select</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">last_name</span><span class="w"> </span><span class="k">asc</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="w"> </span><span class="k">desc</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">40</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">desc</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="w"> </span><span class="k">asc</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="w"> </span><span class="k">asc</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;Josette&#39;</span><span class="p">,</span><span class="s1">&#39;Bruneau&#39;</span><span class="p">,</span><span class="mi">46</span><span class="p">)</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a><span class="k">update</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">age</span><span class="o">=</span><span class="mi">47</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Bruneau&#39;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Bruneau&#39;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Bruneau&#39;</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Bruneau&#39;</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="n">xselect</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Bruneau&#39;</span>
+</code></pre></div></td></tr></table></div>
+<p>Among these SQL statements, there is the <strong>SELECT</strong> statement, which returns results from the database; the <strong>INSERT</strong>, <strong>UPDATE</strong>, and <strong>DELETE</strong> statements, which modify the database without returning results; and finally, invalid statements such as the last one (<strong>xselect</strong>). The <strong>[mysql-04.php]</strong> script is as follows:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// database credentials</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>DSN = <span style="color:#008000">&quot;mysql:host=localhost;dbname=dbpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// user credentials</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>ID = <span style="color:#008000">&quot;admpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>PWD = <span style="color:#008000">&quot;nobody&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// path to the text file containing SQL commands to execute</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>SQL_COMMANDS_FILENAME = <span style="color:#008000">&quot;sql.txt&quot;</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">try </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// connection to the MySQL database</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">new </span>PDO(DSN, ID, PWD);</span>
+<span class="odt-code-line">} <span style="font-weight:bold">catch </span>(PDOException <span style="color:#0000ff">$ex</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// display error</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Error: &quot; </span>. $ex-&gt;getMessage() . <span style="color:#008000">&quot;\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">exit</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// We want an exception to be thrown for every DBMS error</span></span>
+<span class="odt-code-line">$connection-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// execute the SQL command file</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">$errors </span>= executeCommands(<span style="color:#0000ff">$connection</span>, SQL_COMMANDS_FILENAME, <span style="font-weight:bold">TRUE</span>, <span style="font-weight:bold">FALSE</span>);</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// Close connection</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">NULL</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// display number of errors</span></span>
+<span class="odt-code-line">printf(<span style="color:#008000">&quot;\n-----------------------\nThere were %d error(s)\n&quot;</span>, count(<span style="color:#0000ff">$errors</span>));</span>
+<span class="odt-code-line"><span style="font-weight:bold">for </span>(<span style="color:#0000ff">$i </span>=<span style="color:#000080"> 0</span>; <span style="color:#0000ff">$i </span>&lt; count(<span style="color:#0000ff">$errors</span>); $i++) {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;</span><span style="color:#0000ff">$errors</span><span style="font-weight:bold;color:#0000ff">[$i]</span><span style="color:#008000">\n&quot;</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// Done</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Done\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">exit</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>executeCommands(PDO <span style="color:#0000ff">$connection</span>, <span style="font-weight:bold">string </span><span style="color:#0000ff">$SQLFileName</span>, <span style="font-weight:bold">bool </span><span style="color:#0000ff">$trace </span>= <span style="font-weight:bold">FALSE</span>, <span style="font-weight:bold">bool </span><span style="color:#0000ff">$stop </span>= <span style="font-weight:bold">TRUE</span>): <span style="font-weight:bold">array </span>{</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">………………………………………………………….</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// execute queries one by one - initially no errors</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$errors </span>= [];</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$i </span>=<span style="color:#000080"> 0</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$done </span>= <span style="font-weight:bold">FALSE</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">while </span>(<span style="color:#0000ff">$i </span>&lt; count(<span style="color:#0000ff">$requests</span>) &amp;&amp; !<span style="color:#0000ff">$done</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// retrieve the text of the query</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// trim removes the line break</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#0000ff">$request </span>= trim(<span style="color:#0000ff">$requests</span><span style="font-weight:bold">[$i]</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// Is the query empty?</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">if </span>(strlen(<span style="color:#0000ff">$query</span>) ==<span style="color:#000080"> 0</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// skip the query and move on to the next one</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span>$i++;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">continue</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// execute the request</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// retrieve its name</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#0000ff">$command </span>= <span style="color:#008000">&quot;&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">if </span>(preg_match(<span style="color:#008000">&quot;/^\s*(\S+)/&quot;</span>, <span style="color:#0000ff">$query</span>, <span style="color:#0000ff">$fields</span>)) {</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="color:#0000ff">$order </span>= strtolower(<span style="color:#0000ff">$fields</span><span style="font-weight:bold">[0]</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">try </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// Is this a SELECT statement?</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">if </span>(<span style="color:#0000ff">$query </span>=== <span style="color:#008000">&quot;select&quot;</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="color:#0000ff">$result </span>= $connection-&gt;query(<span style="color:#0000ff">$query</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">      </span>} <span style="font-weight:bold">else </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="color:#0000ff">$result </span>= $connection-&gt;exec(<span style="color:#0000ff">$query</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">      </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// Track screen or not?</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">if </span>(<span style="color:#0000ff">$log</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;</span><span style="font-weight:bold;color:#008000">[$query] </span><span style="color:#008000">: Execution successful\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// display the result of the execution</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span>displayInfo(<span style="color:#0000ff">$command</span>, <span style="color:#0000ff">$result</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>} <span style="font-weight:bold">catch </span>(PDOException <span style="color:#0000ff">$ex</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// An error occurred</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span>addError(<span style="color:#0000ff">$errors</span>, <span style="color:#0000ff">$query</span>, $ex-&gt;getMessage(), <span style="color:#0000ff">$tracking</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// should we stop?</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="color:#0000ff">$finished </span>= <span style="color:#0000ff">$stop</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// next request</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$i++;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// result</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">return </span><span style="color:#0000ff">$errors</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>addError(<span style="font-weight:bold">array </span><span style="color:#0000ff">&amp;$errors</span>, <span style="font-weight:bold">string </span><span style="color:#0000ff">$request</span>, <span style="font-weight:bold">string </span><span style="color:#0000ff">$message</span>, <span style="font-weight:bold">bool </span><span style="color:#0000ff">$track</span>): void {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic">…</span></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>displayInfo(<span style="font-weight:bold">string </span><span style="color:#0000ff">$query</span>, <span style="color:#0000ff">$result</span>): void {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// displays the $result of an SQL query</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// Was it a SELECT query?</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">switch </span>(<span style="color:#0000ff">$query</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">case </span><span style="color:#008000">&quot;select&quot;</span><span style="color:#008080">:</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// display the field names</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="color:#0000ff">$title </span>= <span style="color:#008000">&quot;&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="color:#0000ff">$numberOfColumns </span>= $result-&gt;columnCount();</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">for </span>(<span style="color:#0000ff">$i </span>=<span style="color:#000080"> 0</span>; <span style="color:#0000ff">$i </span>&lt; <span style="color:#0000ff">$numberOfColumns</span>; $i++) {</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="color:#0000ff">$info </span>= $result-&gt;getColumnMeta(<span style="color:#0000ff">$i</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="color:#0000ff">$title </span>.= <span style="color:#0000ff">$info</span><span style="font-weight:bold">[&#x27;name&#x27;] </span>. <span style="color:#008000">&quot;,&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// remove the last character ,</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="color:#0000ff">$title </span>= substr(<span style="color:#0000ff">$title</span>,<span style="color:#000080"> 0</span>, strlen(<span style="color:#0000ff">$title</span>) -<span style="color:#000080"> 1</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// display the list of fields</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;</span><span style="color:#0000ff">$title</span><span style="color:#008000">\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// separator line</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="color:#0000ff">$separators </span>= <span style="color:#008000">&quot;&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">for </span>(<span style="color:#0000ff">$i </span>=<span style="color:#000080"> 0</span>; <span style="color:#0000ff">$i </span>&lt; strlen(<span style="color:#0000ff">$title</span>); $i++) {</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="color:#0000ff">$separators </span>.= <span style="color:#008000">&quot;-&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;</span><span style="color:#0000ff">$separators</span><span style="color:#008000">\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// data</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">foreach </span>(<span style="color:#0000ff">$result </span><span style="font-weight:bold">as </span><span style="color:#0000ff">$row</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="color:#0000ff">$data </span>= <span style="color:#008000">&quot;&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="font-weight:bold">for </span>(<span style="color:#0000ff">$i </span>=<span style="color:#000080"> 0</span>; <span style="color:#0000ff">$i </span>&lt; <span style="color:#0000ff">$nbColumns</span>; $i++) {</span>
+<span class="odt-code-line"><span style="color:#008080">          </span><span style="color:#0000ff">$data </span>.= <span style="color:#0000ff">$row</span><span style="font-weight:bold">[$i] </span>. <span style="color:#008000">&quot;,&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">        </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="font-style:italic;color:#808080">// remove the last character ,</span></span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="color:#0000ff">$data </span>= substr(<span style="color:#0000ff">$data</span>,<span style="color:#000080"> 0</span>, strlen(<span style="color:#0000ff">$data</span>) -<span style="color:#000080"> 1</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="font-style:italic;color:#808080">// display</span></span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;</span><span style="color:#0000ff">$data</span><span style="color:#008000">\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">break</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">case </span><span style="color:#008000">&quot;update&quot;</span>:</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">case </span><span style="color:#008000">&quot;insert&quot;</span>:</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">case </span><span style="color:#008000">&quot;delete&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot; </span><span style="color:#0000ff">$result </span><span style="color:#008000">rows have been modified\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">break</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>lines 36–83: the <b>[executeCommands] </b>function is slightly modified: the SQL command <b>[select] </b>does not execute in the same way as other SQL commands. This command is the only one that returns a table as a result, i.e., a set of rows and columns from the database;
+  </li>
+  <li>lines 55–57: We extract the first word of the SQL statement using a regular expression;
+  </li>
+  <li>lines 60–64: if the SQL command is <b>[select]</b>, the <b>[PDO::query] </b>method is used; otherwise, the <b>[PDO::exec] </b>method is used to execute the SQL command. In both cases, if execution fails, an exception is thrown and caught in lines 71–77. If execution succeeds, line 70 displays the result;
+  </li>
+  <li>lines 90–130: the <i>displayInfo</i> function displays information about the result of executing an SQL command;
+  </li>
+  <li>line 94: we handle the <b>[select] </b>case. Its result is an object of type <b>[PDOStatement]</b>;
+  </li>
+  <li>line 96: the <b>[PDOStatement::getColumnCount()] </b>method returns the number of columns in the result table of the <i>select</i>;
+  </li>
+  <li>lines 98–99: the <b>[PDOStatement::getMeta(i)] </b>method returns a dictionary of information about column <i>i </i>of the <i>SELECT</i> result table<i>. </i>In this dictionary, the value associated with the &#x27;name&#x27; key is the column name;
+  </li>
+  <li>lines 97–102: the names of the columns in the result table of <i>the SELECT statement </i>are concatenated into a string;
+  </li>
+  <li>lines 105-110: a separator line is constructed with the same length as the previously constructed string;
+  </li>
+  <li>lines 112–121: A <i>PDOStatement</i> object can be iterated over using a <i>foreach</i> loop. At each iteration, the returned element is a row from the <i>SELECT</i> result table in the form of an array of values representing the values of the row’s various columns. All these values are displayed using a <i>for</i> loop (lines 114–116);
+  </li>
+  <li>lines 123–127: The result of executing an <i>insert</i>, <i>update</i>, or <i>delete </i>statement is the number of rows modified by the statement;
+  </li>
+</ul>
+
+<p>Screen <strong>results</strong>:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span style="font-weight:bold">[set names &#x27;utf8&#x27;]</span>: Execution successful</span>
+<span class="odt-code-line">[select * from people]: Execution successful</span>
+<span class="odt-code-line">first_name,last_name,age</span>
+<span class="odt-code-line">--------------</span>
+<span class="odt-code-line">Géraldine,Colou,26</span>
+<span class="odt-code-line">Paulette, Girond, 56</span>
+<span class="odt-code-line">Paul, Langevin, 48</span>
+<span class="odt-code-line">Sylvie, Lefur, 70</span>
+<span class="odt-code-line">Pierre, Nicazou, 35</span>
+<span class="odt-code-line">[select last_name, first_name from people order by last_name asc, first_name desc]: Query executed successfully</span>
+<span class="odt-code-line">last_name,first_name</span>
+<span class="odt-code-line">----------</span>
+<span class="odt-code-line">Colou, Géraldine</span>
+<span class="odt-code-line">Girond, Paulette</span>
+<span class="odt-code-line">Langevin, Paul</span>
+<span class="odt-code-line">Lefur, Sylvie</span>
+<span class="odt-code-line">Nicazou, Pierre</span>
+<span class="odt-code-line">[select * from people where age between 20 and 40 order by age desc, last_name asc, first_name asc] : Query executed successfully</span>
+<span class="odt-code-line">first_name,last_name,age</span>
+<span class="odt-code-line">--------------</span>
+<span class="odt-code-line">Pierre, Nicazou, 35</span>
+<span class="odt-code-line">Géraldine,Colou,26</span>
+<span class="odt-code-line">[insert into people values(&#x27;Josette&#x27;,&#x27;Bruneau&#x27;,46)] : Execution successful</span>
+<span class="odt-code-line"> 1 row(s) was (were) modified</span>
+<span class="odt-code-line">[update people set age=47 where last_name=&#x27;Bruneau&#x27;]: Execution successful</span>
+<span class="odt-code-line"> 1 row(s) has (have) been modified</span>
+<span class="odt-code-line">[select * from people where last_name=&#x27;Bruneau&#x27;]: Execution successful</span>
+<span class="odt-code-line">first_name,last_name,age</span>
+<span class="odt-code-line">--------------</span>
+<span class="odt-code-line">Josette,Bruneau,47</span>
+<span class="odt-code-line">[delete from people where last_name=&#x27;Bruneau&#x27;]: Execution successful</span>
+<span class="odt-code-line"> 1 row(s) modified</span>
+<span class="odt-code-line">[select * from people where last_name=&#x27;Bruneau&#x27;]: Execution successful</span>
+<span class="odt-code-line">first_name,last_name,age</span>
+<span class="odt-code-line">--------------</span>
+<span class="odt-code-line">[insert into people values(&#x27;Josette&#x27;,&#x27;Bruneau&#x27;,46)] : Execution successful</span>
+<span class="odt-code-line"> 1 row(s) has (have) been modified</span>
+<span class="odt-code-line"><span style="font-weight:bold">[xselect * from people where last_name=&#x27;Bruneau&#x27;]</span>: Error (SQLSTATE<span style="font-weight:bold">[42000]</span>: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;xselect * from people where last_name=&#x27;Bruneau&#x27;&#x27; at line 1)</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">-----------------------</span>
+<span class="odt-code-line">There was 1 error</span>
+<span class="odt-code-line"><span style="font-weight:bold">[xselect * from people where name=&#x27;Bruneau&#x27;] </span>: Error (SQLSTATE<span style="font-weight:bold">[42000]</span>: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;xselect * from people where name=&#x27;Bruneau&#x27;&#x27; at line 1)</span>
+<span class="odt-code-line">Done</span>
+</code></pre></div>
+
+<p><a id="refheadingtoc822223439697744"></a>
+<a id="toc42690711"></a>
+<a id="toc42690325"></a>
+<a id="toc42689939"></a></p>
+<h2 id="126-using-prepared-sql-statements">12.6. <span style="color: #4f81bd">Using Prepared SQL Statements</span></h2>
+<p><a id="refheadingtoc822243439697744"></a>
+<a id="toc42690712"></a>
+<a id="toc42690326"></a>
+<a id="toc42689940"></a></p>
+<h3 id="1261-example-1">12.6.1. <span style="color: #4f81bd">Example 1</span></h3>
+<p>Let&#x27;s examine the following script <strong>[mysql-05.php]</strong>:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// database credentials</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>DSN = <span style="color:#008000">&quot;mysql:host=localhost;dbname=dbpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// user credentials</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>ID = <span style="color:#008000">&quot;admpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>PWD = <span style="color:#008000">&quot;nobody&quot;</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">try </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// connect to the MySQL database</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">new </span>PDO(DSN, ID, PWD);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// We want an exception to be thrown for every DBMS error</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$connection-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// clear the people table</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$connection-&gt;exec(<span style="color:#008000">&quot;delete from people&quot;</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// a list of people</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$people </span>= [];</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$people</span><span style="font-weight:bold">[] = [&quot;last_name&quot; =&gt; &quot;Langevin&quot;, &quot;first_name&quot; =&gt; &quot;Paul&quot;, &quot;age&quot; =&gt; 47]</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$people</span><span style="font-weight:bold">[] = [&quot;last_name&quot; =&gt; &quot;Lefur&quot;, &quot;first_name&quot; =&gt; &quot;Sylvie&quot;, &quot;age&quot; =&gt; 28]</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// we&#x27;ll add these people to the database</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$statement </span>= $connection-&gt;prepare(<span style="color:#008000">&quot;insert into people (last_name, first_name, age) values (:last_name, :first_name, :age)&quot;</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">for </span>(<span style="color:#0000ff">$i </span>=<span style="color:#000080"> 0</span>; <span style="color:#0000ff">$i </span>&lt; count(<span style="color:#0000ff">$people</span>); $i++) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$statement-&gt;execute(<span style="color:#0000ff">$people</span><span style="font-weight:bold">[$i]</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line">} <span style="font-weight:bold">catch </span>(PDOException <span style="color:#0000ff">$ex</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// display error</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Error: &quot; </span>. $ex-&gt;getMessage() . <span style="color:#008000">&quot;\n&quot;</span>;</span>
+<span class="odt-code-line">} <span style="font-weight:bold">finally </span>{</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// close connection</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">NULL</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// Done</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Done\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">exit</span>;</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<p>Here we are focusing on lines 16–24, which insert two people into the people table in the <strong>[dbpersonnes]</strong> database.</p>
+<ul>
+  <li>Line 21: We ‘prepare’ a parameterized SQL statement. The parameters are preceded by the character : :<b>last_name</b>, :<b>first_name</b>, :<b>age</b>. To ‘prepare’ an SQL statement, we use the <b>[PDO::prepare] </b>method. The result is a <b>[PDOStatement] </b>type. &quot;Preparation&quot; is not execution: nothing is executed;
+  </li>
+  <li>Line 23: Executing the &quot;prepared&quot; statement using the <b>[PDOStatement::execute] </b>method. To do this, you must assign values to the :<b>last_name</b>, :<b>first_name, </b>and :<b>age </b>parameters. There are several ways to do this. Here, we use a dictionary whose keys are the parameters of the prepared statement, which we pass to the <b>[PDOStatement::execute] </b>method. Another way to do this is to assign a value to the parameters using the <b>[PDOStatement::bindValue($parameter,$value)] </b>method. For example:
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line">$statement→bindValue(“lastName”<span style="color:#000000">,”Langevin”);</span></span>
+<span class="odt-code-line">$statement-&gt;bindValue(&quot;lastName&quot;<span style="color:#000000">, &quot;Langevin&quot;);</span></span>
+<span class="odt-code-line">$statement-&gt;bindValue(&quot;age&quot;<span style="color:#000000">, 47);</span></span>
+<span class="odt-code-line">$statement-&gt;execute();</span>
+</code></pre></div>
+
+<p>The downside is that you have to repeat this instruction for each parameter. The dictionary method may therefore be more convenient. The <strong>[PDOStatement::execute]</strong> method returns FALSE if execution fails;</p>
+<ul>
+  <li>the method used here to perform the inserts:
+    <ul>
+      <li><b>a </b>prepared statement;
+      </li>
+      <li><b>n </b>executions of the prepared statement;
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>is more efficient in terms of execution time than executing <strong>n different</strong> SQL statements. This method is therefore preferable. It can be used for <em>SELECT, UPDATE, DELETE, and INSERT</em> SQL statements. In the case of a <em>SELECT</em> SQL statement, after executing it with <strong>[PDOStatement::execute]</strong>, the result rows are retrieved using the <strong>[PDOStatement::fetchAll]</strong> method;</p>
+<p><a id="refheadingtoc822263439697744"></a>
+<a id="toc42690713"></a>
+<a id="toc42690327"></a>
+<a id="toc42689941"></a></p>
+<h3 id="1262-example-2">12.6.2. <span style="color: #4f81bd">Example 2</span></h3>
+<p>The following script <strong>[mysql-06.php]</strong> demonstrates the use of a prepared statement for a <strong>SELECT</strong> SQL operation, as well as various ways to retrieve the rows returned by this operation:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// database connection</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>DSN = <span style="color:#008000">&quot;mysql:host=localhost;dbname=dbpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// user credentials</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>ID = <span style="color:#008000">&quot;admpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>PWD = <span style="color:#008000">&quot;nobody&quot;</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">try </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// connect to the MySQL database</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">new </span>PDO(DSN, ID, PWD);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// We want an exception to be thrown for every DBMS error</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$connection-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// clear the people table</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$connection-&gt;exec(<span style="color:#008000">&quot;delete from people&quot;</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// We&#x27;re going to add these people to the database</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$statement </span>= $connection-&gt;prepare(<span style="color:#008000">&quot;insert into people (last_name, first_name, age) values (:last_name, :first_name, :age)&quot;</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">for </span>(<span style="color:#0000ff">$i </span>=<span style="color:#000080"> 0</span>; <span style="color:#0000ff">$i </span>&lt;<span style="color:#000080"> 10</span>; $i++) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$statement-&gt;execute(<span style="font-weight:bold">[&quot;last_name&quot; =&gt; &quot;last_name&quot; . $i, &quot;first_name&quot; =&gt; &quot;first_name&quot; . $i, &quot;age&quot; =&gt; $i * 10]</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// query the database</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$statement </span>= $connection-&gt;prepare(<span style="color:#008000">&quot;select last_name, first_name, age from people&quot;</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$statement-&gt;execute();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// 1st row</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$row </span>= $statement-&gt;fetch();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>var_dump(<span style="color:#0000ff">$row</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// 2nd row</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$row </span>= $statement-&gt;fetch(PDO::FETCH_ASSOC);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>var_dump(<span style="color:#0000ff">$row</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// 3rd row</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$row </span>= $statement-&gt;fetch(PDO::FETCH_OBJ);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>var_dump(<span style="color:#0000ff">$row</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// 4th row</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$statement-&gt;setFetchMode(PDO::FETCH_CLASS, <span style="color:#008000">&quot;Person&quot;</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$row </span>= $statement-&gt;fetch();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>var_dump(<span style="color:#0000ff">$row</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// sequential reading of all rows</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$statement </span>= $connection-&gt;prepare(<span style="color:#008000">&quot;select last_name, first_name, age from people&quot;</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$statement-&gt;execute();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$statement-&gt;setFetchMode(PDO::FETCH_CLASS, <span style="color:#008000">&quot;Person&quot;</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">while </span>(<span style="color:#0000ff">$person </span>= $statement-&gt;fetch()) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;</span><span style="color:#0000ff">$person</span><span style="color:#008000">\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line">} <span style="font-weight:bold">catch </span>(PDOException <span style="color:#0000ff">$ex</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// display error</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Error: &quot; </span>. $ex-&gt;getMessage() . <span style="color:#008000">&quot;\n&quot;</span>;</span>
+<span class="odt-code-line">} <span style="font-weight:bold">finally </span>{</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// close connection</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">NULL</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// Done</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Done\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">exit</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Person {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$lastName</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$lastName</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$age</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function __toString</span>() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span><span style="color:#008000">&quot;Person</span><span style="font-weight:bold;color:#008000">[$this-&gt;lastName, $this-&gt;firstName, $this-&gt;age]</span><span style="color:#008000">&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>lines 17–20: we insert 10 rows into the <b>[people] </b>table in the <b>[admpersonnes] </b>database:
+  </li>
+</ul>
+
+<p><img src="images/1000000000000557000003C59FE215B2.png" style="width:10.85cm;height:7.659cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000557000003C59FE215B2.png" /></p>
+<ul>
+  <li>Line 22: We &quot;prepare&quot; an SQL <b>[select] </b>statement that we execute on line 23;
+  </li>
+  <li>line 25: we retrieve a row from the result of the executed SQL <b>[select] </b>operation using the <b>[PDOStatement::fetch] </b>method. The <b>[PDOStatement::fetch] </b>method can retrieve the result rows of a prepared SQL <b>[select] </b>operation in various ways. The script demonstrates a few of them. The <b>[PDOStatement::fetch] </b>method without parameters returns the current row of the <b>[select] </b>as a dictionary indexed by both column numbers and column names;
+  </li>
+  <li>line 26: displays the following result:
+  </li>
+</ul>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line">array(6) {</span>
+<span class="odt-code-line">  [&quot;name&quot;]=&gt;</span>
+<span class="odt-code-line">  string(4) &quot;name0&quot;</span>
+<span class="odt-code-line">  <span style="font-weight:bold">[0]</span>=&gt;</span>
+<span class="odt-code-line">  string(4) &quot;last_name0&quot;</span>
+<span class="odt-code-line">  [&quot;last_name&quot;]=&gt;</span>
+<span class="odt-code-line">  string(7) &quot;first_name0&quot;</span>
+<span class="odt-code-line">  <span style="font-weight:bold">[1]</span>=&gt;</span>
+<span class="odt-code-line">  string(7) &quot;first_name0&quot;</span>
+<span class="odt-code-line">  [&quot;age&quot;]=&gt;</span>
+<span class="odt-code-line">  string(1) &quot;0&quot;</span>
+<span class="odt-code-line">  <span style="font-weight:bold">[2]</span>=&gt;</span>
+<span class="odt-code-line">  string(1) &quot;0&quot;</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<ul>
+  <li>lines 28-29: the <b>[PDO::FETCH_ASSOC] </b>parameter ensures that the returned row is a dictionary indexed by the table&#x27;s column names:
+  </li>
+</ul>
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span>
+<span class="normal"><a href="#__codelineno-4-7">7</a></span>
+<span class="normal"><a href="#__codelineno-4-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>array(3) {
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>  [&quot;name&quot;]=&gt;
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>  string(4) &quot;last_name1&quot;
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>  [&quot;last_name&quot;]=&gt;
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>  string(7) &quot;first_name1&quot;
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>  [&quot;age&quot;]=&gt;
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>  string(2) &quot;10&quot;
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>}
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>lines 31-32: the <b>[PDO::FETCH_OBJ] </b>parameter ensures that the returned row is an object of type <b>[stdclass] </b>whose attributes are the names of the table&#x27;s columns:
+  </li>
+</ul>
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span>
+<span class="normal"><a href="#__codelineno-5-4">4</a></span>
+<span class="normal"><a href="#__codelineno-5-5">5</a></span>
+<span class="normal"><a href="#__codelineno-5-6">6</a></span>
+<span class="normal"><a href="#__codelineno-5-7">7</a></span>
+<span class="normal"><a href="#__codelineno-5-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>object(stdClass)#2 (3) {
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>  [&quot;name&quot;]=&gt;
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>  string(4) &quot;last_name2&quot;
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>  [&quot;last_name&quot;]=&gt;
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>  string(7) &quot;first_name2&quot;
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>  [&quot;age&quot;]=&gt;
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>  string(2) &quot;20&quot;
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>}
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>Line 34: We set the fetch mode of the <b>[fetch] </b>method using the <b>[PDOStatement::setFetchMode] </b>method. This mode then becomes the default mode until it is changed either by another <b>[PDOStatement::setFetchMode] </b>operation or by passing a mode as a parameter to the <b>[PDOStatement::fetch] </b>method, as was done previously. The operation <b>[setFetchMode(PDO::FETCH_CLASS, &quot;Person&quot;)] </b>indicates that the row being read must be placed in an object of type <b>[Person]</b>. This class must have attributes among its properties that correspond to the names of the columns in the row being read. This is the case for the <b>[Person] </b>class defined in lines 56–63;
+  </li>
+  <li>line 36 displays the following result:
+  </li>
+</ul>
+
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span>
+<span class="normal"><a href="#__codelineno-6-4">4</a></span>
+<span class="normal"><a href="#__codelineno-6-5">5</a></span>
+<span class="normal"><a href="#__codelineno-6-6">6</a></span>
+<span class="normal"><a href="#__codelineno-6-7">7</a></span>
+<span class="normal"><a href="#__codelineno-6-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>object(Person)#4 (3) {
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>  [&quot;name&quot;:&quot;Person&quot;:private]=&gt;
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>  string(4) &quot;last_name3&quot;
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>  [&quot;last_name&quot;:&quot;Person&quot;:private]=&gt;
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>  string(7) &quot;first_name3&quot;
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>  [&quot;age&quot;:&quot;Person&quot;:private]=&gt;
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>  string(2) &quot;30&quot;
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>}
+</code></pre></div></td></tr></table></div>
+<ul>
+  <li>lines 38–43: show how to sequentially process the results of the <b>[select]</b>;
+  </li>
+  <li>line 42: the display of <b>[$person] </b>will use the <b>[__toString] </b>method of the <b>[Person] </b>class;
+<a id="refheadingtoc822283439697744"></a>
+<a id="toc42690714"></a>
+<a id="toc42690328"></a>
+<a id="toc42689942"></a>
+
+## 12.7. <span style="color: #4f81bd">Using Transactions</span>
+
+  </li>
+</ul>
+
+<p>A transaction allows you to group a sequence of SQL statements into a single unit of execution: either all statements succeed, or one of them fails, in which case all SQL statements preceding it are rolled back. In other words, when using a transaction to execute SQL statements, after the transaction completes, the database is in a <strong>stable</strong> state:</p>
+<ul>
+  <li>either in a <b>new state </b>created by the successful execution of all SQL statements in the transaction;
+  </li>
+  <li>or in <b>the state it was in </b>before the transaction began to be executed;
+  </li>
+</ul>
+
+<p>We will revisit the example of executing the SQL statements contained in a text file discussed in <a href="#executiondordressql"><u><span style="color: #0563c1">the previous</span></u></a> section. We will include this execution within a transaction. The SQL statements will be contained in the following <strong>[sql2.txt]</strong> file:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="k">set</span><span class="w"> </span><span class="k">names</span><span class="w"> </span><span class="s1">&#39;utf8&#39;</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">people</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="k">select</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">last_name</span><span class="w"> </span><span class="k">asc</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="w"> </span><span class="k">desc</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">between</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="mi">40</span><span class="w"> </span><span class="k">order</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="k">desc</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="w"> </span><span class="k">asc</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="w"> </span><span class="k">asc</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;Josette&#39;</span><span class="p">,</span><span class="s1">&#39;Bruneau&#39;</span><span class="p">,</span><span class="mi">46</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="k">update</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">set</span><span class="w"> </span><span class="n">age</span><span class="o">=</span><span class="mi">47</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Bruneau&#39;</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Bruneau&#39;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="k">delete</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Bruneau&#39;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">last_name</span><span class="o">=</span><span class="s1">&#39;Bruneau&#39;</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="k">insert</span><span class="w"> </span><span class="k">into</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">values</span><span class="p">(</span><span class="s1">&#39;Josette&#39;</span><span class="p">,</span><span class="s1">&#39;Bruneau&#39;</span><span class="p">,</span><span class="mi">46</span><span class="p">)</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Bruneau&#39;</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="n">xselect</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">people</span><span class="w"> </span><span class="k">where</span><span class="w"> </span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;Bruneau&#39;</span>
+</code></pre></div></td></tr></table></div>
+<p>The incorrect order of line 12 will cause the entire transaction to fail. The database should therefore revert to its state prior to the transaction. In the example above, the row inserted by line 10 should not appear in the table. The script has changed very little. However, here is the complete code <strong>[mysql-07.php]</strong> again:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// database identity</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>DSN = <span style="color:#008000">&quot;mysql:host=localhost;dbname=dbpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// user credentials</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>ID = <span style="color:#008000">&quot;admpersonnes&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>PWD = <span style="color:#008000">&quot;nobody&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// path to the text file containing SQL commands to execute</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">const </span>SQL_COMMANDS_FILENAME = <span style="color:#008000">&quot;</span><span style="background-color:#b4c7dc;color:#008000">sql2.txt</span><span style="color:#008000">&quot;</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">try </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// connection to the MySQL database</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">new </span>PDO(DSN, ID, PWD);</span>
+<span class="odt-code-line">} <span style="font-weight:bold">catch </span>(PDOException <span style="color:#0000ff">$ex</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// display error</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Error: &quot; </span>. $ex-&gt;getMessage() . <span style="color:#008000">&quot;\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">exit</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// We want an exception to be thrown for every DBMS error</span></span>
+<span class="odt-code-line">$connection-&gt;setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// execute the SQL command file</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">$errors </span>= <span style="background-color:#b4c7dc">executeCommands(</span><span style="background-color:#b4c7dc;color:#0000ff">$connection</span><span style="background-color:#b4c7dc">, SQL_COMMANDS_FILENAME, </span><span style="font-weight:bold;background-color:#b4c7dc">TRUE</span><span style="background-color:#b4c7dc">)</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// Close connection</span></span>
+<span class="odt-code-line"><span style="color:#0000ff">$connection </span>= <span style="font-weight:bold">NULL</span>;</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// display number of errors</span></span>
+<span class="odt-code-line">printf(<span style="color:#008000">&quot;\n-----------------------\nThere were %d error(s)\n&quot;</span>, count(<span style="color:#0000ff">$errors</span>));</span>
+<span class="odt-code-line"><span style="font-weight:bold">for </span>(<span style="color:#0000ff">$i </span>=<span style="color:#000080"> 0</span>; <span style="color:#0000ff">$i </span>&lt; count(<span style="color:#0000ff">$errors</span>); $i++) {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;</span><span style="color:#0000ff">$errors</span><span style="font-weight:bold;color:#0000ff">[$i]</span><span style="color:#008000">\n&quot;</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// Done</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">print </span><span style="color:#008000">&quot;Done\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">exit</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span><span style="background-color:#b4c7dc">executeCommands(PDO </span><span style="background-color:#b4c7dc;color:#0000ff">$connection</span><span style="background-color:#b4c7dc">, </span><span style="font-weight:bold;background-color:#b4c7dc">string </span><span style="background-color:#b4c7dc;color:#0000ff">$SQLFileName</span><span style="background-color:#b4c7dc">, </span><span style="font-weight:bold;background-color:#b4c7dc">bool </span><span style="background-color:#b4c7dc;color:#0000ff">$trace </span><span style="background-color:#b4c7dc">= </span><span style="font-weight:bold;background-color:#b4c7dc">FALSE</span><span style="background-color:#b4c7dc">)</span>: <span style="font-weight:bold">array </span>{</span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// use the $connection connection</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// executes the SQL commands contained in the text file SQLFileName</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// this file is a file of SQL commands to be executed, one per line</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// </span><span style="font-style:italic;background-color:#b4c7dc;color:#808080">SQL commands are executed within a transaction</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// </span><span style="font-style:italic;background-color:#b4c7dc;color:#808080">if any of the commands fails, the transaction is rolled back and the database is restored to its state prior to the transaction</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// if $tracking=1, then each execution of an SQL command is followed by a message indicating whether it succeeded or failed</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// the function returns an array (number of errors, error1, error2…)</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">//</span></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// Check if the file SQLFileName exists</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">if </span>(!file_exists(<span style="color:#0000ff">$SQLFileName</span>)) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return [&quot;The file [$SQLFileName] </span><span style="color:#008000">does not exist&quot;</span>];</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// execute the SQL queries contained in SQLFileName</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// put them into an array</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$queries </span>= file(<span style="color:#0000ff">$SQLFileName</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// error?</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">if </span>(<span style="color:#0000ff">$queries </span>=== <span style="font-weight:bold">FALSE</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return [&quot;Error while processing the SQL file [$SQLFileName]</span><span style="color:#008000">&quot;</span>];</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// the queries will be placed in a transaction</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="background-color:#b4c7dc">$connection-&gt;beginTransaction();</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// Execute the queries one by one—no errors at the start</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$errors </span>= [];</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$i </span>=<span style="color:#000080"> 0</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$done </span>= <span style="font-weight:bold">FALSE</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">while </span>(<span style="color:#0000ff">$i </span>&lt; count(<span style="color:#0000ff">$queries</span>) &amp;&amp; !<span style="color:#0000ff">$finished</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// retrieve the text of the query</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// trim removes the line break</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#0000ff">$request </span>= trim(<span style="color:#0000ff">$requests</span><span style="font-weight:bold">[$i]</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// Is the query empty?</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">if </span>(strlen(<span style="color:#0000ff">$query</span>) ==<span style="color:#000080"> 0</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// skip the query and move on to the next one</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span>$i++;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">continue</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// execute the request</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// retrieve its name</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#0000ff">$command </span>= <span style="color:#008000">&quot;&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">if </span>(preg_match(<span style="color:#008000">&quot;/^\s*(\S+)/&quot;</span>, <span style="color:#0000ff">$query</span>, <span style="color:#0000ff">$fields</span>)) {</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="color:#0000ff">$command </span>= strtolower(<span style="color:#0000ff">$fields</span><span style="font-weight:bold">[0]</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">try </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// Is this a SELECT statement?</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">if </span>(<span style="color:#0000ff">$command </span>=== <span style="color:#008000">&quot;select&quot;</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="color:#0000ff">$result </span>= $connection-&gt;query(<span style="color:#0000ff">$query</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">      </span>} <span style="font-weight:bold">else </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="color:#0000ff">$result </span>= $connection-&gt;exec(<span style="color:#0000ff">$query</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">      </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// Track screen or not?</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-weight:bold">if </span>(<span style="color:#0000ff">$log</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">        </span><span style="font-weight:bold">print </span><span style="color:#008000">&quot;</span><span style="font-weight:bold;color:#008000">[$query] </span><span style="color:#008000">: Execution successful\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">      </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// display the result of the execution</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span>displayInfo(<span style="color:#0000ff">$command</span>, <span style="color:#0000ff">$result</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>} <span style="font-weight:bold">catch </span>(PDOException <span style="color:#0000ff">$ex</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// An error occurred</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span>addError(<span style="color:#0000ff">$errors</span>, <span style="color:#0000ff">$query</span>, $ex-&gt;getMessage(), <span style="color:#0000ff">$trace</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="font-style:italic;color:#808080">// stop at the next iteration</span></span>
+<span class="odt-code-line"><span style="color:#008080">      </span><span style="background-color:#b4c7dc;color:#0000ff">$finished </span><span style="background-color:#b4c7dc">= </span><span style="font-weight:bold;background-color:#b4c7dc">TRUE</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// next request</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$i++;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// end of transaction</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">if </span>(!<span style="color:#0000ff">$finished</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// no errors occurred: commit the transaction</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="background-color:#b4c7dc">$connection-&gt;commit()</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>} <span style="font-weight:bold">else </span>{</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// errors occurred: roll back the transaction</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="background-color:#b4c7dc">$connection-&gt;rollBack()</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-style:italic;color:#808080">// add error</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="background-color:#b4c7dc">addError(</span><span style="background-color:#b4c7dc;color:#0000ff">$errors</span><span style="background-color:#b4c7dc">, </span><span style="background-color:#b4c7dc;color:#008000">&quot;&quot;</span><span style="background-color:#b4c7dc">, </span><span style="background-color:#b4c7dc;color:#008000">&quot;Transaction rolled back&quot;</span><span style="background-color:#b4c7dc">, </span><span style="background-color:#b4c7dc;color:#0000ff">$tracking</span><span style="background-color:#b4c7dc">)</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>}</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic;color:#808080">// result</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">return </span><span style="color:#0000ff">$errors</span>;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>addError(<span style="font-weight:bold">array </span><span style="color:#0000ff">&amp;$errors</span>, <span style="font-weight:bold">string </span><span style="color:#0000ff">$query</span>, <span style="font-weight:bold">string </span><span style="color:#0000ff">$msg</span>, <span style="font-weight:bold">bool </span><span style="color:#0000ff">$track</span>): void {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic">…</span></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-style:italic;color:#808080">// ---------------------------------------------------------------------------------</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>displayInfo(<span style="font-weight:bold">string </span><span style="color:#0000ff">$order</span>, <span style="color:#0000ff">$result</span>): void {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-style:italic">…</span></span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<p>We have highlighted the changes to the original script <strong>[mysql-04.php]</strong>.</p>
+<ul>
+  <li>lines 22, 36: the <b>[executeCommands] </b>function has lost its fourth parameter <b>[$stop=TRUE]</b>. This is because, since SQL commands are executed within a transaction, any error will cause the transaction to be rolled back;
+  </li>
+  <li>lines 40–41: call to the transaction function;
+  </li>
+  <li>line 57: a transaction is started. From this point on, any SQL command executed within the loop on lines 62–99 is executed within this transaction;
+  </li>
+  <li>lines 101–109: the boolean <b>[$fini] </b>is TRUE if an error occurred (line 95). When it is FALSE, no errors occurred, and the transaction is committed (line 103). When it is TRUE, errors occurred, so the transaction is rolled back (line 106) and the transaction error is added to the error list (line 108);
+  </li>
+</ul>
+
+<p><strong>Results</strong></p>
+<p>Before running the script, the <strong>[admpersonnes]</strong> database is in the following state:</p>
+<p><img src="images/10000000000004CA0000035ACA80495C.png" style="width:9.73cm;height:6.809cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004CA0000035ACA80495C.png" /></p>
+<p>We run the <strong>[mysql-07.php]</strong> script. The screen output is as follows:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-sql">
+<span class="odt-code-line"><span style="font-weight:bold">[set names &#x27;utf8&#x27;]</span>: Execution successful</span>
+<span class="odt-code-line">[select * from people]: Execution successful</span>
+<span class="odt-code-line">first_name,last_name,age</span>
+<span class="odt-code-line">--------------</span>
+<span class="odt-code-line">first_name0,last_name0,0</span>
+<span class="odt-code-line">first_name1,last_name1,10</span>
+<span class="odt-code-line">first_name2,last_name2,20</span>
+<span class="odt-code-line">first_name3,last_name3,30</span>
+<span class="odt-code-line">first_name4,last_name4,40</span>
+<span class="odt-code-line">first_name5,last_name5,50</span>
+<span class="odt-code-line">first_name6,last_name6,60</span>
+<span class="odt-code-line">first_name7,last_name7,70</span>
+<span class="odt-code-line">first_name8,last_name8,80</span>
+<span class="odt-code-line">first_name9,last_name9,90</span>
+<span class="odt-code-line">[select last_name, first_name from people order by last_name asc, first_name desc] : Execution successful</span>
+<span class="odt-code-line">last_name,first_name</span>
+<span class="odt-code-line">----------</span>
+<span class="odt-code-line">last_name0,first_name0</span>
+<span class="odt-code-line">last_name1,first_name1</span>
+<span class="odt-code-line">last_name2,first_name2</span>
+<span class="odt-code-line">last name 3, first name 3</span>
+<span class="odt-code-line">last name 4, first name 4</span>
+<span class="odt-code-line">last name 5, first name 5</span>
+<span class="odt-code-line">last_name6,first_name6</span>
+<span class="odt-code-line">last_name7,first_name7</span>
+<span class="odt-code-line">last name 8, first name 8</span>
+<span class="odt-code-line">last_name9,first_name9</span>
+<span class="odt-code-line">[select * from people where age between 20 and 40 order by age desc, last_name asc, first_name asc] : Execution successful</span>
+<span class="odt-code-line">first_name,last_name,age</span>
+<span class="odt-code-line">--------------</span>
+<span class="odt-code-line">first_name4,last_name4,40</span>
+<span class="odt-code-line">first_name3,last_name3,30</span>
+<span class="odt-code-line">first_name2,last_name2,20</span>
+<span class="odt-code-line">[insert into people values(&#x27;Josette&#x27;,&#x27;Bruneau&#x27;,46)] : Execution successful</span>
+<span class="odt-code-line"> 1 row(s) was (were) modified</span>
+<span class="odt-code-line">[update people set age=47 where last_name=&#x27;Bruneau&#x27;]: Execution successful</span>
+<span class="odt-code-line"> 1 row(s) has (have) been modified</span>
+<span class="odt-code-line">[select * from people where last_name=&#x27;Bruneau&#x27;]: Execution successful</span>
+<span class="odt-code-line">first_name,last_name,age</span>
+<span class="odt-code-line">--------------</span>
+<span class="odt-code-line">Josette,Bruneau,47</span>
+<span class="odt-code-line">[delete from people where last_name=&#x27;Bruneau&#x27;]: Execution successful</span>
+<span class="odt-code-line"> 1 row(s) modified</span>
+<span class="odt-code-line">[select * from people where last_name=&#x27;Bruneau&#x27;]: Execution successful</span>
+<span class="odt-code-line">first_name,last_name,age</span>
+<span class="odt-code-line">--------------</span>
+<span class="odt-code-line">[insert into people values(&#x27;Josette&#x27;,&#x27;Bruneau&#x27;,46)] : Execution successful</span>
+<span class="odt-code-line"> 1 row(s) has (have) been modified</span>
+<span class="odt-code-line">[select * from people where last_name=&#x27;Bruneau&#x27;]: Execution successful</span>
+<span class="odt-code-line">first_name,last_name,age</span>
+<span class="odt-code-line">--------------</span>
+<span class="odt-code-line"><span style="background-color:#ffff00">Josette,Bruneau,46</span></span>
+<span class="odt-code-line"><span style="font-weight:bold">[xselect * from people where last_name=&#x27;Bruneau&#x27;]</span>: <span style="background-color:#ffff00">Error </span>(SQLSTATE<span style="font-weight:bold">[42000]</span>: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;xselect * from people where last_name=&#x27;Bruneau&#x27;&#x27; at line 1)</span>
+<span class="odt-code-line">[] : Error (<span style="background-color:#ffff00">Transaction rolled back</span>)</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">-----------------------</span>
+<span class="odt-code-line">There were 2 errors</span>
+<span class="odt-code-line"><span style="font-weight:bold">[xselect * from people where name=&#x27;Bruneau&#x27;] </span>: Error (SQLSTATE<span style="font-weight:bold">[42000]</span>: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near &#x27;xselect * from people where name=&#x27;Bruneau&#x27;&#x27; at line 1)</span>
+<span class="odt-code-line">[] : Error (<span style="background-color:#ffff00">Transaction rolled back</span>)</span>
+<span class="odt-code-line">Done</span>
+</code></pre></div>
+
+<ul>
+  <li>line 53: an error occurs on the <b>[xselect] </b>command;
+  </li>
+  <li>line 54: the transaction is then rolled back;
+  </li>
+</ul>
+
+<p>If we check the database status, we find it in the same state as before the script was executed. In particular, we do not see the row <strong>[Josette, Bruneau, 46]</strong> from line 52 of the results above.</p>
+<p><img src="images/10000000000004CA0000035ACA80495C.png" style="width:9.73cm;height:6.809cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004CA0000035ACA80495C.png" /></p>
+<p><strong>Summary</strong></p>
+<ul>
+  <li>A transaction begins with the <b>[PDO::beginTransaction] </b>method;
+  </li>
+  <li>It is committed upon success using the <b>[PDO::commit] </b>method;
+  </li>
+  <li>It is terminated upon failure using the <b>[PDO::rollback] </b>method;
+  </li>
+</ul>
+
+<p>When working with a database, it is good practice to place all SQL operations within a transaction to isolate them from other database users (this is also its purpose). A transaction should be as short as possible. Therefore, do not forget to end it with a <strong>[commit]</strong> or a <strong>[rollback]</strong> as appropriate.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://tahe.developpez.com" target="_blank">
+          https://tahe.developpez.com
+        </a>
+        <br>
+        This tutorial written by <strong>Serge Tahé</strong> is made available to the public under the terms of the
+<em>Creative Commons Attribution – Non-Commercial –
+ShareAlike 3.0 Unported</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

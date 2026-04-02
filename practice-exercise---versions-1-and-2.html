@@ -1,0 +1,2312 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An Introduction to PHP7 Through Examples">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/en-php7-juillet-2019/practice-exercise---versions-1-and-2.html">
+      
+      
+        <link rel="prev" href="the-basics-of-php.html">
+      
+      
+        <link rel="next" href="classes.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>4. Practice Exercise – Versions 1 and 2 - An Introduction to PHP7 Through Examples</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "An Introduction to PHP7 Through Examples";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-practice-exercise-versions-1-and-2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="An Introduction to PHP7 Through Examples" class="md-header__button md-logo" aria-label="An Introduction to PHP7 Through Examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            An Introduction to PHP7 Through Examples
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. Practice Exercise – Versions 1 and 2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/en-php7-juillet-2019" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="An Introduction to PHP7 Through Examples" class="md-nav__button md-logo" aria-label="An Introduction to PHP7 Through Examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    An Introduction to PHP7 Through Examples
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/en-php7-juillet-2019" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction-to-php-7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction to PHP 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setting-up-a-development-environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Setting up a development environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="the-basics-of-php.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. The Basics of PHP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Practice Exercise – Versions 1 and 2
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="practice-exercise---versions-1-and-2.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Practice Exercise – Versions 1 and 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41-the-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1. The Problem
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1. The Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#411-calculation-of-gross-tax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.1. Calculation of Gross Tax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#412-family-quotient-cap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.2. Family Quotient Cap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#414-calculation-of-the-tax-reduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.4. Calculation of the tax reduction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#416-high-income-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.6. High-Income Cases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.1.6. High-Income Cases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#4161-cap-on-the-10-reduction-on-annual-income" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.6.1. Cap on the 10% reduction on annual income
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#417-official-figures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.1.7. Official figures
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42-the-script-directory-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.2. The script directory structure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43-version-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3. Version 1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.3. Version 1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#431-the-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.1. The Algorithm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#433-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.3.3. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44-version-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4. Version 2
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4.4. Version 2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#441-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.1. Changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#442-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4.4.2. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="interfaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exceptions-and-errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Exceptions and Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Application Exercise – Version 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="traits.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Traits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="layered-applications.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Layered Applications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice-exercise---version-4.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Practice Exercise – Version 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="using-the-mysql-dbms.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Using the MySQL DBMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practical-exercise---version-5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Practical Exercise – Version 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Application Exercise – Version 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Application Exercise – Version 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="network-functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Network Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="web-services.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice-exercise---version-8.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. Practice Exercise – Version 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-9.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. Application Exercise – Version 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Application Exercise – Version 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processing-xml-documents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Processing XML Documents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Application Exercise – Version 11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practical-exercise---version-12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. Practical Exercise – Version 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. Application Exercise – Version 13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="toc42689834"></a>
+<a id="refheading398821881943603"></a>
+<a id="toc42690606"></a>
+<a id="toc42690220"></a></p>
+<h1 id="4-practice-exercise-versions-1-and-2">4. <span style="color: #365f91">Practice Exercise – Versions 1 and 2</span></h1>
+<p><a id="toc42689835"></a>
+<a id="refheading398841881943603"></a>
+<a id="toc42690607"></a>
+<a id="toc42690221"></a></p>
+<h2 id="41-the-problem">4.1. <span style="color: #4f81bd">The Problem</span></h2>
+<p></li>
+</ul></p>
+<p><img src="images/10000000000006A20000067B80BCA8CE.png" style="width:11.231cm;height:10.973cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006A20000067B80BCA8CE.png" /></p>
+<p>The table above allows you to calculate the tax in the simplified case of a taxpayer who has only their salary to report. As indicated in note (1), the tax calculated this way is the tax before three mechanisms:</p>
+<ul>
+  <li>the family quotient cap, which applies to high incomes;
+  </li>
+  <li>the tax credit and tax reduction that apply to low incomes;
+  </li>
+</ul>
+
+<p>Thus, the tax calculation involves the following steps <strong>[http://impotsurlerevenu.org/comprendre-le-calcul-de-l-impot/1217-calcul-de-l-impot-2019.php]</strong>:</p>
+<p><img src="images/100000000000062000000216E5C64F97.png" style="width:10.372cm;height:3.531cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000062000000216E5C64F97.png" /></p>
+<p>We propose to write a program to calculate a taxpayer’s tax in the simplified case of a taxpayer who has only their salary to report:</p>
+<p><a id="toc42689836"></a>
+<a id="refheadingtoc185625971629160"></a>
+<a id="toc42690608"></a>
+<a id="toc42690222"></a></p>
+<h3 id="411-calculation-of-gross-tax">4.1.1. <span style="color: #4f81bd">Calculation of Gross Tax</span></h3>
+<p>The gross tax can be calculated as follows:</p>
+<p>First, we calculate the taxpayer’s number of shares:</p>
+<ol>
+    <ul>
+      <li>each parent contributes 1 share;
+      </li>
+      <li>The first two children each bring 1/2 portion;
+      </li>
+      <li>The remaining children each bring one share:
+      </li>
+    </ul>
+</ol>
+
+<p>The number of shares is therefore:</p>
+<ul>
+  <li><b>nbParts=1+nbChildren*0.5+(nbChildren-2)*0.5 </b>if the employee is unmarried;
+  </li>
+  <li><b>nbParts = 2 + nbChildren * 0.5 + (nbChildren - 2) * 0.5 </b>if they are married;
+  </li>
+</ul>
+
+<p>where <em>nbChildren</em> is the number of children;</p>
+<ul>
+  <li>we calculate the taxable income <b>R = 0.9 * S, </b>where <i>S </i>is the annual salary;
+  </li>
+  <li>the family quotient <b>QF</b> is calculated <b>as QF = R / nbParts;</b>
+  </li>
+  <li>we calculate the gross tax <b>I </b>based on the following data (2019):
+  </li>
+</ul>
+
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">9964</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">0</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">0</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">27,519</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">0.14</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">1,394.96</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">73,779</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">0.3</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">5,798</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">156,244</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">0.41</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">13,913.69</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">0</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">0.45</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">20163.45</div></td></tr></table>
+
+<p>Each row has 3 fields: <em>field1</em>, <em>field2</em>, <em>field3</em>. To calculate tax I, we find the first row where <em>QF &lt;= field1</em> and take the values from that row. For example, for a married employee with two children and an annual salary S of <strong>50,000</strong> euros:</p>
+<p>Taxable income: R=0.9*S=45,000</p>
+<p>Number of shares: nbParts=2+2*0.5=3</p>
+<p>Family quotient: QF=45,000/3=15,000</p>
+<p>The first row where QF &lt;= field1 is as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    27,519        0.14    1394.96
+</code></pre></div>
+<p>Tax <em>I</em> is then equal to <strong>0.14*R – 1394.</strong>96*numberOfShares=<strong>[0.14*45000-1394.96*3]=2115</strong>. The tax is rounded down to the nearest euro.</p>
+<p>If the condition <em>QF &lt;= field1</em> holds in the first row, then the tax is zero.</p>
+<p>If QF is such that the condition <em>QF &lt;= field1</em> is never satisfied, then the coefficients from the last line are used. Here:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>    0            0.45        20,163.45
+</code></pre></div>
+<p>which gives the gross tax <strong>I</strong> = <strong>0.45*R – 20163.45*nbParts</strong>.</p>
+<p><a id="plafonnementduquotient"></a>
+<a id="plafonnementquotientfamilial"></a>
+<a id="toc42690609"></a>
+<a id="toc42690223"></a>
+<a id="toc42689837"></a>
+<a id="refheadingtoc1594583098701287"></a></p>
+<h3 id="412-family-quotient-cap">4.1.2. <span style="color: #4f81bd">Family Quotient Cap</span></h3>
+<p><img src="images/10000000000006140000029C5BD678B4.png" style="width:10.291cm;height:4.419cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006140000029C5BD678B4.png" /></p>
+<p>To determine whether the family quotient (QF) cap applies, we recalculate the gross tax without the children. Again, for the married employee with two children and an annual salary S of <strong>50,000</strong> euros:</p>
+<p>Taxable income: R = 0.9 * S = 45,000</p>
+<p>Number of shares: nbParts=2 (children are no longer counted)</p>
+<p>Family quotient: QF = 45,000 / 2 = 22,500</p>
+<p>The first line where QF &lt;= field1 is as follows:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>    27519        0.14    1,394.96
+</code></pre></div>
+<p>Tax <em>I</em> is then equal to <strong>0.14*R – 1394.</strong>96*number of shares <strong>= [0.14*45,000 – 1394.96*2] = 3,510</strong>.</p>
+<p>Maximum child-related allowance: 1551 * 2 = 3102 euros</p>
+<p>Minimum tax: 3,510 – 3,102 = 408 euros</p>
+<p>The gross tax with 3 tax brackets, already calculated at 2,115 euros, is higher than the minimum tax of 408 euros, so the family cap does not apply here.</p>
+<p>Generally speaking, the gross tax is <strong>greater than (tax1, tax2)</strong> where:</p>
+<ul>
+  <li><b>[tax1]</b>: is the gross tax calculated including children;
+  </li>
+  <li><b>[tax2]</b>: is the gross tax calculated without children and reduced by the maximum credit (here 1,551 euros per half-share) related to children;
+<a id="toc42689838"></a>
+<a id="refheadingtoc185627971629160"></a>
+<a id="toc42690610"></a>
+<a id="toc42690224"></a>
+
+### 4.1.3. <span style="color: #4f81bd">Calculation of the tax reduction</span>
+
+  </li>
+</ul>
+
+<p><img src="images/10000000000005FB000002056AF8E873.png" style="width:10.132cm;height:3.42cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005FB000002056AF8E873.png" /></p>
+<p>Still for the married employee with two children and an annual salary S of <strong>50,000</strong> euros:</p>
+<p>The gross tax (2,115) from the previous step is less than 2,627 euros for a couple (1,595 euros for a single person): the tax reduction therefore applies. It is calculated as follows:</p>
+<p>discount = threshold (couple = 1,970 / single = 1,196) - 0.75 * gross tax</p>
+<p><strong>discount</strong> = 1,970 – 0.75 * 2,115 = 383.75, rounded to <strong>384</strong> euros.</p>
+<p><strong>New</strong> gross <strong>tax</strong> = 2,115 – 384 = <strong>1,731</strong> euros</p>
+<p><a id="toc42689839"></a>
+<a id="refheadingtoc185629971629160"></a>
+<a id="toc42690611"></a>
+<a id="toc42690225"></a></p>
+<h3 id="414-calculation-of-the-tax-reduction">4.1.4. <span style="color: #4f81bd">Calculation of the tax reduction</span></h3>
+<p><img src="images/100000000000060400000212A9BCD897.png" style="width:10.192cm;height:3.507cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000060400000212A9BCD897.png" /></p>
+<p>Below a certain threshold, a 20% reduction is applied to the gross tax resulting from the previous calculations. In 2019, the thresholds are as follows:</p>
+<ul>
+  <li>Single: 21,037 euros;
+  </li>
+  <li>couple: 42,074 euros; (the figure 37,968 used in the example above appears to be incorrect);
+  </li>
+</ul>
+
+<p>This threshold is increased by the value: 3,797 * (number of half-shares contributed by the children).</p>
+<p>Again, for the married employee with two children and an annual salary S of <strong>50,000</strong> euros:</p>
+<ul>
+  <li>his taxable income (45,000 euros) is below the threshold (42,074 + 2 × 3,797) = 49,668 euros;
+  </li>
+  <li>he is therefore entitled to a 20% reduction in his tax: 1,731 * 0.2 = 346.2 euros, rounded to 347 euros;
+  </li>
+  <li>the taxpayer’s gross tax becomes: 1,731 – 347 =<b> 1,384 </b>euros;
+<a id="toc42689840"></a>
+<a id="refheadingtoc185631971629160"></a>
+<a id="toc42690612"></a>
+<a id="toc42690226"></a>
+
+### 4.1.5. <span style="color: #4f81bd">Calculation of Net Tax</span>
+
+  </li>
+</ul>
+
+<p>Our calculation ends here: the net tax due will be <strong>1,384</strong> euros. In reality, the taxpayer may be eligible for other deductions, particularly for donations to public or general interest organizations.</p>
+<p><a id="toc42689841"></a>
+<a id="refheadingtoc185633971629160"></a>
+<a id="toc42690613"></a>
+<a id="toc42690227"></a></p>
+<h3 id="416-high-income-cases">4.1.6. <span style="color: #4f81bd">High-Income Cases</span></h3>
+<p>Our previous example applies to the majority of employees. However, the tax calculation differs for high-income earners.</p>
+<p><a id="toc42689842"></a>
+<a id="refheadingtoc185635971629160"></a>
+<a id="toc42690614"></a>
+<a id="toc42690228"></a></p>
+<h4 id="4161-cap-on-the-10-reduction-on-annual-income">4.1.6.1. <span style="color: #4f81bd">Cap on the 10% reduction on annual income</span></h4>
+<p>In most cases, taxable income is calculated using the formula: R = 0.9 × S, where S is the annual salary. This is known as the 10% reduction. This reduction is capped. In 2019:</p>
+<ul>
+  <li>it cannot exceed 12,502 euros;
+  </li>
+  <li>it cannot be less than €437;
+  </li>
+</ul>
+
+<p>Let’s consider the case of an unmarried employee with no children and an annual salary of 200,000 euros:</p>
+<ul>
+  <li>the 10% reduction is 200,000 euros &gt; 12,502 euros. It is therefore capped at 12,502 euros;
+<a id="toc42689843"></a>
+<a id="refheadingtoc185637971629160"></a>
+<a id="toc42690615"></a>
+<a id="toc42690229"></a>
+
+#### 4.1.6.2. <span style="color: #4f81bd">Family Quotient Cap</span>
+
+  </li>
+</ul>
+
+<p>Let’s consider a case where the family cap mentioned in the <a href="#plafonnementduquotient"><u><span style="color: #0563c1">linked</span></u></a> paragraph applies. Let’s take the case of a couple with three children and an annual income of 100,000 euros. Let’s go through the calculation steps again: </p>
+<ul>
+  <li>The 10% deduction is 10,000 euros &lt; 12,502 euros. The taxable income <b>R </b>is therefore 100,000 - 10,000 = 90,000 euros;
+  </li>
+  <li>The couple has <b>nbParts </b>= 2 + 0.<b>5</b> * 2 + 1 =<b> 4 </b>shares;
+  </li>
+  <li>their family quotient is therefore QF = R / <b>nbParts = 90,000</b> / 4 = 22,<b>500 </b>euros;
+  </li>
+  <li>their gross tax <b>I1 with </b>children is I1 = 0.14 × 90,000 – 1,394.96 × 4 = 7,020 euros;
+  </li>
+  <li>their gross tax <b>I2 without </b>children:
+    <ul>
+      <li>QF = 90,000 / 2 = 45,000 euros;
+      </li>
+      <li>I2 = 0.3 × 90,000 – 5,798 × 2 = 15,404 euros;
+      </li>
+      <li>the family quotient cap rule states that the benefit provided by children cannot exceed (1,551 × 4 half-shares) = 6,204 euros. However, here, it is I2 – I1 = 15,404 – 7,020 = 8,384 euros, which is greater than 6,204 euros;
+      </li>
+      <li>the gross tax is therefore recalculated as I3 = I2 - 6,204 = 15,404 - 6,204 =<b> 9,200 </b>euros;
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>This couple will receive neither a tax credit nor a reduction, and their final tax will be <strong>9,200</strong> euros.</p>
+<p><a id="toc42689844"></a>
+<a id="refheadingtoc185639971629160"></a>
+<a id="toc42690616"></a>
+<a id="toc42690230"></a></p>
+<h3 id="417-official-figures">4.1.7. <span style="color: #4f81bd">Official figures</span></h3>
+<p>Tax calculation is complex. Throughout this document, tests will be conducted using the following examples. The results are from the tax authority’s simulator <strong>[</strong><a href="https://www3.impots.gouv.fr/simulateur/calcul_impot/2019/simplifie/index.htm"><u><span style="color: #0563c1">https://www3.impots.gouv.fr/simulateur/calcul_impot/2019/simplifie/index.htm</span></u></a><strong>]</strong>:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Taxpayer</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Official results</b></div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Results from the document’s algorithm</b></div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Couple with 2 children and an annual income of 55,555 euros</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Tax</b> = 2,<b>815 </b>euros</div><div style="margin:0 0 0.5em 0">Tax rate = 14%</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Tax</b> = 2,<b>814 </b>euros</div><div style="margin:0 0 0.5em 0">Tax rate = 14%</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Couple with 2 children and an annual income of 50,000 euros</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Tax</b> = 1,<b>385 </b>euros</div><div style="margin:0 0 0.5em 0">Tax credit = €720</div><div style="margin:0 0 0.5em 0">Reduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 14%</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Tax</b> = €1,<b>384</b></div><div style="margin:0 0 0.5em 0">Deduction = 384 euros</div><div style="margin:0 0 0.5em 0">Credit=347 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 14%</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Couple with 3 children and an annual income of 50,000 euros</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax =<b> 0 </b>euros</div><div style="margin:0 0 0.5em 0">Tax credit = 384 euros</div><div style="margin:0 0 0.5em 0">Reduction = 346 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 14%</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax =<b> 0 </b>euros</div><div style="margin:0 0 0.5em 0">Discount = 720 euros</div><div style="margin:0 0 0.5em 0">Reduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 14%</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Single with 2 children and an annual income of 100,000 euros</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax = 19,<b>884 </b>euros</div><div style="margin:0 0 0.5em 0">Tax credit = 0 euros</div><div style="margin:0 0 0.5em 0">Deduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 41%</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax = €19,<b>884</b></div><div style="margin:0 0 0.5em 0">Surcharge = 4,480 euros</div><div style="margin:0 0 0.5em 0">Discount = 0 euros</div><div style="margin:0 0 0.5em 0">Reduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 41%</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Single with 3 children and an annual income of 100,000 euros</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax = €16,<b>782</b></div><div style="margin:0 0 0.5em 0">Tax credit = 0 euros</div><div style="margin:0 0 0.5em 0">Deduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 41%</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax = €16,<b>782</b></div><div style="margin:0 0 0.5em 0">Surcharge = 7,176 euros</div><div style="margin:0 0 0.5em 0">Discount = 0 euros</div><div style="margin:0 0 0.5em 0">Reduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 41%</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Couple with three children and an annual income of 100,000 euros</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax = €<b>9,200</b></div><div style="margin:0 0 0.5em 0">Tax credit = 0 euros</div><div style="margin:0 0 0.5em 0">Deduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 30%</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax = €<b>9,200</b></div><div style="margin:0 0 0.5em 0">Surcharge = 2,180 euros</div><div style="margin:0 0 0.5em 0">Discount = 0 euros</div><div style="margin:0 0 0.5em 0">Reduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 30%</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Couple with 5 children and an annual income of 100,000 euros</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax = €4,<b>230</b></div><div style="margin:0 0 0.5em 0">Tax credit = 0 euros</div><div style="margin:0 0 0.5em 0">Deduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 14%</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax = €4,<b>230</b></div><div style="margin:0 0 0.5em 0">Deduction = 0 euros</div><div style="margin:0 0 0.5em 0">Deduction=0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 14%</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Single, no children, and annual income of 100,000 euros</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax = 22,<b>986 </b>euros</div><div style="margin:0 0 0.5em 0">Tax credit = 0 euros</div><div style="margin:0 0 0.5em 0">Deduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 41%</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax = €22,<b>986</b></div><div style="margin:0 0 0.5em 0">Surcharge = 0 euros</div><div style="margin:0 0 0.5em 0">Discount = 0 euros</div><div style="margin:0 0 0.5em 0">Reduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 41%</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Couple with 2 children and an annual income of 30,000 euros</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax =<b> 0 </b>euros</div><div style="margin:0 0 0.5em 0">Tax credit = 0 euros</div><div style="margin:0 0 0.5em 0">Deduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 0%</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax =<b> 0 </b>euros</div><div style="margin:0 0 0.5em 0">Discount=0 euros</div><div style="margin:0 0 0.5em 0">Deduction=0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 0%</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Single, no children, and annual income of 200,000 euros</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Tax</b> =<b> 64,211 </b>euros</div><div style="margin:0 0 0.5em 0">Tax credit = 0 euros</div><div style="margin:0 0 0.5em 0">Deduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 45%</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Tax = €64,<b>210</b></div><div style="margin:0 0 0.5em 0">Surcharge = 7,498 euros</div><div style="margin:0 0 0.5em 0">Discount = 0 euros</div><div style="margin:0 0 0.5em 0">Reduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 45%</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0">Couple with 3 children and an annual income of 200,000 euros</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Tax</b> = €42,<b>843</b></div><div style="margin:0 0 0.5em 0">Tax credit = 0 euros</div><div style="margin:0 0 0.5em 0">Deduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 41%</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top;"><div style="margin:0 0 0.5em 0"><b>Tax</b> = €42,842</div><div style="margin:0 0 0.5em 0">Surcharge = 17,283 euros</div><div style="margin:0 0 0.5em 0">Discount = 0 euros</div><div style="margin:0 0 0.5em 0">Reduction = 0 euros</div><div style="margin:0 0 0.5em 0">Tax rate = 41%</div></td></tr></table>
+
+<p>In the example above, the “surcharge” refers to the additional amount paid by high-income earners due to two factors:</p>
+<ul>
+  <li>the cap on the 10% deduction from annual income;
+  </li>
+  <li>the cap on the family allowance;
+  </li>
+</ul>
+
+<p>This indicator could not be verified because the tax authority’s simulator does not provide it.</p>
+<p>We can see that the document’s algorithm calculates the correct tax amount every time, though with a margin of error of 1 euro. This margin of error stems from rounding. All monetary amounts are rounded up to the nearest euro in some cases and down to the nearest euro in others. Since I was not familiar with the official rules, the monetary amounts in the document’s algorithm were rounded:</p>
+<ul>
+  <li>up to the next euro for discounts and reductions;
+  </li>
+  <li>down to the nearest euro for surcharges and the final tax;
+  </li>
+</ul>
+
+<p>In the following section, tests will be conducted to verify the validity of the results. They will be performed using the examples from the previous table with an accepted margin of error of 1 euro.</p>
+<p><a id="toc42689845"></a>
+<a id="refheadingtoc787912244347140"></a>
+<a id="toc42690617"></a>
+<a id="toc42690231"></a></p>
+<h2 id="42-the-script-directory-structure">4.2. <span style="color: #4f81bd">The script directory structure</span></h2>
+<p><img src="images/100000000000017C0000019648ECB13C.png" style="width:3.521cm;height:3.762cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017C0000019648ECB13C.png" /></p>
+<p><a id="version1"></a>
+<a id="toc42690618"></a>
+<a id="toc42690232"></a>
+<a id="toc42689846"></a>
+<a id="refheading398861881943603"></a></p>
+<h2 id="43-version-1">4.3. <span style="color: #4f81bd">Version 1</span></h2>
+<p><a id="lalgorithme"></a>
+<a id="toc42690619"></a>
+<a id="toc42690233"></a>
+<a id="toc42689847"></a>
+<a id="refheadingtoc1882273931965946"></a></p>
+<h3 id="431-the-algorithm">4.3.1. <span style="color: #4f81bd">The Algorithm</span></h3>
+<p>We present an initial program in which:</p>
+<ul>
+  <li>the data needed to calculate the tax is hard-coded in the program as arrays and constants;
+  </li>
+  <li>taxpayer data (married, children, salary) is stored in a first text file <b>[taxpayersdata.txt]</b>;
+  </li>
+  <li>the results of the tax calculation (married, children, salary, tax) are stored in a second text file <b>[resultats.txt]</b>;
+  </li>
+</ul>
+
+<p>The script <strong>[version-01/main.php]</strong> is as follows:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// strict types for function parameters</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">declare</span>(strict_types=1);</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// global constants</span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;HALF-RATE_INCOME_LIMIT&quot;<span style="color:#000000">, 1551);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;INCOME_LIMIT_SINGLE_PERSON_FOR_REDUCTION&quot;<span style="color:#000000">, 21037);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;INCOME_LIMIT_FOR_COUPLES_FOR_REDUCTION&quot;<span style="color:#000000">, 42074);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;REDUCTION_VALUE_HALF_PORTION&quot;<span style="color:#000000">, 3797);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;SINGLE_PERSON_DISCOUNT_LIMIT&quot;<span style="color:#000000">, 1196);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;COUPLE_DEDUCTION_LIMIT&quot;<span style="color:#000000">, 1970);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;COUPLE_INCOME_THRESHOLD_FOR_DEDUCTION&quot;<span style="color:#000000">, 2627);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;SINGLE_TAX_CAP_FOR_DEDUCTION&quot;<span style="color:#000000">, 1595);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;MAXIMUM_10_PERCENT_DEDUCTION&quot;<span style="color:#000000">, 12502);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;MINIMUM_10_PERCENT_DEDUCTION&quot;<span style="color:#000000">, 437);</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// definition of local constants</span>
+<span class="odt-code-line"><span style="color:#000000">$DATA = </span>&quot;taxpayersdata.txt&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#000000">$RESULTS = </span>&quot;results.txt&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">$limits = <span style="font-weight:bold;color:#7f0055">array</span>(9964, 27519, 73779, 156244, 0);</span>
+<span class="odt-code-line">$coeffR = <span style="font-weight:bold;color:#7f0055">array</span>(0, 0.14, 0.3, 0.41, 0.45);</span>
+<span class="odt-code-line">$coeffN = <span style="font-weight:bold;color:#7f0055">array</span>(0, 1394.96, 5798, 13913.69, 20163.45);</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// read data</span>
+<span class="odt-code-line">$data = <span style="font-style:italic">fopen</span>($DATA, <span style="color:#0000c0">&quot;r&quot;</span>);</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">if </span>(!$data) {</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">print </span>&quot;Unable to open the data file <span style="font-weight:bold">[$DATA] </span>for reading\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span>exit<span style="color:#000000">;</span></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// Open the results file</span>
+<span class="odt-code-line">$results = <span style="font-style:italic">fopen</span>($RESULTS, <span style="color:#0000c0">&quot;w&quot;</span>);</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">if </span>(!$results) {</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">print </span>&quot;Unable to create the results file <span style="font-weight:bold">[$RESULTS]</span>\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span>exit<span style="color:#000000">;</span></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// process the current line of the data file</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">while </span>($line = <span style="font-style:italic">fgets</span>($data, 100)) {</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// Remove any line-end characters</span>
+<span class="odt-code-line">  $line = <span style="font-style:italic">cutNewLineChar</span>($line);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// retrieve the 3 fields married:children:salary that make up $line</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">list</span>($married, $children, $salary) = <span style="font-style:italic">explode</span>(<span style="color:#0000c0">&quot;,&quot;</span>, $line);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// calculate the tax</span>
+<span class="odt-code-line">  $result = <span style="font-style:italic">calculateTax</span>($married, (int) $children, (float) $salary, $limits, $coeffR, $coeffN);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// write the result to the results file</span>
+<span class="odt-code-line">  $result = [&quot;married&quot; =&gt; $married, &quot;children&quot; =&gt; $children, &quot;salary&quot; =&gt; $salary] + $result;</span>
+<span class="odt-code-line">  fputs($results, \json_encode($result, <span style="color:#0000c0">JSON_UNESCAPED_UNICODE</span>) . <span style="color:#0000c0">&quot;\n&quot;</span>);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// next data</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line">// close the files</span>
+<span class="odt-code-line"><span style="font-style:italic">fclose</span>($data);</span>
+<span class="odt-code-line"><span style="font-style:italic">fclose</span>($results);</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// end</span>
+<span class="odt-code-line">exit<span style="color:#000000">;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// --------------------------------------------------------------------------</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">cutNewLinechar</span>(<span style="font-weight:bold;color:#7f0055">string </span>$line): <span style="font-weight:bold;color:#7f0055">string </span>{</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// remove the end-of-line character from $line if it exists</span>
+<span class="odt-code-line">  $L = <span style="font-style:italic">strlen</span>($line);  <span style="color:#557f5f">// line length</span></span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">while </span>(<span style="font-style:italic">substr</span>($line, $L - 1, 1) === <span style="color:#0000c0">&quot;\n&quot; </span>or <span style="font-style:italic">substr</span>($line, $L - 1, 1) === <span style="color:#0000c0">&quot;\r&quot;</span>) {</span>
+<span class="odt-code-line">    $line = <span style="font-style:italic">substr</span>($line, 0, $L - 1);</span>
+<span class="odt-code-line">    $L--;</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// end</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return</span>($line);</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// tax calculation</span>
+<span class="odt-code-line">// --------------------------------------------------------------------------</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">calculateTax</span>(<span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">int </span>$children, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">array </span>$thresholds, <span style="font-weight:bold;color:#7f0055">array </span>$coeffR, <span style="font-weight:bold;color:#7f0055">array </span>$coeffN): <span style="font-weight:bold;color:#7f0055">array </span>{</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="color:#7f0055">return </span>[&quot;tax&quot; =&gt; floor($tax), &quot;surcharge&quot; =&gt; $surcharge, &quot;discount&quot; =&gt; $discount, &quot;reduction&quot; =&gt; $reduction, &quot;rate&quot; =&gt; $rate];</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// --------------------------------------------------------------------------</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">calculateTax2</span>(<span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">int </span>$children, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">array </span>$limits, <span style="font-weight:bold;color:#7f0055">array </span>$coeffR, <span style="font-weight:bold;color:#7f0055">array </span>$coeffN): <span style="font-weight:bold;color:#7f0055">array </span>{</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="color:#7f0055">return </span>[&quot;tax&quot; =&gt; $tax, &quot;surcharge&quot; =&gt; $surcharge, &quot;rate&quot; =&gt; $coeffR[$i]];</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// taxableIncome = annualSalary - deduction</span>
+<span class="odt-code-line">// the deduction has a minimum and a maximum</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getTaxableIncome</span>(<span style="font-weight:bold;color:#7f0055">float </span>$salary): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">floor</span>($taxableIncome);</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// calculates a possible tax deduction</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getDiscount</span>(<span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">float </span>$taxes): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">ceil</span>($discount);</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// calculates a possible reduction</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getDiscount</span>(<span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">int </span>$children, <span style="font-weight:bold;color:#7f0055">float </span>$taxes): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line">  <span style="color:#557f5f">/</span>…</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">ceil</span>($reduction);</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p>The <em>taxpayersdata.txt</em> data file (married, children, salary):</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>yes,2,55555
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>yes,2,50000
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>yes,3,50000
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>no,2,100000
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>no,3,100000
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>yes,3,100000
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>yes,5,100000
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>no,0,100000
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a>yes,2,30000
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a>no,0,200000
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>yes,3,200000
+</code></pre></div></td></tr></table></div>
+<p>The <em>results.txt</em> file (married, children, salary, tax, surcharge, discount, reduction, tax rate) of the results obtained:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-4-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-4-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-4-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-4-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-4-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-4-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-4-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-4-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-4-10">10</a></span>
+<span class="normal"><a href="#__codelineno-4-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;2&quot;,&quot;salary&quot;:&quot;55555&quot;,&quot;tax&quot;:2814,&quot;surcharge&quot;:0,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.14}
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;2&quot;,&quot;salary&quot;:&quot;50000&quot;,&quot;tax&quot;:1384,&quot;surcharge&quot;:0,&quot;discount&quot;:384,&quot;reduction&quot;:347,&quot;rate&quot;:0.14}
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;3&quot;,&quot;salary&quot;:&quot;50000&quot;,&quot;tax&quot;:0,&quot;surcharge&quot;:0,&quot;discount&quot;:720,&quot;reduction&quot;:0,&quot;rate&quot;:0.14}
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>{&quot;married&quot;:&quot;no&quot;,&quot;children&quot;:&quot;2&quot;,&quot;salary&quot;:&quot;100000&quot;,&quot;tax&quot;:19884,&quot;surcharge&quot;:4480,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.41}
+<a id="__codelineno-4-5" name="__codelineno-4-5"></a>{&quot;married&quot;:&quot;no&quot;,&quot;children&quot;:&quot;3&quot;,&quot;salary&quot;:&quot;100000&quot;,&quot;tax&quot;:16782,&quot;surcharge&quot;:7176,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.41}
+<a id="__codelineno-4-6" name="__codelineno-4-6"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;3&quot;,&quot;salary&quot;:&quot;100000&quot;,&quot;tax&quot;:9200,&quot;surcharge&quot;:2180,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.3}
+<a id="__codelineno-4-7" name="__codelineno-4-7"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;5&quot;,&quot;salary&quot;:&quot;100000&quot;,&quot;tax&quot;:4230,&quot;surcharge&quot;:0,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.14}
+<a id="__codelineno-4-8" name="__codelineno-4-8"></a>{&quot;married&quot;:&quot;no&quot;,&quot;children&quot;:&quot;0&quot;,&quot;salary&quot;:&quot;100000&quot;,&quot;tax&quot;:22986,&quot;surcharge&quot;:0,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.41}
+<a id="__codelineno-4-9" name="__codelineno-4-9"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;2&quot;,&quot;salary&quot;:&quot;30000&quot;,&quot;tax&quot;:0,&quot;surcharge&quot;:0,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0}
+<a id="__codelineno-4-10" name="__codelineno-4-10"></a>{&quot;married&quot;:&quot;no&quot;,&quot;children&quot;:&quot;0&quot;,&quot;salary&quot;:&quot;200000&quot;,&quot;tax&quot;:64210,&quot;surcharge&quot;:7498,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.45}
+<a id="__codelineno-4-11" name="__codelineno-4-11"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;3&quot;,&quot;salary&quot;:&quot;200000&quot;,&quot;tax&quot;:42842,&quot;surcharge&quot;:17283,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.41}
+</code></pre></div></td></tr></table></div>
+<p><strong>Comments</strong></p>
+<ul>
+  <li>line 4: we enforce strict adherence to the type of function parameters;
+  </li>
+  <li>lines 7–16: definition of all constants necessary for calculating the tax;
+  </li>
+  <li>line 19: the name of the text file containing taxpayer data (married, children, salary);
+  </li>
+  <li>line 20: the name of the text file containing the results (married, children, salary, tax) of the tax calculation;
+  </li>
+  <li>lines 21–23: the three data arrays defining the different tax brackets for the tax calculation;
+  </li>
+  <li>lines 26–30: open the taxpayer data file for reading <b>[r]</b>. The <b>[fopen] </b>function returns the Boolean value FALSE if the file could not be opened;
+  </li>
+  <li>lines 33–37: Open the results file in write mode <b>[w]</b>;
+  </li>
+  <li>lines 40–51: loop to read the lines (spouse, children, income) from the taxpayer data file;
+  </li>
+  <li>line 40: the <b>[fgets] </b>function reads 100 characters and stops at the first line break encountered. Here, all lines are less than 100 characters long. If a line break is encountered, it is included in the returned string. When the end of the file is reached, the <b>[fgets] </b>function returns FALSE;
+  </li>
+  <li>line 42: the end-of-line character is removed;
+  </li>
+  <li>line 44: the components (married, children, salary) of the line are retrieved;
+  </li>
+  <li>line 46: the tax is calculated. The result is returned as an associative array (line 76);
+  </li>
+  <li>line 48: the keys <b>[married, children, salary] </b>are added to the previously retrieved array;
+  </li>
+  <li>line 49: the result is stored in the results file as a JSON string;
+  </li>
+  <li>lines 53–54: once the taxpayer data file has been fully processed, the files are closed;
+  </li>
+  <li>line 60: the function that removes the line break from a line <i>$line</i>. The line break is the string &quot;\r\n&quot; on Windows systems, &quot;\n&quot; on Unix systems. The result is the input string without its line break.
+  </li>
+  <li>lines 63-64: <i>substr($string, $start, $size) </i>is the substring of <i>$string </i>starting at character <i>$start </i>and containing at most <i>$size </i>characters;
+  </li>
+</ul>
+
+<p>The <strong>[calculImpot]</strong> function is as follows:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line">// global constants</span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;PLAFOND_QF_DEMI_PART&quot;<span style="color:#000000">, 1551);</span></span>
+</code></pre></div>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-js">
+<span class="odt-code-line">// tax calculation</span>
+<span class="odt-code-line">// --------------------------------------------------------------------------</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">taxCalculation</span>(<span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">int </span>$children, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">array </span>$limits, <span style="font-weight:bold;color:#7f0055">array </span>$coeffR, <span style="font-weight:bold;color:#7f0055">array </span>$coeffN): <span style="font-weight:bold;color:#7f0055">array </span>{</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $marié: yes, no</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $children : number of children</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $salary: annual salary</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $limits, $coeffR, $coeffN: data arrays used to calculate the tax</span>
+<span class="odt-code-line">  <span style="color:#557f5f">//</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// Calculate tax with children</span>
+<span class="odt-code-line">  $result1 = <span style="font-style:italic">calculateTax2</span>($married, $children, $salary, $limits, $coeffR, $coeffN);</span>
+<span class="odt-code-line">  $tax1 = $result1<span style="font-weight:bold">[&quot;tax&quot;]</span>;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// Calculate tax without children</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">if </span>($children != 0) {</span>
+<span class="odt-code-line">    $result2 = <span style="font-style:italic">calculateTax2</span>($married, 0, $salary, $limits, $coeffR, $coeffN);</span>
+<span class="odt-code-line">    $tax2 = $result2<span style="font-weight:bold">[&quot;tax&quot;]</span>;</span>
+<span class="odt-code-line"><span style="color:#000000">    </span>// apply the family quotient cap</span>
+<span class="odt-code-line">    <span style="font-weight:bold;color:#7f0055">if </span>($children &lt; 3) {</span>
+<span class="odt-code-line"><span style="color:#000000">      </span>// $QF_CAP_HALF_PART euros for the first 2 children</span>
+<span class="odt-code-line">      $tax2 = $tax2 - $children * <span style="font-style:italic;color:#0000c0">HALF_FAMILY_QUOTA_CAP</span>;</span>
+<span class="odt-code-line">    } <span style="font-weight:bold;color:#7f0055">else </span>{</span>
+<span class="odt-code-line"><span style="color:#000000">      </span>// $PLAFOND_QF_DEMI_PART euros for the first 2 children, double that for subsequent children</span>
+<span class="odt-code-line">      $tax2 = $tax2 - 2 * <span style="font-style:italic;color:#0000c0">HALF-RATE_CAP </span>- ($children - 2) * 2 * <span style="font-style:italic;color:#0000c0">HALF-RATE_CAP</span>;</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line">  } <span style="font-weight:bold;color:#7f0055">else </span>{</span>
+<span class="odt-code-line">    $tax2 = $tax1;</span>
+<span class="odt-code-line">    $result2 = $result1;</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// We take the higher tax amount, along with its corresponding rate and surcharge</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">if </span>($tax1 &gt; $tax2) {</span>
+<span class="odt-code-line">    $tax = $tax1;</span>
+<span class="odt-code-line">    $rate = $result1<span style="font-weight:bold">[&quot;rate&quot;]</span>;</span>
+<span class="odt-code-line">    $surcharge = $result1<span style="font-weight:bold">[&quot;surcharge&quot;]</span>;</span>
+<span class="odt-code-line">  } <span style="font-weight:bold;color:#7f0055">else </span>{</span>
+<span class="odt-code-line">    $surcharge = $tax2 - $tax1 + $result2<span style="font-weight:bold">[&quot;surcharge&quot;]</span>;</span>
+<span class="odt-code-line">    $tax = $tax2;</span>
+<span class="odt-code-line">    $rate = $result2<span style="font-weight:bold">[&quot;rate&quot;]</span>;</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// calculate any tax credit</span>
+<span class="odt-code-line">  $discount = <span style="font-style:italic">getDiscount</span>($spouse, $salary, $tax);</span>
+<span class="odt-code-line">  $tax -= $discount;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// calculate any tax credit</span>
+<span class="odt-code-line">  $reduction = <span style="font-style:italic">getReduction</span>($spouse, $salary, $children, $tax);</span>
+<span class="odt-code-line">  $tax -= $reduction;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="color:#7f0055">return </span>[&quot;tax&quot; =&gt; floor($tax), &quot;surcharge&quot; =&gt; $surcharge, &quot;discount&quot; =&gt; $discount, &quot;reduction&quot; =&gt; $reduction, &quot;rate&quot; =&gt; $rate];</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// --------------------------------------------------------------------------</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">calculateTax2</span>(<span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">int </span>$children, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">array </span>$limits, <span style="font-weight:bold;color:#7f0055">array </span>$coeffR, <span style="font-weight:bold;color:#7f0055">array </span>$coeffN): <span style="font-weight:bold;color:#7f0055">array </span>{</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="color:#7f0055">return </span>[&quot;tax&quot; =&gt; $tax, &quot;surcharge&quot; =&gt; $surcharge, &quot;rate&quot; =&gt; $coeffR[$i]];</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// taxableIncome = annualSalary - deduction</span>
+<span class="odt-code-line">// the 10% deduction has a minimum and a maximum</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getTaxableIncome</span>(<span style="font-weight:bold;color:#7f0055">float </span>$salary): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// calculates a possible tax deduction</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getDiscount</span>(<span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">float </span>$taxes): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">ceil</span>($discount);</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// calculates a possible reduction</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getDiscount</span>(<span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">int </span>$children, <span style="font-weight:bold;color:#7f0055">float </span>$taxes): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">ceil</span>($discount);</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>Line 10: The gross tax is calculated including children. The result is returned in the form <b>[&quot;tax&quot; =&gt; $tax, &quot;surcharge&quot; =&gt; $surcharge, &quot;rate&quot; =&gt; $coeffR[$i]</b>] where:
+    <ul>
+      <li><b>[‘tax’]</b>: the gross tax;
+      </li>
+      <li><b>[‘surcharge’]</b>: the amount of the surcharge, if any. This applies when the 10% deduction exceeds the threshold of 12,502 euros;
+      </li>
+      <li><b>[‘rate’]</b>: the taxpayer’s tax rate;
+      </li>
+    </ul>
+  </li>
+  <li>line 11: the gross tax <b>[impot1] </b>due;
+  </li>
+  <li>lines 13–14: if the taxpayer has at least one child, the tax calculation is redone using the same data but with 0 children. This second calculation is necessary to determine whether the reduction provided by the children (nbParts*coeffN) exceeds a certain threshold;
+  </li>
+  <li>line 15: the gross tax <b>[impot2] </b>due;
+  </li>
+  <li>lines 16–23: for the gross tax <b>[impot2]</b>, children are now factored in: each 1/2 share provided by the children allows for a reduction of <b>[PLAFOND_QF_DEMI_PART] </b>euros;
+  </li>
+  <li>lines 25–26: case where the taxpayer has no children. In this case, calculating <b>[impot2] </b>is unnecessary. It is equal to <b>[impot1]</b>;
+  </li>
+  <li>lines 29–37: two gross taxes have been calculated <b>[impot1, impot2]</b>. The tax authority retains the higher of the two. This yields a gross tax <b>[impot]</b>;
+  </li>
+  <li>lines 39–40: the gross amount <b>[tax] </b>may be subject to a reduction;
+  </li>
+  <li>lines 42–43: the gross amount <b>[impot] </b>may be subject to a reduction;
+  </li>
+  <li>line 45: <b>[tax] </b>is now the net tax due. The results are returned;
+  </li>
+</ul>
+
+<p>The function <strong>[calculImpot2]</strong> is as follows:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-js">
+<span class="odt-code-line">// --------------------------------------------------------------------------</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">calculateTax2</span>(<span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">int </span>$children, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">array </span>$limits, <span style="font-weight:bold;color:#7f0055">array </span>$coeffR, <span style="font-weight:bold;color:#7f0055">array </span>$coeffN): <span style="font-weight:bold;color:#7f0055">array </span>{</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $marié: yes, no</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $children: number of children</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $salary: annual salary</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $limits, $coeffR, $coeffN: data arrays used to calculate the tax</span>
+<span class="odt-code-line">  <span style="color:#557f5f">//</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// number of shares</span>
+<span class="odt-code-line">  $married = <span style="font-style:italic">strtolower</span>($married);</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">if </span>($married === <span style="color:#0000c0">&quot;yes&quot;</span>) {</span>
+<span class="odt-code-line">    $nbParts = $children / 2 + 2;</span>
+<span class="odt-code-line">  } <span style="font-weight:bold;color:#7f0055">else </span>{</span>
+<span class="odt-code-line">    $numberOfShares = $children / 2 + 1;</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// 1 share per child starting with the 3rd</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">if </span>($children &gt;= 3) {</span>
+<span class="odt-code-line"><span style="color:#000000">    </span>// half a portion more for each child starting with the third</span>
+<span class="odt-code-line">    $nbParts += 0.5 * ($children - 2);</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// taxable income</span>
+<span class="odt-code-line">  $taxableIncome = <span style="font-style:italic">getTaxableIncome</span>($salary);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// surcharge</span>
+<span class="odt-code-line">  $surcharge = <span style="font-style:italic">floor</span>($taxableIncome - 0.9 * $salary);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// for rounding issues</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">if </span>($surcharge &lt; 0) {</span>
+<span class="odt-code-line">    $surcharge = 0;</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// family quotient</span>
+<span class="odt-code-line">  $quotient = $taxableIncome / $numberOfShares;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// is added to the end of the limits array to stop the following loop</span>
+<span class="odt-code-line">  $limits<span style="font-weight:bold">[count($limits) - 1] </span>= $quotient;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// calculate the tax</span>
+<span class="odt-code-line">  $i = 0;</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">while </span>($quotient &gt; $limits<span style="font-weight:bold">[$i]</span>) {</span>
+<span class="odt-code-line">    $i++;</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// Since we placed $quotient at the end of the $limites array, the previous loop</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// cannot go beyond the bounds of the $limits array</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// now we can calculate the tax</span>
+<span class="odt-code-line">  $tax = <span style="font-style:italic">floor</span>($taxableIncome * $coeffR<span style="font-weight:bold">[$i] </span>- $numberOfShares * $coeffN<span style="font-weight:bold">[$i]</span>);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="color:#7f0055">return </span>[&quot;tax&quot; =&gt; $tax, &quot;surcharge&quot; =&gt; $surcharge, &quot;rate&quot; =&gt; $coeffR[$i]];</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// taxableIncome = annualSalary - deduction</span>
+<span class="odt-code-line">// the deduction has a minimum and a maximum</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getTaxableIncome</span>(<span style="font-weight:bold;color:#7f0055">float </span>$salary): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line">  </span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">floor</span>($taxableIncome);</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>Here, we apply the tax calculation using the progressive tax scale;
+  </li>
+  <li>line 9: <i>strtolower($string) </i>converts <i>$string </i>to lowercase;
+  </li>
+  <li>lines 10–19: calculation of the taxpayer’s number of shares;
+  </li>
+  <li>line 21: we calculate taxable income using a function. Indeed, we have seen that it is not always 0.9*AnnualIncome. The 10% deduction is in fact capped at 12,502 euros;
+  </li>
+  <li>line 23: calculates the potential surcharge if the taxable income is greater than 0.9*annualIncome;
+  </li>
+  <li>lines 25–27: corrects the fact that, due to rounding errors, we sometimes have <b>[$surcharge=-1]</b>;
+  </li>
+  <li>line 29: the family quotient;
+  </li>
+  <li>lines 30–36: this quotient is used to determine the taxpayer’s tax bracket;
+  </li>
+  <li>line 40: once the taxpayer’s tax bracket has been determined, their gross tax can be calculated. The <i>floor($x) </i>function returns the integer immediately less than <b>[$x]</b>;
+  </li>
+  <li>line 42: the calculated information is returned;
+  </li>
+</ul>
+
+<p>The <strong>[getRevenuImposable]</strong> function is as follows:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line">// global constants</span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;MAX_10_PERCENT_DEDUCTION&quot;<span style="color:#000000">, 12502);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;ABATTEMENT_DIXPOURCENT_MIN&quot;<span style="color:#000000">, 437);</span></span>
+</code></pre></div>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line">// taxableIncome = annualSalary - deduction</span>
+<span class="odt-code-line">// the deduction has a minimum and a maximum</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getTaxableIncome</span>(<span style="font-weight:bold;color:#7f0055">float </span>$salary): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// 10% deduction from salary</span>
+<span class="odt-code-line">  $deduction = 0.1 * $salary;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// this deduction cannot exceed MAX_10_PERCENT_DEDUCTION</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">if </span><span style="color:#000000">($deduction &gt; </span>TENPERCENT_MAX_DEDUCTION<span style="color:#000000">) {</span></span>
+<span class="odt-code-line"><span style="color:#000000">    $deduction = </span>MAX_10PERCENT_DEDUCTION<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// the deduction cannot be less than ABATTEMENT_DIXPOURCENT_MIN</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">if </span><span style="color:#000000">($discount &lt; </span>DISCOUNT_TENPERCENT_MIN<span style="color:#000000">) {</span></span>
+<span class="odt-code-line"><span style="color:#000000">    $discount = </span>MINIMUM_TEN_PERCENT_DISCOUNT<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// taxable income</span>
+<span class="odt-code-line">  $taxableIncome = $salary - $deduction;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">floor</span>($taxableIncome);</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>line 5: the standard deduction is 10% of the annual salary;
+  </li>
+  <li>lines 7–9: the deduction cannot exceed the maximum deduction <b>[ABATTEMENT_DIXPOURCENT_MAX]</b>;
+  </li>
+  <li>lines 10–13: the deduction cannot be less than the minimum deduction <b>[ABATTEMENT_DIXPOURCENT_MIN]</b>;
+  </li>
+  <li>line 15: calculation of taxable income;
+  </li>
+</ul>
+
+<p>The <strong>[getDecote]</strong> function is as follows:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line">// global constants</span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;SINGLE_DEDUCTION_CAP&quot;<span style="color:#000000">, 1196);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;COUPLE_DEDUCTION_LIMIT&quot;<span style="color:#000000">, 1970);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;COUPLE_TAX_THRESHOLD_FOR_DEDUCTION&quot;<span style="color:#000000">, 2627);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;SINGLE_TAX_THRESHOLD_FOR_DISCOUNT&quot;<span style="color:#000000">, 1595);</span></span>
+</code></pre></div>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-js">
+<span class="odt-code-line">// calculates a possible tax deduction</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getDiscount</span>(<span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">float </span>$taxes): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// initially, a zero discount</span>
+<span class="odt-code-line">  $discount = 0;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// maximum tax amount to qualify for the deduction</span>
+<span class="odt-code-line"><span style="color:#000000">  $taxThresholdForDeduction = $married === </span>&quot;yes&quot; <span style="color:#000000">? </span>TAX_THRESHOLD_FOR_COUPLES_FOR_DEDUCTION <span style="color:#000000">: </span>TAX_THRESHOLD_FOR_SINGLES_FOR_DEDUCTION<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">if </span>($taxes &lt; $taxThresholdForDeduction) {</span>
+<span class="odt-code-line"><span style="color:#000000">    </span>// maximum discount amount</span>
+<span class="odt-code-line"><span style="color:#000000">    $discountLimit = $married === </span>&quot;yes&quot; <span style="color:#000000">? </span>COUPLE_DISCOUNT_LIMIT <span style="color:#000000">: </span>SINGLE_DISCOUNT_LIMIT<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#000000">    </span>// theoretical deduction</span>
+<span class="odt-code-line">    $discount = $discount_limit - 0.75 * $taxes;</span>
+<span class="odt-code-line"><span style="color:#000000">    </span>// the deduction cannot exceed the tax amount</span>
+<span class="odt-code-line">    <span style="font-weight:bold;color:#7f0055">if </span>($discount &gt; $taxes) {</span>
+<span class="odt-code-line">      $discount = $taxes;</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line"><span style="color:#000000">    </span>// no discount &lt;0</span>
+<span class="odt-code-line">    <span style="font-weight:bold;color:#7f0055">if </span>($discount &lt; 0) {</span>
+<span class="odt-code-line">      $discount = 0;</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">ceil</span>($discount);</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>line 6: maximum gross tax amount to qualify for a tax reduction. This amount differs for single individuals and couples;
+  </li>
+  <li>line 7: whether the taxpayer is eligible for the tax reduction;
+  </li>
+  <li>line 11: the tax credit formula. <b>[taxCreditCap] </b>is the maximum tax credit amount. This maximum amount is calculated on line 9. Again, it depends on the taxpayer’s status—married or single;
+  </li>
+  <li>lines 13–15: the deduction cannot exceed the gross tax due. This is the case, for example, if <b>[taxes] </b>is 0 on line 11;
+  </li>
+  <li>lines 17–19: to avoid rounding to -1;
+  </li>
+</ul>
+
+<p>The <strong>[getReduction]</strong> function is as follows:</p>
+<div class="odt-code-rich" data-linenums="false" style="counter-reset: odtline 0;"><pre><code class="language-python">
+<span class="odt-code-line">// global constants</span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;INCOME_THRESHOLD_FOR_SINGLE_PERSON_REDUCTION&quot;<span style="color:#000000">, 21037);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;COUPLE_INCOME_LIMIT_FOR_REDUCTION&quot;<span style="color:#000000">, 42074);</span></span>
+<span class="odt-code-line"><span style="color:#000000">define(</span>&quot;REDUCTION_VALUE_FOR_HALF_SHARE&quot;<span style="color:#000000">, 3797);</span></span>
+</code></pre></div>
+
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-js">
+<span class="odt-code-line">// calculates a possible reduction</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getReduction</span>(<span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">int </span>$children, <span style="font-weight:bold;color:#7f0055">float </span>$taxes): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// the income ceiling to qualify for the 20% reduction</span>
+<span class="odt-code-line"><span style="color:#000000">  $incomeThresholdForReduction = $married === </span>&quot;yes&quot; <span style="color:#000000">? </span>COUPLE_INCOME_THRESHOLD_FOR_REDUCTION <span style="color:#000000">: </span>SINGLE_INCOME_THRESHOLD_FOR_REDUCTION<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  $IncomeThresholdForReduction += $children * <span style="font-style:italic;color:#0000c0">HALF_SHARE_REDUCTION_VALUE</span>;</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">if </span>($children &gt; 2) {</span>
+<span class="odt-code-line">    $IncomeLimitForReduction += ($children - 2) * <span style="font-style:italic;color:#0000c0">HALF_SHARE_REDUCTION_VALUE</span>;</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// taxable income</span>
+<span class="odt-code-line">  $taxableIncome = <span style="font-style:italic">getTaxableIncome</span>($salary);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// deduction</span>
+<span class="odt-code-line">  $reduction = 0;</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">if </span>($taxableIncome &lt; $IncomeThresholdForDeduction) {</span>
+<span class="odt-code-line"><span style="color:#000000">    </span>// 20% reduction</span>
+<span class="odt-code-line">    $reduction = 0.2 * $taxes;</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">ceil</span>($reduction);</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>lines 4–10: to be eligible for a tax reduction, the taxable income (line 10) must be less than a threshold calculated in lines 4–8;
+  </li>
+  <li>lines 13–16: if the conditions are met, the taxpayer is entitled to a 20% tax reduction (line 15);
+<a id="toc42689848"></a>
+<a id="refheadingtoc185641971629160"></a>
+<a id="toc42690620"></a>
+<a id="toc42690234"></a>
+
+### 4.3.2. <span style="color: #4f81bd">Results</span>
+
+  </li>
+</ul>
+
+<p>The <em>taxpayersdata.txt</em> data file (married, children, salary):</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span>
+<span class="normal"><a href="#__codelineno-5-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>yes,2,55555
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>yes,2,50000
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>yes,3,50000
+<a id="__codelineno-5-4" name="__codelineno-5-4"></a>no,2,100000
+<a id="__codelineno-5-5" name="__codelineno-5-5"></a>no,3,100000
+<a id="__codelineno-5-6" name="__codelineno-5-6"></a>yes,3,100000
+<a id="__codelineno-5-7" name="__codelineno-5-7"></a>yes,5,100000
+<a id="__codelineno-5-8" name="__codelineno-5-8"></a>no,0,100000
+<a id="__codelineno-5-9" name="__codelineno-5-9"></a>yes,2,30000
+<a id="__codelineno-5-10" name="__codelineno-5-10"></a>no,0,200000
+<a id="__codelineno-5-11" name="__codelineno-5-11"></a>yes,3,200000
+</code></pre></div></td></tr></table></div>
+<p>The <em>results.txt</em> file (married, children, salary, tax, surcharge, discount, reduction, tax rate) of the results obtained:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-6-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-6-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-6-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-6-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-6-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-6-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-6-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-6-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-6-10">10</a></span>
+<span class="normal"><a href="#__codelineno-6-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;2&quot;,&quot;salary&quot;:&quot;55555&quot;,&quot;tax&quot;:2814,&quot;surcharge&quot;:0,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.14}
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;2&quot;,&quot;salary&quot;:&quot;50000&quot;,&quot;tax&quot;:1384,&quot;surcharge&quot;:0,&quot;discount&quot;:384,&quot;reduction&quot;:347,&quot;rate&quot;:0.14}
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;3&quot;,&quot;salary&quot;:&quot;50000&quot;,&quot;tax&quot;:0,&quot;surcharge&quot;:0,&quot;discount&quot;:720,&quot;reduction&quot;:0,&quot;rate&quot;:0.14}
+<a id="__codelineno-6-4" name="__codelineno-6-4"></a>{&quot;married&quot;:&quot;no&quot;,&quot;children&quot;:&quot;2&quot;,&quot;salary&quot;:&quot;100000&quot;,&quot;tax&quot;:19884,&quot;surcharge&quot;:4480,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.41}
+<a id="__codelineno-6-5" name="__codelineno-6-5"></a>{&quot;married&quot;:&quot;no&quot;,&quot;children&quot;:&quot;3&quot;,&quot;salary&quot;:&quot;100000&quot;,&quot;tax&quot;:16782,&quot;surcharge&quot;:7176,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.41}
+<a id="__codelineno-6-6" name="__codelineno-6-6"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;3&quot;,&quot;salary&quot;:&quot;100000&quot;,&quot;tax&quot;:9200,&quot;surcharge&quot;:2180,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.3}
+<a id="__codelineno-6-7" name="__codelineno-6-7"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;5&quot;,&quot;salary&quot;:&quot;100000&quot;,&quot;tax&quot;:4230,&quot;surcharge&quot;:0,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.14}
+<a id="__codelineno-6-8" name="__codelineno-6-8"></a>{&quot;married&quot;:&quot;no&quot;,&quot;children&quot;:&quot;0&quot;,&quot;salary&quot;:&quot;100000&quot;,&quot;tax&quot;:22986,&quot;surcharge&quot;:0,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.41}
+<a id="__codelineno-6-9" name="__codelineno-6-9"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;2&quot;,&quot;salary&quot;:&quot;30000&quot;,&quot;tax&quot;:0,&quot;surcharge&quot;:0,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0}
+<a id="__codelineno-6-10" name="__codelineno-6-10"></a>{&quot;married&quot;:&quot;no&quot;,&quot;children&quot;:&quot;0&quot;,&quot;salary&quot;:&quot;200000&quot;,&quot;tax&quot;:64210,&quot;surcharge&quot;:7498,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.45}
+<a id="__codelineno-6-11" name="__codelineno-6-11"></a>{&quot;married&quot;:&quot;yes&quot;,&quot;children&quot;:&quot;3&quot;,&quot;salary&quot;:&quot;200000&quot;,&quot;tax&quot;:42842,&quot;surcharge&quot;:17283,&quot;discount&quot;:0,&quot;reduction&quot;:0,&quot;rate&quot;:0.41}
+</code></pre></div></td></tr></table></div>
+<p>The results obtained are consistent with those obtained using the tax authority’s simulator.</p>
+<p><a id="toc42689849"></a>
+<a id="refheadingtoc185643971629160"></a>
+<a id="toc42690621"></a>
+<a id="toc42690235"></a></p>
+<h3 id="433-conclusion">4.3.3. <span style="color: #4f81bd">Conclusion</span></h3>
+<p>The tax calculation algorithm, even in cases considered straightforward, is complex. We will not revisit it here. Across different versions, its core will remain the same despite some changes in presentation. We will therefore comment only on the latter.</p>
+<p><a id="version2"></a>
+<a id="toc42690622"></a>
+<a id="toc42690236"></a>
+<a id="toc42689850"></a>
+<a id="refheading398881881943603"></a></p>
+<h2 id="44-version-2">4.4. <span style="color: #4f81bd">Version 2</span></h2>
+<p><a id="toc42689851"></a>
+<a id="refheadingtoc185645971629160"></a>
+<a id="toc42690623"></a>
+<a id="toc42690237"></a></p>
+<h3 id="441-changes">4.4.1. <span style="color: #4f81bd">Changes</span></h3>
+<p>In the previous version, the data required to calculate the tax was hard-coded as constants and arrays. This method should be avoided. In the new version, this data is externalized into a JSON file:</p>
+<p><img src="images/1000000000000146000000B3BFD01B4B.png" style="width:4.309cm;height:2.367cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000146000000B3BFD01B4B.png" /></p>
+<p>The contents of the <strong>[taxadmindata.json]</strong> file are as follows:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line">{</span>
+<span class="odt-code-line">    <span style="color:#7f007f">&quot;limits&quot;</span>: [9964, 27519, 73779, 156244, 0],</span>
+<span class="odt-code-line">    <span style="color:#7f007f">&quot;coeffR&quot;</span>: [0, 0.14, 0.3, 0.41, 0.45],</span>
+<span class="odt-code-line">    <span style="color:#7f007f">&quot;coeffN&quot;</span>: [0, 1394.96, 5798, 13913.69, 20163.45],</span>
+<span class="odt-code-line">    &quot;HALF-RATE_INCOME_LIMIT&quot;<span style="color:#000000">:</span><span style="color:#ff0000"> 1551</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line">    &quot;INCOME_THRESHOLD_SINGLE_PERSON_FOR_REDUCTION&quot;<span style="color:#000000">:</span><span style="color:#ff0000"> 21037</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line">    &quot;INCOME_LIMIT_FOR_COUPLES_FOR_REDUCTION&quot;<span style="color:#000000">:</span><span style="color:#ff0000"> 42074</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line">    &quot;REDUCTION_VALUE_HALF_PORTION&quot;<span style="color:#000000">:</span><span style="color:#ff0000"> 3797</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line">    &quot;SINGLE_DISCOUNT_LIMIT&quot;<span style="color:#000000">:</span><span style="color:#ff0000"> 1196</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line">    &quot;COUPLE_DEDUCTION_LIMIT&quot;<span style="color:#000000">:</span><span style="color:#ff0000"> 1970</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line">    &quot;COUPLE_TAX_THRESHOLD_FOR_DEDUCTION&quot;<span style="color:#000000">:</span><span style="color:#ff0000"> 2627</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line">    &quot;SINGLE_TAX_LIMIT_FOR_DEDUCTION&quot;<span style="color:#000000">:</span><span style="color:#ff0000"> 1595</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line">    &quot;MAXIMUM_10_PERCENT_DEDUCTION&quot;<span style="color:#000000">:</span><span style="color:#ff0000"> 12502</span><span style="color:#000000">,</span></span>
+<span class="odt-code-line">    &quot;MINIMUM_10_PERCENT_DEDUCTION&quot;<span style="color:#000000">:</span><span style="color:#ff0000"> 437</span></span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p>The new version <strong>[version-02/main.php]</strong> is as follows:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// Strict adherence to the declared types of function parameters</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">declare </span>(strict_types=1);</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// definition of constants</span>
+<span class="odt-code-line"><span style="color:#000000">$TAXPAYERSDATA = </span>&quot;taxpayersdata.txt&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#000000">$RESULTS = </span>&quot;results.txt&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#000000">$TAXADMINDATA = </span>&quot;taxadmindata.json&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// retrieve the contents of the tax data file</span>
+<span class="odt-code-line">$fileContents = \<span style="font-style:italic">file_get_contents</span>($TAXADMINDATA);</span>
+<span class="odt-code-line">$error = <span style="font-weight:bold;color:#7f0055">FALSE</span>;</span>
+<span class="odt-code-line">// error?</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">if </span>(!$fileContents) {</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// log the error</span>
+<span class="odt-code-line">  $error = <span style="font-weight:bold;color:#7f0055">TRUE</span>;</span>
+<span class="odt-code-line"><span style="color:#000000">  $message = </span>&quot;The data file <span style="font-weight:bold">[$TAXADMINDATA] </span>does not exist&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">if </span>(!$error) {</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// Retrieve the JSON data from the configuration file into an associative array</span>
+<span class="odt-code-line">  $taxAdminData = \<span style="font-style:italic">json_decode</span>($fileContents, <span style="font-weight:bold;color:#7f0055">true</span>);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// Error?</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">if </span>(!$taxAdminData) {</span>
+<span class="odt-code-line"><span style="color:#000000">    </span>// log the error</span>
+<span class="odt-code-line">    $error = <span style="font-weight:bold;color:#7f0055">TRUE</span>;</span>
+<span class="odt-code-line"><span style="color:#000000">    $message = </span>&quot;The JSON data file <span style="font-weight:bold">[$TAXADMINDATA] </span>could not be processed correctly&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// error?</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">if </span>($error) {</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">print </span><span style="color:#0000c0">&quot;</span>$message<span style="color:#0000c0">\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>exit<span style="color:#000000">;</span></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// Open the results file</span>
+<span class="odt-code-line">$results = <span style="font-style:italic">fopen</span>($RESULTS, <span style="color:#0000c0">&quot;w&quot;</span>);</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">if </span>(!$results) {</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">print </span>&quot;Unable to create the results file <span style="font-weight:bold">[$RESULTS]</span>\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// exit</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>exit<span style="color:#000000">;</span></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// open taxpayer data file</span>
+<span class="odt-code-line">$taxpayersdata = <span style="font-style:italic">fopen</span>($TAXPAYERSDATA, <span style="color:#0000c0">&quot;r&quot;</span>);</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">if </span>(!$taxpayersdata) {</span>
+<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">print </span>&quot;Unable to open the taxpayer file <span style="font-weight:bold">[$TAXPAYERSDATA]</span>\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// exit</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>exit<span style="color:#000000">;</span></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// process the current line of the data file</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">while </span>($line = <span style="font-style:italic">fgets</span>($taxpayersdata, 100)) {</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// remove any end-of-line characters</span>
+<span class="odt-code-line">  $line = <span style="font-style:italic">cutNewLineChar</span>($line);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// retrieve the 3 fields married:children:salary that make up $line</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">list</span>($married, $children, $salary) = <span style="font-style:italic">explode</span>(<span style="color:#0000c0">&quot;,&quot;</span>, $line);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// calculate the tax</span>
+<span class="odt-code-line">  $result = <span style="font-style:italic">calculateTax</span>($taxAdminData, $married, (int) $children, (int) $salary);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// write the result to the results file</span>
+<span class="odt-code-line">  $result = [&quot;married&quot; =&gt; $married, &quot;children&quot; =&gt; $children, &quot;salary&quot; =&gt; $salary] + $result;</span>
+<span class="odt-code-line">  fputs($results, \json_encode($result, <span style="color:#0000c0">JSON_UNESCAPED_UNICODE</span>) . <span style="color:#0000c0">&quot;\n&quot;</span>);</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// next data</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line">// close the files</span>
+<span class="odt-code-line"><span style="font-style:italic">fclose</span>($taxpayersdata);</span>
+<span class="odt-code-line"><span style="font-style:italic">fclose</span>($results);</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// end</span>
+<span class="odt-code-line">exit<span style="color:#000000">;</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// --------------------------------------------------------------------------</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">cutNewLinechar</span>(<span style="font-weight:bold;color:#7f0055">string </span>$line) {</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// end</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return</span>($line);</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// tax calculation</span>
+<span class="odt-code-line">// --------------------------------------------------------------------------</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">calculateTax</span>(<span style="font-weight:bold;color:#7f0055">array </span>$taxAdminData, <span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">int </span>$children, <span style="font-weight:bold;color:#7f0055">float </span>$salary) {</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $married: yes, no</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $children: number of children</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $salary: annual salary</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $taxAdminData: data from the tax authorities</span>
+<span class="odt-code-line">  <span style="color:#557f5f">//</span></span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// Calculate tax with children</span>
+<span class="odt-code-line">  $result1 = <span style="font-style:italic">calculateTax2</span>($taxAdminData, $married, $children, $salary);</span>
+<span class="odt-code-line">  $tax1 = $result1<span style="font-weight:bold">[&quot;tax&quot;]</span>;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// Calculate tax without children</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">if </span>($children != 0) {</span>
+<span class="odt-code-line">    $result2 = <span style="font-style:italic">calculateTax2</span>($taxAdminData, $married, 0, $salary);</span>
+<span class="odt-code-line">    $tax2 = $result2<span style="font-weight:bold">[&quot;tax&quot;]</span>;</span>
+<span class="odt-code-line"><span style="color:#000000">    </span>// apply the family quotient cap</span>
+<span class="odt-code-line">    <span style="font-weight:bold;color:#7f0055">if </span>($children &lt; 3) {</span>
+<span class="odt-code-line"><span style="color:#000000">      </span>// $PLAFOND_QF_DEMI_PART euros for the first 2 children</span>
+<span class="odt-code-line">      $tax2 = $tax2 - $children * $taxAdminData<span style="font-weight:bold">[&quot;HALF-SHARE_FAMILY_QUOTIENT_CAP&quot;]</span>;</span>
+<span class="odt-code-line">    } <span style="font-weight:bold;color:#7f0055">else </span>{</span>
+<span class="odt-code-line"><span style="color:#000000">      </span>// $PLAFOND_QF_DEMI_PART euros for the first 2 children, double that for subsequent children</span>
+<span class="odt-code-line">      $tax2 = $tax2 - 2 * $taxAdminData<span style="font-weight:bold">[&quot;PLAFOND_QF_DEMI_PART&quot;] </span>- ($children - 2) * 2 * $taxAdminData<span style="font-weight:bold">[&quot;PLAFOND_QF_DEMI_PART&quot;]</span>;</span>
+<span class="odt-code-line">    }</span>
+<span class="odt-code-line">  } <span style="font-weight:bold;color:#7f0055">else </span>{</span>
+<span class="odt-code-line">    $tax2 = $tax1;</span>
+<span class="odt-code-line">    $result2 = $result1;</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// we take the higher tax amount with the corresponding rate and surcharge</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">if </span>($tax1 &gt; $tax2) {</span>
+<span class="odt-code-line">    $tax = $tax1;</span>
+<span class="odt-code-line">    $rate = $result1<span style="font-weight:bold">[&quot;rate&quot;]</span>;</span>
+<span class="odt-code-line">    $surcharge = $result1<span style="font-weight:bold">[&quot;surcharge&quot;]</span>;</span>
+<span class="odt-code-line">  } <span style="font-weight:bold;color:#7f0055">else </span>{</span>
+<span class="odt-code-line">    $surcharge = $tax2 - $tax1 + $result2<span style="font-weight:bold">[&quot;surcharge&quot;]</span>;</span>
+<span class="odt-code-line">    $tax = $tax2;</span>
+<span class="odt-code-line">    $rate = $result2<span style="font-weight:bold">[&quot;rate&quot;]</span>;</span>
+<span class="odt-code-line">  }</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// Calculate any tax credit</span>
+<span class="odt-code-line">  $discount = <span style="font-style:italic">getDiscount</span>($taxAdminData, $married, $salary, $tax);</span>
+<span class="odt-code-line">  $tax -= $discount;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// Calculate any tax reduction</span>
+<span class="odt-code-line">  $reduction = <span style="font-style:italic">getReduction</span>($taxAdminData, $married, $salary, $children, $tax);</span>
+<span class="odt-code-line">  $tax -= $reduction;</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="color:#7f0055">return </span>[&quot;tax&quot; =&gt; floor($tax), &quot;surcharge&quot; =&gt; $surcharge, &quot;discount&quot; =&gt; $discount, &quot;reduction&quot; =&gt; $reduction, &quot;rate&quot; =&gt; $rate];</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// --------------------------------------------------------------------------</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">calculateTax2</span>(<span style="font-weight:bold;color:#7f0055">array </span>$taxAdminData, <span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">int </span>$children, <span style="font-weight:bold;color:#7f0055">float </span>$salary) {</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// $marié: yes, no</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="color:#7f0055">return </span>[&quot;tax&quot; =&gt; $tax, &quot;surcharge&quot; =&gt; $surcharge, &quot;rate&quot; =&gt; $coeffR[$i]];</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// taxableIncome = annualSalary - deduction</span>
+<span class="odt-code-line">// the deduction has a minimum and a maximum</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getTaxableIncome</span>(<span style="font-weight:bold;color:#7f0055">array </span>$taxAdminData, <span style="font-weight:bold;color:#7f0055">float </span>$salary): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">floor</span>($taxableIncome);</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// calculates any tax deduction</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getDiscount</span>(<span style="font-weight:bold;color:#7f0055">array </span>$taxAdminData, <span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">float </span>$taxes): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">ceil</span>($discount);</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// calculates a possible reduction</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">function </span><span style="font-style:italic">getDiscount</span>(<span style="font-weight:bold;color:#7f0055">array </span>$taxAdminData, <span style="font-weight:bold;color:#7f0055">string </span>$married, <span style="font-weight:bold;color:#7f0055">float </span>$salary, <span style="font-weight:bold;color:#7f0055">int </span>$children, <span style="font-weight:bold;color:#7f0055">float </span>$taxes): <span style="font-weight:bold;color:#7f0055">float </span>{</span>
+<span class="odt-code-line">  …</span>
+<span class="odt-code-line"><span style="color:#000000">  </span>// result</span>
+<span class="odt-code-line">  <span style="font-weight:bold;color:#7f0055">return </span><span style="font-style:italic">ceil</span>($reduction);</span>
+<span class="odt-code-line">}</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>lines 11–19: we attempt to read the contents of the JSON file named <b>[TAXADMINDATA]</b>;
+  </li>
+  <li>lines 21–30: if the JSON file was successfully read, its contents are decoded into the associative array <b>[$taxAdminData]</b>;
+  </li>
+  <li>lines 32–36: if an error occurred in either of the two previous operations, an error message is written to the console and the program stops;
+  </li>
+  <li>The difference from version 01 is that here the tax administration data (arrays and constants) are stored in the associative array <b>[$taxAdminData]</b>, whereas in version 01, they were stored in global arrays and constants. It is the global nature of these constants that distinguishes the two versions:
+    <ul>
+      <li>in version 01, the constants were known in all functions of <b>[main.php]</b>;
+      </li>
+      <li>to achieve the same result in version 02, the associative array <b>[$taxAdminData] </b>must be passed as a parameter to all functions (lines 83, 129, 138, 145, 152);
+      </li>
+    </ul>
+  </li>
+  <li>each function in version 02 must use the contents of the array <b>[$taxAdminData]</b>;
+  </li>
+  <li>Lines 83–126: In the <b>[calculateTax] </b>function, where global constants or the <b>[limits, coeffR, coeffN] </b>arrays were previously used, we now use the contents of the <b>[$taxAdminData] </b>array passed as a parameter (lines 99, 102);
+  </li>
+  <li>All other functions are rewritten in the same way;
+  </li>
+</ul>
+
+<p>The results obtained are the same as those obtained in the previous version.</p>
+<p><a id="toc42689852"></a>
+<a id="refheadingtoc185647971629160"></a>
+<a id="toc42690624"></a>
+<a id="toc42690238"></a></p>
+<h3 id="442-conclusion">4.4.2. <span style="color: #4f81bd">Conclusion</span></h3>
+<p>Version 02 is much more flexible than version 01. In 2020, the tax calculation algorithm will likely be the same as in 2019. Only the tax brackets and calculation constants will have changed. It will then suffice to update the <strong>[taxadmindata.json]</strong> file. With version 01, you have to go into the code to modify the tax brackets and calculation constants. However, it is likely that the people who need to change the values of the tax brackets and calculation constants do not have access to the algorithm’s code.</p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://tahe.developpez.com" target="_blank">
+          https://tahe.developpez.com
+        </a>
+        <br>
+        This tutorial written by <strong>Serge Tahé</strong> is made available to the public under the terms of the
+<em>Creative Commons Attribution – Non-Commercial –
+ShareAlike 3.0 Unported</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>

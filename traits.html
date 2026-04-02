@@ -1,0 +1,2135 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="An Introduction to PHP7 Through Examples">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/en-php7-juillet-2019/traits.html">
+      
+      
+        <link rel="prev" href="application-exercise---version-3.html">
+      
+      
+        <link rel="next" href="layered-applications.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>9. Traits - An Introduction to PHP7 Through Examples</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "An Introduction to PHP7 Through Examples";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#9-traits" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="An Introduction to PHP7 Through Examples" class="md-header__button md-logo" aria-label="An Introduction to PHP7 Through Examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            An Introduction to PHP7 Through Examples
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              9. Traits
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/en-php7-juillet-2019" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="An Introduction to PHP7 Through Examples" class="md-nav__button md-logo" aria-label="An Introduction to PHP7 Through Examples" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    An Introduction to PHP7 Through Examples
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/en-php7-juillet-2019" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="introduction-to-php-7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Introduction to PHP 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setting-up-a-development-environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Setting up a development environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="the-basics-of-php.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. The Basics of PHP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice-exercise---versions-1-and-2.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Practice Exercise – Versions 1 and 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="classes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Classes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="interfaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. Interfaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="exceptions-and-errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7. Exceptions and Errors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-3.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Application Exercise – Version 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Traits
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="traits.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Traits
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#91-the-script-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.1. The Script Tree
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#92-including-a-trait-in-a-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.2. Including a trait in a class
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#93-using-the-same-trait-in-different-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.3. Using the Same Trait in Different Classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#95-multiple-inheritance-with-a-trait" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.5. Multiple inheritance with a trait
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#96-using-a-trait-instead-of-an-abstract-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.6. Using a trait instead of an abstract class
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#97-conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.7. Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="layered-applications.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Layered Applications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice-exercise---version-4.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    11. Practice Exercise – Version 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="using-the-mysql-dbms.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    12. Using the MySQL DBMS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practical-exercise---version-5.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    13. Practical Exercise – Version 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-6.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    14. Application Exercise – Version 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-7.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    15. Application Exercise – Version 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="network-functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    16. Network Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="web-services.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    17. Web Services
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practice-exercise---version-8.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    18. Practice Exercise – Version 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-9.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    19. Application Exercise – Version 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-10.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    20. Application Exercise – Version 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="processing-xml-documents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    21. Processing XML Documents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-11.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    22. Application Exercise – Version 11
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="practical-exercise---version-12.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    23. Practical Exercise – Version 12
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="application-exercise---version-13.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    24. Application Exercise – Version 13
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<p><a id="toc42689899"></a>
+<a id="refheadingtoc788212244347140"></a>
+<a id="toc42690671"></a>
+<a id="toc42690285"></a></p>
+<h1 id="9-traits">9. <span style="color: #365f91">Traits</span></h1>
+<p><strong>Traits</strong> are structures analogous to classes. However, they cannot be instantiated. They are intended to be included in classes. Including a <strong>Trait</strong> in a class has the same effect as if the <strong>Trait’s</strong> code had been copied into the class. We put code in a <strong>Trait</strong> that is likely to be reused in multiple classes.</p>
+<p><a id="toc42689900"></a>
+<a id="refheadingtoc788232244347140"></a>
+<a id="toc42690672"></a>
+<a id="toc42690286"></a></p>
+<h2 id="91-the-script-tree">9.1. <span style="color: #4f81bd">The Script Tree</span></h2>
+<p><img src="images/1000000000000160000002D26E146949.png" style="width:2.79cm;height:5.726cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000160000002D26E146949.png" /></p>
+<p><a id="toc42689901"></a>
+<a id="refheadingtoc788252244347140"></a>
+<a id="toc42690673"></a>
+<a id="toc42690287"></a></p>
+<h2 id="92-including-a-trait-in-a-class">9.2. <span style="color: #4f81bd">Including a trait in a class</span></h2>
+<p>The script <strong>[traits-01.php]</strong> demonstrates a basic use of a trait in a class:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class04 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$name</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// constructor</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>public function __construct(string <span style="color:#0000ff">$name</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;name = </span>$name<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// getters and setters</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>public function getName(): string {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;name;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setName(<span style="font-weight:bold">string </span><span style="color:#0000ff">$name</span>): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;name = </span>$name<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">trait </span>Trait04 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$name</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// getters and setters</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>public function getName(): string {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;name;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setName(<span style="font-weight:bold">string </span><span style="color:#0000ff">$name</span>): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;name = </span>$name<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class05 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// Include the Trait</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">use </span>Trait04;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// constructor</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>public function __construct(string <span style="color:#0000ff">$name</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;name = </span>$name<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// test --------------</span>
+<span class="odt-code-line"><span style="color:#0000ff">$class04 </span>= <span style="font-weight:bold">new </span>Class04(<span style="color:#008000">&quot;Tim&quot;</span>);</span>
+<span class="odt-code-line"><span style="color:#0000ff">$class05 </span>= <span style="font-weight:bold">new </span>Class05(<span style="color:#008000">&quot;Burton&quot;</span>);</span>
+<span class="odt-code-line"><span style="font-weight:bold">print </span>$class04-&gt;getName() . <span style="color:#008000">&quot;\n&quot;</span>;</span>
+<span class="odt-code-line"><span style="font-weight:bold">print </span>$class05-&gt;getName() . <span style="color:#008000">&quot;\n&quot;</span>;</span>
+<span class="odt-code-line">// Displaying both classes</span>
+<span class="odt-code-line">print_r(<span style="color:#0000ff">$class04</span>);</span>
+<span class="odt-code-line">print_r(<span style="color:#0000ff">$class05</span>);</span>
+</code></pre></div>
+
+<p><strong>Code comments</strong></p>
+<ul>
+  <li>lines 3–21: definition of the <b>[Class04] </b>class with an attribute, its get/set methods, and a constructor;
+  </li>
+  <li>lines 23–36: We take the code from <b>[Class04] </b>without its constructor and transfer it to the trait <b>[Trait04] </b>as-is. We do not include the constructor since a trait cannot be instantiated;
+  </li>
+  <li>line 23: the keyword <b>[trait] </b>makes <b>[Trait04] </b>a trait rather than a class;
+  </li>
+  <li>lines 38–45: we define a class <b>[Class05] </b>that takes the code from the trait <b>[Trait04] </b>(line 40) and adds a constructor (lines 43–45), identical to that of the class <b>[Class04]</b>, to make the class instantiable;
+  </li>
+  <li>line 40: the keyword <b>[use] </b>allows a trait to be included in a class;
+  </li>
+  <li>lines 50–56: tests show that the classes <b>[Class04] </b>and <b>[Class05] </b>function in the same way;
+  </li>
+</ul>
+
+<p><strong>Results</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a>Tim
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a>Burton
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a>Class04 Object
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a>(
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a>    [name:Class04:private] =&gt; Tim
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a>)
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a>Class05 Object
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a>(
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a>    [name:Class05:private] =&gt; Burton
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a>)
+</code></pre></div></td></tr></table></div>
+<p>The results in lines 3–10 show that the classes <strong>[Class04]</strong> and <strong>[Class05]</strong> have the same content;</p>
+<p><strong>Conclusion</strong></p>
+<p>Using the <strong>[use Trait]</strong> statement in a class is equivalent to including the code from <strong>[Trait]</strong> in the class.</p>
+<p><a id="toc42689902"></a>
+<a id="refheadingtoc788272244347140"></a>
+<a id="toc42690674"></a>
+<a id="toc42690288"></a></p>
+<h2 id="93-using-the-same-trait-in-different-classes">9.3. <span style="color: #4f81bd">Using the Same Trait in Different Classes</span></h2>
+<p>One of the main benefits of <strong>a trait</strong> seems to be the reuse of the same code (attributes + methods) across different classes. We will see, however, that we can achieve the same goal using simple classes.</p>
+<p>Sharing a <em>trait</em> between classes is illustrated by the following <strong>[trait-02.php]</strong> script:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">trait </span>Trait01 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$id </span>=<span style="color:#000080"> 0</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Trait01::doSomething… (<span style="color:#0000ff">$this-&gt;id</span>)\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class02 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// include Trait01</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">use </span>Trait01 {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// The method <span style="font-weight:bold">[Trait01::doSomething] </span>is accessible</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// in the class under the name <span style="font-weight:bold">[doSomethingInTrait]</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>Trait01::doSomething <span style="font-weight:bold">as </span>doSomethingInTrait;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// class-specific method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// id attribute</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;id +=<span style="color:#000080"> 10</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// use of Trait01 method</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;doSomethingInTrait();</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// local output</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class02-&gt;doSomething\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class03 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// inclusion of Trait01</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">use </span>Trait01;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// method local to the class</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingElse(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// id attribute</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;id +=<span style="color:#000080"> 10</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// using a method from Trait01</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;doSomething();</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// local output</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class03-&gt;doSomethingElse\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// test01 ----------------</span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>test01(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$class02 </span>= <span style="font-weight:bold">new </span>Class02();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$class03 </span>= <span style="font-weight:bold">new </span>Class03();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$class02-&gt;doSomething();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$class03-&gt;doSomethingElse();</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// test01</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#000000">print </span>&quot;test01-----------------\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">test01();</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>Lines 3–10: a trait defining an attribute (line 5) and a method (lines 8–10).
+  </li>
+  <li>The trait <b>[Trait01] </b>is injected into two classes: <b>[Class02] </b>(lines 14–32) and <b>[Class03] </b>(lines 34–46).
+  </li>
+  <li>Lines 16–20: Injection of <b>[Trait01] </b>into <b>[Class02]</b>;
+  </li>
+  <li>Line 19 resolves a conflict: <b>[Trait01] </b>and <b>[Class02] </b>both have a method named <b>[doSomething]</b>. There are two cases to consider:
+    <ul>
+      <li>the method <b>[Class02::doSomething] </b>is called from outside the class. In this case, the method <b>[Class02::doSomething] </b>takes precedence over the method <b>[Trait01::doSomething] </b>and is the one that is called;
+      </li>
+      <li>the <b>[Class02::doSomething] </b>method is called from within the class. In this case, there is a conflict: the PHP interpreter does not know which method to call;
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Line 19 renames the <strong>[Trait01::doSomething]</strong> method to <strong>[doSomethingInTrait]</strong>. Thus, within <strong>[Class02]</strong>, we will use the following notation:</p>
+<ul>
+  <li><b>[doSomethingInTrait] </b>to call the <b>[Trait01::doSomething] </b>method;
+  </li>
+  <li><b>[doSomething] </b>to call the <b>[Class02::doSomething] </b>method;
+  </li>
+  <li>Lines 25, 27: The <b>[Class02] </b>class uses the attribute and method of <b>[Trait01] </b>as if they were its own;
+  </li>
+  <li>lines 34–48: the class <b>[Class03] </b>is identical to the class <b>[Class02]</b>. The inclusion of <b>[Trait01] </b>is simpler here because there is no conflict between the methods of <b>[Trait01] </b>and <b>[Class03]</b>;
+  </li>
+</ul>
+
+<p><strong>Results</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1">1</a></span>
+<span class="normal"><a href="#__codelineno-1-2">2</a></span>
+<span class="normal"><a href="#__codelineno-1-3">3</a></span>
+<span class="normal"><a href="#__codelineno-1-4">4</a></span>
+<span class="normal"><a href="#__codelineno-1-5">5</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a>test01-----------------
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a>Trait01::doSomething… (10)
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a>Class02-&gt;doSomething
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a>Trait01::doSomething… (10)
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a>Class03-&gt;doSomethingElse
+</code></pre></div></td></tr></table></div>
+<p>Note that the trait <strong>[Trait01]</strong> is not shared between classes <strong>[Class02]</strong> and <strong>[Class03]</strong>. Thus, by including <strong>[Trait01]</strong> in classes <strong>[Class02]</strong> and <strong>[Class03]</strong>, the attribute <strong>[Trait01::i]</strong> becomes two distinct attributes: <strong>[Class02::i]</strong> and <strong>[Class03::i]</strong>. This is shown in lines 2 and 4 of the results. If the attribute <strong>[Trait01::i]</strong> had been shared between the classes <strong>[Class02]</strong> and <strong>[Class03],</strong> we would have had 20 on line 4 instead of 10.</p>
+<p>The script <strong>[trait-03.php]</strong> shows that we can achieve the same result by using a class instead of a trait:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// class that replaces the trait</span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class01 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$id </span>=<span style="color:#000080"> 0</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// setter</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setId(<span style="font-weight:bold">int </span><span style="color:#0000ff">$id</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;id = </span>$id<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// getter</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>public function getId(): int {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;id;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class01::doSomething… (<span style="color:#0000ff">$this-&gt;id</span>)\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class02 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// inclusion of Class01</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$class01</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// setter</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setClass01(Class01 <span style="color:#0000ff">$class01</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;class01 = </span>$class01<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// class-specific method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// change Class01 attribute</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#0000ff">$id </span>= $this-&gt;class01-&gt;getId();</span>
+<span class="odt-code-line">    <span style="color:#0000ff">$id </span><span style="color:#000000">+=</span><span style="color:#000080"> 10</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;class01-&gt;setId(<span style="color:#0000ff">$id</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// use Class01 method</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;class01-&gt;doSomething();</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// local display</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class02-&gt;doSomething\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class03 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// include Class01</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$class01</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// setter</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setClass01(Class01 <span style="color:#0000ff">$class01</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;class01 = </span>$class01<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// class-local method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingElse(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// change Class01 attribute</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#0000ff">$id </span>= $this-&gt;class01-&gt;getId();</span>
+<span class="odt-code-line">    <span style="color:#0000ff">$id </span><span style="color:#000000">+=</span><span style="color:#000080"> 10</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;class01-&gt;setId(<span style="color:#0000ff">$id</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// use Class01 method</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;class01-&gt;doSomething();</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// local output</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class03-&gt;doSomethingElse\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// test01 ----------------</span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>test01(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// two objects</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$class02 </span>= <span style="font-weight:bold">new </span>Class02();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$class03 </span>= <span style="font-weight:bold">new </span>Class03();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// will access two different instances of <span style="font-weight:bold">[Class01]</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$class02-&gt;setClass01(<span style="font-weight:bold">new </span>Class01());</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$class03-&gt;setClass01(<span style="font-weight:bold">new </span>Class01());</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// verification</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$class02-&gt;doSomething();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$class03-&gt;doSomethingElse();</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// test02 ----------------</span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>test02(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// shared instance of <span style="font-weight:bold">[Class01]</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$class01 </span>= <span style="font-weight:bold">new </span>Class01();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// two objects</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$class02 </span>= <span style="font-weight:bold">new </span>Class02();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#0000ff">$class03 </span>= <span style="font-weight:bold">new </span>Class03();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// will access the same instance of <span style="font-weight:bold">[Class01]</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">$class02-&gt;setClass01(</span>$class01<span style="color:#000000">);</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="color:#000000">$class03-&gt;setClass01(</span>$class01<span style="color:#000000">);</span></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// verification</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$class02-&gt;doSomething();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$class03-&gt;doSomethingElse();</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// test01</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#000000">print </span>&quot;test01-----------------\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">test01();</span>
+<span class="odt-code-line">// test02</span>
+<span class="odt-code-line"><span style="font-weight:bold;color:#000000">print </span>&quot;test02-----------------\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">test02();</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>lines 4-23: the <b>[Class01] </b>class replaces the <b>[Trait01] </b>trait. The code for <b>[Trait01] </b>was embedded in the code for the <b>[Class02] </b>and  <b>[Class03] </b>classes. Here, that will not be the case. Instead, a reference to the code in the <b>[Class01] </b>class will be injected into the <b>[Class02] </b>and  <b>[Class03]</b>. This means that the attributes of class <b>[Class01] </b>will be external to the code of <b>[Class02] </b>and  <b>[Class03]</b>. Since the <b>[id] </b>attribute is private here (line 6), a getter (lines 14–16) and a setter (lines 9–11) must be provided. This is the first difference from a trait: you must create the code to access the class’s private attributes. We could have changed the visibility of the <b>[id] </b>attribute to <b>[public]</b>, but this is never recommended. Using a setter to set an attribute’s value allows us to validate it;
+  </li>
+  <li>line 27: inclusion in the <b>[Class02] </b>code of a reference to the <b>[Class01] </b>class. Because this attribute is private, we need to create a setter (lines 30–32) to initialize it;
+  </li>
+  <li>lines 37–41: for any use of the code from <b>[Class01]</b>, we must use the attribute <b>[$this→class01]</b>;
+  </li>
+  <li>lines 48–69: the class <b>[Class03] </b>is a clone of the class <b>[Class02]</b>, except that its method has a different name;
+  </li>
+  <li>lines 72–82: the first test. This test involves injecting <b>two different instances </b>of the <b>[Class01] </b>class into the <b>[Class02] </b>and  <b>[Class03] </b>classes (lines 77 and 78);
+  </li>
+  <li>lines 85–97: The second test injects <b>the same instance </b>of the <b>[Class01] </b>class into the <b>[Class02] </b>and  <b>[Class03] </b>classes (lines 97, 92, 93);
+  </li>
+  <li>lines 100–101: execution of test <b>[test01]</b>;
+  </li>
+  <li>lines 103–104: execution of test <b>[test02]</b>;
+  </li>
+</ul>
+
+<p><strong>Results</strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>test01-----------------
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>Class01::doSomething… (10)
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>Class02-&gt;doSomething
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>Class01::doSomething… (10)
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>Class03-&gt;doSomethingElse
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>test02-----------------
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>Class01::doSomething… (10)
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>Class02-&gt;doSomething
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a>Class01::doSomething… (20)
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a>Class03-&gt;doSomethingElse
+</code></pre></div></td></tr></table></div>
+<p><strong>Comments on the results</strong></p>
+<ul>
+  <li>lines 2–5: we get the same results as with the trait <b>[Trait01]</b>. We can conclude that using the trait is not essential here, but it does reduce the code because there is no need for methods to access the trait’s attributes: these are an integral part of the code in which the trait has been incorporated;
+  </li>
+  <li>lines 7–10: Since the same reference to <b>[Class01] </b>was injected into classes <b>[Class02] </b>and  <b>[Class03]</b>, the attribute <b>[Class01::id] </b>was shared between the two classes. This is why line 9 of the results displays 20 instead of 10 when using the trait. We can conclude that if traits’ attributes need to be <b>shared </b>between classes, then the trait is not usable and a class must be used instead;
+<a id="toc42689903"></a>
+<a id="refheadingtoc788292244347140"></a>
+<a id="toc42690675"></a>
+<a id="toc42690289"></a>
+
+## 9.4. <span style="color: #4f81bd">Grouping Methods in a Trait</span>
+
+  </li>
+</ul>
+
+<p><span style="color: #000000">In the previous example, the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">contained attributes and methods. Here, we consider the case where it contains only methods. In this case, the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">resembles a factorization of methods that can then be used in different classes. Since the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">has no attributes here, we will consider the case where the methods it groups work solely on the parameters passed to them. In fact, this is not mandatory: a trait can operate on an attribute </span><strong><span style="color: #000000">[$this→attribute1] </span></strong><span style="color: #000000">without having that attribute itself. It is then up to the classes that use this trait to provide the attribute </span><strong><span style="color: #000000">[$this→attribute1]</span></strong><span style="color: #000000">.</span></p>
+<p><span style="color: #000000">In the case where the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">has only methods that operate solely on parameters passed to them, we will show that the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">can then be replaced by a </span><strong><span style="color: #000000">class </span></strong><span style="color: #000000">having the same methods as the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">and declared static.</span></p>
+<p><span style="color: #000000">The use of the trait is illustrated by the script </span><strong><span style="color: #000000">[trait-04.php], </span></strong><span style="color: #000000">which reuses the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">from the previous example while removing all attributes:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">trait </span>Trait01 {</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// method to share</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Trait01::doSomething ….\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class02 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// include Trait01</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">use </span>Trait01 {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// The method <span style="font-weight:bold">[Trait01::doSomething] </span>is accessible</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// in the class under the name <span style="font-weight:bold">[doSomethingInTrait]</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>Trait01::doSomething <span style="font-weight:bold">as </span>doSomethingInTrait;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// call the Trait01 method</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;doSomethingInTrait();</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// local output</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class02-&gt;doSomething\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class03 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// inclusion of Trait01</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">use </span>Trait01;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// method local to the class</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingElse(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// call method from Trait01</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;doSomething();</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// local output</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class03-&gt;doSomethingElse\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// test ----------------</span>
+<span class="odt-code-line">(<span style="font-weight:bold">new </span>Class02())-&gt;doSomething();</span>
+<span class="odt-code-line">(<span style="font-weight:bold">new </span>Class03())-&gt;doSomethingElse();</span>
+</code></pre></div>
+
+<p><strong><span style="color: #000000">Comments</span></strong></p>
+<ul>
+  <li><span style="color: #000000">lines 3-10: the trait </span><b><span style="color: #000000">[Trait01] </span></b><span style="color: #000000">no longer has any attributes;</span>
+  </li>
+  <li><span style="color: #000000">lines 14–18: inclusion of </span><b><span style="color: #000000">[Trait01] </span></b><span style="color: #000000">in </span><b><span style="color: #000000">[Class02]</span></b><span style="color: #000000">. The method of </span><b><span style="color: #000000">[Trait01] </span></b><span style="color: #000000">is used on line 22;</span>
+  </li>
+  <li><span style="color: #000000">line 31: inclusion of </span><b><span style="color: #000000">[Trait01] </span></b><span style="color: #000000">in </span><b><span style="color: #000000">[Class03]</span></b><span style="color: #000000">. The method of </span><b><span style="color: #000000">[Trait01] </span></b><span style="color: #000000">is used on line 36;</span>
+  </li>
+</ul>
+
+<p><strong><span style="color: #000000">Results</span></strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span>
+<span class="normal"><a href="#__codelineno-3-3">3</a></span>
+<span class="normal"><a href="#__codelineno-3-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>Trait01::doSomething ….
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>Class02-&gt;doSomething
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>Trait01::doSomething ….
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>Class03-&gt;doSomethingElse
+</code></pre></div></td></tr></table></div>
+<p><span style="color: #000000">In this use case, the trait </span><strong><span style="color: #000000">[Trait01] </span></strong><span style="color: #000000">can easily be replaced by a class. This is demonstrated by the following script </span><strong><span style="color: #000000">[trait-05.php]</span></strong><span style="color: #000000">:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">abstract class Class01 {</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// static method to be shared</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public static function </span>doSomething() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class01::doSomething ….\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class02 {</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// call Class01 method</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>Class01::doSomething();</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// local output</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class02-&gt;doSomething\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class03 {</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// method local to the class</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingElse(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// call method from Class01</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>Class01::doSomething();</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// local output</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class03-&gt;doSomethingElse\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// test ----------------</span>
+<span class="odt-code-line">(<span style="font-weight:bold">new </span>Class02())-&gt;doSomething();</span>
+<span class="odt-code-line">(<span style="font-weight:bold">new </span>Class03())-&gt;doSomethingElse();</span>
+</code></pre></div>
+
+<p><strong><span style="color: #000000">Comments</span></strong></p>
+<ul>
+  <li><span style="color: #000000">lines 3-10: the trait </span><b><span style="color: #000000">[Trait01] </span></b><span style="color: #000000">is replaced by an abstract class </span><b><span style="color: #000000">[Class01] </span></b><span style="color: #000000">in which all methods are declared static. The class is declared abstract solely to prevent its </span><b><span style="color: #000000">instantiation</span></b><span style="color: #000000">. We would have liked to also write </span><b><span style="color: #000000">[final] </span></b><span style="color: #000000">to prevent its </span><b><span style="color: #000000">derivation, </span></b><span style="color: #000000">but PHP 7 does not accept the </span><b><span style="color: #000000">[final abstract] </span></b><span style="color: #000000">prefix for a class. It’s one or the other, but not both;</span>
+  </li>
+  <li><span style="color: #000000">line 16: instead of writing </span><b><span style="color: #000000">[$this→doSomethingInTrait]</span></b><span style="color: #000000">, we now write </span><b><span style="color: #000000">[Class01::doSomething]</span></b><span style="color: #000000">, i.e., we call the static method </span><b><span style="color: #000000">[doSomething] </span></b><span style="color: #000000">of the class </span><b><span style="color: #000000">[Class01]</span></b><span style="color: #000000">;</span>
+  </li>
+  <li><span style="color: #000000">line 28: we repeat the same process in </span><b><span style="color: #000000">[Class03]</span></b><span style="color: #000000">;</span>
+  </li>
+</ul>
+
+<p><strong><span style="color: #000000">Results</span></strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1"></a>Class01::doSomething ….
+<a id="__codelineno-4-2" name="__codelineno-4-2"></a>Class02-&gt;doSomething
+<a id="__codelineno-4-3" name="__codelineno-4-3"></a>Class01::doSomething ….
+<a id="__codelineno-4-4" name="__codelineno-4-4"></a>Class03-&gt;doSomethingElse
+</code></pre></div></td></tr></table></div>
+<p><span style="color: #000000">We get the same result as with the trait </span><strong><span style="color: #000000">[Trait01]</span></strong><span style="color: #000000">, which shows that using it can be avoided. We noted that a trait’s methods can operate on an attribute </span><strong><span style="color: #000000">[$this→attribut1] </span></strong><span style="color: #000000">even if the trait itself does not have that attribute. It is therefore up to the classes that use this trait to provide the attribute </span><strong><span style="color: #000000">[$this→attribut1]</span></strong><span style="color: #000000">. This is an exotic case: we might as well “pass up” the attribute </span><strong><span style="color: #000000">[$this→attribut1]</span></strong><span style="color: #000000">—which the classes using the trait must have—into the trait itself. That way, it will necessarily be part of the attributes of the class using the trait.</span></p>
+<p><a id="toc42689904"></a>
+<a id="refheadingtoc788312244347140"></a>
+<a id="toc42690676"></a>
+<a id="toc42690290"></a></p>
+<h2 id="95-multiple-inheritance-with-a-trait">9.5. <span style="color: #4f81bd">Multiple inheritance with a trait</span></h2>
+<p><span style="color: #000000">It is common to read in PHP literature that traits enable multiple inheritance: the ability for a class to inherit from multiple classes. The C++ language supports this feature, but Java and C# do not, as they only support single inheritance. We will show that while using a trait in a derived class does allow for the implementation of something resembling multiple inheritance, this use case can also be implemented using simple classes.</span></p>
+<p><span style="color: #000000">The script </span><strong><span style="color: #000000">[trait-06.php] </span></strong><span style="color: #000000">implements a derived class and a trait:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">trait </span>Trait01 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>private <span style="color:#0000ff">$i</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// method to share</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingInTrait01() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// Modify Trait01::$i</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;i++;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// display</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Trait01::doSomethingInTrait01… <span style="color:#0000ff">i=$this-&gt;i</span>\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class02 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">protected </span><span style="color:#0000ff">$j </span>=<span style="color:#000080"> 0</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingInClass02(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// Modify Class02::j</span>
+<span class="odt-code-line">    <span style="color:#000000">$this-&gt;j +=</span><span style="color:#000080"> 10</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// display</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class02-&gt;doSomethingInClass02… <span style="color:#0000ff">j=$this-&gt;j</span>\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// derived class</span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class03 <span style="font-weight:bold">extends </span>Class02 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// inherits from Class02:j and Trait01::i</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// includes Trait01</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">use </span>Trait01;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingInClass03(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// Using the method from Trait01</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;doSomethingInTrait01();</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// Modify Trait01::i</span>
+<span class="odt-code-line">    <span style="color:#000000">$this-&gt;i +=</span><span style="color:#000080"> 100</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// Modify Class03::j (== Class02::j)</span>
+<span class="odt-code-line">    <span style="color:#000000">$this-&gt;j +=</span><span style="color:#000080"> 1000</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// display</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class03-&gt;doSomethingInClass03… <span style="color:#0000ff">i=$this-&gt;i</span>, <span style="color:#0000ff">j=$this-&gt;j</span>\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// test ----------------</span>
+<span class="odt-code-line">(<span style="font-weight:bold">new </span>Class02())-&gt;doSomethingInClass02();</span>
+<span class="odt-code-line">(<span style="font-weight:bold">new </span>Class03())-&gt;doSomethingInClass03();</span>
+</code></pre></div>
+
+<p><strong><span style="color: #000000">Comments</span></strong></p>
+<ul>
+  <li><span style="color: #000000">lines 3-15: we return to a trait </span><b><span style="color: #000000">[Trait01] </span></b><span style="color: #000000">with an attribute and a method that manipulates it;</span>
+  </li>
+  <li><span style="color: #000000">lines 17–29: a class </span><b><span style="color: #000000">[Class02] </span></b><span style="color: #000000">that has nothing to do with the trait </span><b><span style="color: #000000">[Trait01]</span></b><span style="color: #000000">. It does not use it;</span>
+  </li>
+  <li><span style="color: #000000">line 19: we have declared the single attribute of </span><b><span style="color: #000000">[Class02] </span></b><span style="color: #000000">with </span><b><span style="color: #000000">[protected] </span></b><span style="color: #000000">visibility so that it is accessible in derived classes;</span>
+  </li>
+  <li><span style="color: #000000">line 32: the class </span><b><span style="color: #000000">[Class03] </span></b><span style="color: #000000">extends the class </span><b><span style="color: #000000">[Class02]</span></b><span style="color: #000000">. Furthermore, it incorporates the trait </span><b><span style="color: #000000">[Trait01] </span></b><span style="color: #000000">(line 35). Finally, it inherits the attributes and methods of </span><b><span style="color: #000000">[Class02] </span></b><span style="color: #000000">and incorporates the attributes and methods of </span><b><span style="color: #000000">[Trait01]</span></b><span style="color: #000000">. We therefore have something analogous to multiple inheritance;</span>
+  </li>
+</ul>
+
+<p><strong><span style="color: #000000">Results</span></strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1">1</a></span>
+<span class="normal"><a href="#__codelineno-5-2">2</a></span>
+<span class="normal"><a href="#__codelineno-5-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1"></a>Class02-&gt;doSomethingInClass02… j=10
+<a id="__codelineno-5-2" name="__codelineno-5-2"></a>Trait01::doSomethingInTrait01… i=1
+<a id="__codelineno-5-3" name="__codelineno-5-3"></a>Class03-&gt;doSomethingInClass03… i=101, j=1000
+</code></pre></div></td></tr></table></div>
+<p><span style="color: #000000">Just as we did in a previous example, we will show that:</span></p>
+<ul>
+  <li><span style="color: #000000">the trait can be replaced by a class;</span>
+  </li>
+  <li><span style="color: #000000">instead of incorporating the trait into the derived class, we incorporate a reference to an instance of the class;</span>
+  </li>
+</ul>
+
+<p><span style="color: #000000">The script </span><strong><span style="color: #000000">[trait-07.php] </span></strong><span style="color: #000000">is as follows:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class01 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>protected <span style="color:#0000ff">$i</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// getter and setter</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>public function getI(): int {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;i;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setI(<span style="font-weight:bold">int </span><span style="color:#0000ff">$i</span>): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;i = </span>$i<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingInClass01(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// Modify Class01::$i</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;i++;</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// display</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class01::doSomething in Class01… <span style="color:#0000ff">i=$this-&gt;i</span>\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class02 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">protected </span><span style="color:#0000ff">$j </span>=<span style="color:#000080"> 0</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// class-specific method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingInClass02(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// Modify Class02::j</span>
+<span class="odt-code-line">    <span style="color:#000000">$this-&gt;j +=</span><span style="color:#000080"> 10</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// display</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class02-&gt;doSomethingInClass02… <span style="color:#0000ff">j=$this-&gt;j</span>\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class03 <span style="font-weight:bold">extends </span>Class02 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// inclusion of Class01</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$class01</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// setter</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setClass01(Class01 <span style="color:#0000ff">$class01</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;class01 = </span>$class01<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// method local to the class</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingInClass03(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// using a method from Class01</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;class01-&gt;doSomethingInClass01();</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// Modify Class01::i</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#0000ff">$i </span>= $this-&gt;class01-&gt;getI();</span>
+<span class="odt-code-line">    <span style="color:#0000ff">$i </span><span style="color:#000000">+=</span><span style="color:#000080"> 100</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;class01-&gt;setI(<span style="color:#0000ff">$i</span>);</span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// Modify Class03::j</span>
+<span class="odt-code-line">    <span style="color:#000000">$this-&gt;j +=</span><span style="color:#000080"> 1000</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span>// display</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Class03-&gt;doSomethingInClass03… <span style="color:#0000ff">i=$i</span>, <span style="color:#0000ff">j=$this-&gt;j</span>\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// test ----------------</span>
+<span class="odt-code-line"><span style="color:#0000ff">$class01 </span>= <span style="font-weight:bold">new </span>Class01();</span>
+<span class="odt-code-line"><span style="color:#0000ff">$class02 </span>= <span style="font-weight:bold">new </span>Class02();</span>
+<span class="odt-code-line"><span style="color:#0000ff">$class03 </span>= <span style="font-weight:bold">new </span>Class03();</span>
+<span class="odt-code-line"><span style="color:#000000">$class03-&gt;setClass01(</span>$class01<span style="color:#000000">);</span></span>
+<span class="odt-code-line">$class02-&gt;doSomethingInClass02();</span>
+<span class="odt-code-line">$class03-&gt;doSomethingInClass03();</span>
+</code></pre></div>
+
+<p><strong><span style="color: #000000">Comments</span></strong></p>
+<ul>
+  <li><span style="color: #000000">lines 3–24: the class </span><b><span style="color: #000000">[Class01] </span></b><span style="color: #000000">replaces the trait </span><b><span style="color: #000000">[Trait01]</span></b><span style="color: #000000">. Since the class </span><b><span style="color: #000000">[Class01] </span></b><span style="color: #000000">will be incorporated into the classes via a reference, get/set methods have been provided for the attribute </span><b><span style="color: #000000">[$i]</span></b><span style="color: #000000">;</span>
+  </li>
+  <li><span style="color: #000000">lines 26–38: the class </span><b><span style="color: #000000">[Class02] </span></b><span style="color: #000000">remains unchanged;</span>
+  </li>
+  <li><span style="color: #000000">line 40: the class </span><b><span style="color: #000000">[Class03] </span></b><span style="color: #000000">extends the class </span><b><span style="color: #000000">[Class02]</span></b><span style="color: #000000">;</span>
+  </li>
+  <li><span style="color: #000000">line 42: the class </span><b><span style="color: #000000">[Class01] </span></b><span style="color: #000000">is incorporated into </span><b><span style="color: #000000">[Class03] </span></b><span style="color: #000000">via a reference;</span>
+  </li>
+  <li><span style="color: #000000">lines 45–47: a </span><i><span style="color: #000000">setter</span></i><span style="color: #000000"> is provided to initialize the reference to the </span><b><span style="color: #000000">[Class01] </span></b><span style="color: #000000">class;</span>
+  </li>
+  <li><span style="color: #000000">lines 50–61: the method </span><b><span style="color: #000000">[doSomethingInClass03] </span></b><span style="color: #000000">does the same thing as before, but with more complex code;</span>
+  </li>
+</ul>
+
+<p><strong><span style="color: #000000">Results</span></strong></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span>
+<span class="normal"><a href="#__codelineno-6-3">3</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1"></a>Class02-&gt;doSomethingInClass02… j=10
+<a id="__codelineno-6-2" name="__codelineno-6-2"></a>Class01::doSomething in Class01… i=1
+<a id="__codelineno-6-3" name="__codelineno-6-3"></a>Class03-&gt;doSomethingInClass03… i=101, j=1000
+</code></pre></div></td></tr></table></div>
+<p><span style="color: #000000">From this example, we can conclude that, once again, the trait is not essential, but it must be acknowledged that it allows for shorter code in the derived class.</span></p>
+<p><a id="utiliseruntrait"></a>
+<a id="toc42690677"></a>
+<a id="toc42690291"></a>
+<a id="toc42689905"></a>
+<a id="refheadingtoc1417873837603249"></a></p>
+<h2 id="96-using-a-trait-instead-of-an-abstract-class">9.6. <span style="color: #4f81bd">Using a trait instead of an abstract class</span></h2>
+<p>We often encounter the following use case: we create a fairly general interface <strong>I</strong> that can give rise to several implementations. These share common code but differ in other methods. We can implement this use case in two ways:</p>
+<ol>
+  <li>We create an <b>abstract</b> class <b>C </b>that contains the code common to the derived classes. Class C implements interface I, but certain methods that must be declared in the derived classes are declared abstract in class C, and therefore class C itself is abstract. We then create classes C1 and C2 derived from C, each of which implements the undefined (abstract) methods of their parent class C in their own way;
+  </li>
+  <li>we create a <b>trait T that is </b>nearly identical to the abstract class C from the previous solution. This trait does not implement the interface I because, syntactically, it cannot.  We then create classes C1 and C2 that implement the interface I and use the trait T. All that remains for these classes is to implement the methods of the interface I that are not implemented by the trait T they import;
+  </li>
+</ol>
+
+<p>Here is an example that illustrates how similar these two solutions are.</p>
+<p>Application 1 implements Solution 1 described above <strong>[trait-08.php]</strong>:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">interface </span>Interface1 {</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething(): void;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingElse(): void;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">abstract class </span>AbstractClass <span style="font-weight:bold">implements </span>Interface1 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attributes</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">protected </span><span style="color:#0000ff">$attr1 </span>=<span style="color:#000080"> 11</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">protected </span><span style="color:#0000ff">$attr2 </span>=<span style="color:#000080"> 12</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// getters and setters</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>getAttr1() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;attr1;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>getAttr2() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;attr2;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setAttr1(<span style="color:#0000ff">$attr1</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;attr1 = </span>$attr1<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span><span style="color:#0000ff">$this</span>;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setAttr2(<span style="color:#0000ff">$attr2</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;attr2 = </span>$attr2<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span><span style="color:#0000ff">$this</span>;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// implemented method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;AbstractClass::doSomething <span style="font-weight:bold">[$this-&gt;attr1,$this-&gt;attr2]</span>\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// unimplemented method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">abstract public function </span>doSomethingElse(): void;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// derived class 1</span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class1 <span style="font-weight:bold">extends </span>AbstractClass {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$attr3 </span>=<span style="color:#000080"> 13</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// getter and setter</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>getAttr3() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;attr3;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setAttr3(<span style="color:#0000ff">$attr3</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;attr3 = </span>$attr3<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span><span style="color:#0000ff">$this</span>;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// implementation of doSomethingElse</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingElse(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">print </span>&quot;Class1::doSomethingElse [$this-&gt;attr1,$this-&gt;attr2,$this-&gt;attr3]\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// derived class 2</span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class2 <span style="font-weight:bold">extends </span>AbstractClass {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$attr4 </span>=<span style="color:#000080"> 14</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>getAttr4() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;attr4;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setAttr4(<span style="color:#0000ff">$attr4</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;attr4 = </span>$attr4<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span><span style="color:#0000ff">$this</span>;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// implementation of doSomethingElse</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingElse(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">print </span>&quot;Class2::doSomethingElse [$this-&gt;attr1,$this-&gt;attr2,$this-&gt;attr4]\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// external function</span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>useInterfaceWith(Interface1 <span style="color:#0000ff">$interface</span>):void{</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$interface-&gt;doSomething();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$interface-&gt;doSomethingElse();</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// tests</span>
+<span class="odt-code-line">useInterfaceWith(<span style="font-weight:bold">new </span>Class1());</span>
+<span class="odt-code-line">useInterfaceWith(<span style="font-weight:bold">new </span>Class2());</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>lines 3–8: <b>the interface [Interface1] </b>has two methods;
+  </li>
+  <li>Lines 10–41: The <b>abstract class [AbstractClass] </b>implements the interface <b>[Interface1] </b>(line 10). It has two attributes with their getters and setters (lines 12–32), implements the <b>[doSomething] </b>method of the <b>[Interface1] </b>interface (lines 35–37), but does not implement the <b>[doSomethingElse] </b>method. This method is therefore declared abstract (line 40). The abstract class <b>[AbstractClass] </b>cannot be instantiated and, to be useful, must be derived from;
+  </li>
+  <li>lines 44–63: the <b>Class1</b> class extends the abstract class <b>[AbstractClass] </b>and thus implements the interface <b>[Interface1] </b>(line 14). It provides a body for the <b>[doSomethingElse] </b>method that its parent class had not defined (lines 59–61). It also adds an attribute to those of its parent class (lines 46–56);
+  </li>
+  <li>lines 66–82: The <b>Class2</b> class extends the abstract class <b>[AbstractClass] </b>and therefore implements the interface <b>[Interface1] </b>(line 66). It provides a body for the <b>[doSomethingElse] </b>method, which its parent class had not defined (lines 80–82). It also adds an attribute to those of its parent class (lines 68–77);
+  </li>
+  <li>lines 87–90: The function <b>[useInterfaceWith] </b>takes a type <b>[Interface1] </b>as a parameter and calls the two methods of that interface;
+  </li>
+  <li>lines 93–94: the <b>[useInterfaceWith] </b>function is called the first time with a <b>[Class1] </b>type and the second time with a <b>[Class2] </b>type. This is correct since both types implement the <b>[Interface1] </b>interface;
+  </li>
+</ul>
+
+<p><strong>Results</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line">AbstractClass::doSomething <span style="font-weight:bold">[11,12]</span></span>
+<span class="odt-code-line">Class1::doSomethingElse <span style="font-weight:bold">[11,12,13]</span></span>
+<span class="odt-code-line">AbstractClass::doSomething <span style="font-weight:bold">[11,12]</span></span>
+<span class="odt-code-line">Class2::doSomethingElse <span style="font-weight:bold">[11,12,14]</span></span>
+</code></pre></div>
+
+<p>Now we implement Solution 2 using the script <strong>[trait-09.php]</strong>. This involves replacing the abstract class with a trait:</p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
+<span class="odt-code-line">&lt;?php</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">interface </span>Interface1 {</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething(): void;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingElse(): void;</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="font-weight:bold">trait </span>Trait1 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attributes</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$attr1 </span>=<span style="color:#000080"> 11</span>;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$attr2 </span>=<span style="color:#000080"> 12</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// getters and setters</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>getAttr1() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;attr1;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>getAttr2() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;attr2;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setAttr1(<span style="color:#0000ff">$attr1</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;attr1 = </span>$attr1<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span><span style="color:#0000ff">$this</span>;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setAttr2(<span style="color:#0000ff">$attr2</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;attr2 = </span>$attr2<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span><span style="color:#0000ff">$this</span>;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// implemented method</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">print </span>&quot;Trait::doSomething [$this-&gt;attr1,$this-&gt;attr2]\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// derived class 1</span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class1 <span style="font-weight:bold">implements </span>Interface1 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// using the trait</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">use </span>Trait1;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$attr3 </span>=<span style="color:#000080"> 13</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// getter and setter</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>getAttr3() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;attr3;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setAttr3(<span style="color:#0000ff">$attr3</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;attr3 = </span>$attr3<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span><span style="color:#0000ff">$this</span>;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// implementation of doSomethingElse</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingElse(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">print </span>&quot;Class1::doSomethingElse [$this-&gt;attr1,$this-&gt;attr2,$this-&gt;attr3]\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// derived class 2</span>
+<span class="odt-code-line"><span style="font-weight:bold">class </span>Class2 <span style="font-weight:bold">implements </span>Interface1 {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// using the trait</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">use </span>Trait1;</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// attribute</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$attr4 </span>=<span style="color:#000080"> 14</span>;</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>getAttr4() {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;attr4;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setAttr4(<span style="color:#0000ff">$attr4</span>) {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;attr4 = </span>$attr4<span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span><span style="color:#0000ff">$this</span>;</span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line"><span style="color:#008080">  </span>// implementation of doSomethingElse</span>
+<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomethingElse(): void {</span>
+<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">print </span>&quot;Class2::doSomethingElse [$this-&gt;attr1,$this-&gt;attr2,$this-&gt;attr4]\n&quot;<span style="color:#000000">;</span></span>
+<span class="odt-code-line">  <span style="color:#000000">}</span></span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// external function using the interface</span>
+<span class="odt-code-line"><span style="font-weight:bold">function </span>useInterfaceWith(Interface1 <span style="color:#0000ff">$interface</span>): void {</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$interface-&gt;doSomething();</span>
+<span class="odt-code-line"><span style="color:#008080">  </span>$interface-&gt;doSomethingElse();</span>
+<span class="odt-code-line">}</span>
+<span class="odt-code-line"></span>
+<span class="odt-code-line">// tests</span>
+<span class="odt-code-line">useInterfaceWith(<span style="font-weight:bold">new </span>Class1());</span>
+<span class="odt-code-line">useInterfaceWith(<span style="font-weight:bold">new </span>Class2());</span>
+</code></pre></div>
+
+<p><strong>Comments</strong></p>
+<ul>
+  <li>lines 3–8: the interface <b>[Interface1] </b>has not changed;
+  </li>
+  <li>lines 10–41: the trait <b>[Trait1] </b>replaces the abstract class <b>[AbstractClass] </b>from Solution 1. The code is the same except for the following details:
+    <ul>
+      <li>line 10: the trait <b>[Trait1] </b>does not implement the interface <b>[Interface1]</b>. This is syntactically impossible;
+      </li>
+      <li>lines 12–13: the visibility attribute <b>[protected] </b>of the abstract class <b>[AbstractClass]</b>’s attributes becomes <b>[private] </b>here. These two attributes are intended to give derived classes direct access to the parent class’s (protected) or trait’s (private) attributes without having to go through getters and setters;
+      </li>
+      <li>the trait <b>[Trait1] </b>does not declare the abstract method <b>[doSomethingElse]</b>;
+      </li>
+    </ul>
+  </li>
+  <li>lines 41-62: the class <b>[Class1] </b>in Solution 2 is identical to the class <b>[Class1] </b>in Solution 1, with the following minor differences:
+    <ul>
+      <li>line 41: the class <b>[Class1] </b>implements the interface <b>[Interface1]</b>, whereas in Solution 1, it extended the abstract class <b>[AbstractClass]</b>;
+      </li>
+      <li>line 43: it uses the trait <b>[Trait1] </b>to implement part of the interface;
+      </li>
+    </ul>
+  </li>
+  <li>lines 65–85: the same comments apply as for <b>[Class1]</b>;
+  </li>
+  <li>lines 87–95: the rest of the code remains unchanged;
+  </li>
+</ul>
+
+<p><strong>Results</strong></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line">Trait::doSomething <span style="font-weight:bold">[11,12]</span></span>
+<span class="odt-code-line">Class1::doSomethingElse <span style="font-weight:bold">[11,12,13]</span></span>
+<span class="odt-code-line">Trait::doSomething <span style="font-weight:bold">[11,12]</span></span>
+<span class="odt-code-line">Class2::doSomethingElse <span style="font-weight:bold">[11,12,14]</span></span>
+</code></pre></div>
+
+<p>We do indeed get the same results.</p>
+<p><a id="toc42689906"></a>
+<a id="refheadingtoc788332244347140"></a>
+<a id="toc42690678"></a>
+<a id="toc42690292"></a></p>
+<h2 id="97-conclusion">9.7. <span style="color: #4f81bd">Conclusion</span></h2>
+<p><span style="color: #000000">From the previous examples, it is clear that the use cases where using a trait would provide a net benefit are not clear. In our examples, we can always do without it by replacing it with a class. However, it seems that using a trait is practical for factoring out code between different derived classes, as if that code belonged to a parent class. This is what we will do in the following example.</span></p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://tahe.developpez.com" target="_blank">
+          https://tahe.developpez.com
+        </a>
+        <br>
+        This tutorial written by <strong>Serge Tahé</strong> is made available to the public under the terms of the
+<em>Creative Commons Attribution – Non-Commercial –
+ShareAlike 3.0 Unported</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
