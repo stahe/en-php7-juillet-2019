@@ -574,6 +574,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#83-the-taxadmindata-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.3. The [TaxAdminData] class
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#84-the-interfaceimpots-interface" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -589,6 +600,39 @@
     <span class="md-ellipsis">
       
         8.5. The [Utilities] class
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#86-the-abstract-class-abstractbaseimpots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.6. The abstract class [AbstractBaseImpots]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#87-the-impotswithtaxadmindatainjsonfile-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.7. The [ImpotsWithTaxAdminDataInJsonFile] class
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#88-the-mainphp-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8.8. The [main.php] script
       
     </span>
   </a>
@@ -1106,19 +1150,16 @@
       <li><b>$message</b>: is the error message associated with the exception;
       </li>
       <li><b>$code</b>: is the error code associated with the exception. If it is not present, then the code 0 will be used;
-<a id="laclassetaxadmindata"></a>
-<a id="toc42690665"></a>
-<a id="toc42690279"></a>
-<a id="toc42689893"></a>
-<a id="refheadingtoc55579710956990"></a>
-
-## 8.3. <span style="color: #4f81bd">The [TaxAdminData] class</span>
-
       </li>
     </ul>
   </li>
 </ul>
-
+<p><a id="laclassetaxadmindata"></a>
+<a id="toc42690665"></a>
+<a id="toc42690279"></a>
+<a id="toc42689893"></a>
+<a id="refheadingtoc55579710956990"></a></p>
+<h2 id="83-the-taxadmindata-class">8.3. <span style="color: #4f81bd">The [TaxAdminData] class</span></h2>
 <p>In version 02, tax administration data was collected:</p>
 <ul>
   <li>first in a JSON file;
@@ -1598,17 +1639,14 @@
   <li>line 4: the <b>[Utilities] </b>class is also placed in the <b>[Examples] </b>namespace;
   </li>
   <li>line 9: the <b>[cutNewLineChar] </b>method removes any line-ending character from the text passed to it as a parameter. It returns the new line thus formed. Note that this is a <b>static</b> method, meaning it will be called in the form <b>[Utilities::cutNewLineChar]</b>;
-<a id="laclasseabstraite"></a>
+  </li>
+</ul>
+<p><a id="laclasseabstraite"></a>
 <a id="toc42690668"></a>
 <a id="toc42690282"></a>
 <a id="toc42689896"></a>
-<a id="refheadingtoc55587710956990"></a>
-
-## 8.6. <span style="color: #4f81bd">The abstract class [AbstractBaseImpots]</span>
-
-  </li>
-</ul>
-
+<a id="refheadingtoc55587710956990"></a></p>
+<h2 id="86-the-abstract-class-abstractbaseimpots">8.6. <span style="color: #4f81bd">The abstract class [AbstractBaseImpots]</span></h2>
 <p>The interface <strong>[InterfaceImpots]</strong> will be implemented by the following abstract class <strong>[AbstractBaseImpots] [AbstractBaseImpots.php]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -1889,16 +1927,13 @@
   <li>lines 68–70: at the end of processing the <b>[$data] </b>file, we check the number of erroneous lines encountered. If there is at least one, we throw an exception;
   </li>
   <li>lines 71–74: We catch the exception that the code may have thrown and immediately re-throw it (line 73). The purpose of this technique is to include a <b>[finally] </b>block on lines 74–79: regardless of how the method’s code execution ends, the three files that may have been opened by this code are closed. Closing a file that has not been opened does not cause an error;
-<a id="toc42689897"></a>
-<a id="refheadingtoc788132244347140"></a>
-<a id="toc42690669"></a>
-<a id="toc42690283"></a>
-
-## 8.7. <span style="color: #4f81bd">The [ImpotsWithTaxAdminDataInJsonFile] class</span>
-
   </li>
 </ul>
-
+<p><a id="toc42689897"></a>
+<a id="refheadingtoc788132244347140"></a>
+<a id="toc42690669"></a>
+<a id="toc42690283"></a></p>
+<h2 id="87-the-impotswithtaxadmindatainjsonfile-class">8.7. <span style="color: #4f81bd">The [ImpotsWithTaxAdminDataInJsonFile] class</span></h2>
 <p>The abstract class <strong>[AbstractBaseImpots]</strong> does not implement the <strong>[getTaxAdminData]</strong> method of the <strong>[InterfaceImpots]</strong> interface. We must therefore define it in a derived class. We do this in the following derived class <strong>[ImpotsWithTaxAdminDataInJsonFile]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -1938,16 +1973,13 @@
   <li>line 14: an object of type <b>[TaxAdminData] </b>is created and then initialized. This operation may throw an exception of type <b>[ExceptionImpots]</b>. This exception will propagate up to the main script <b>[main.php]</b>;
   </li>
   <li>lines 18–20: we provide a body for the <b>[getTaxAdminData] </b>method, which the parent class had not defined. Here, we simply return the <b>[$this-&gt;taxAdminData] </b>attribute initialized by the constructor;
-<a id="toc42689898"></a>
-<a id="refheadingtoc614822007114397"></a>
-<a id="toc42690670"></a>
-<a id="toc42690284"></a>
-
-## 8.8. <span style="color: #4f81bd">The [main.php] script</span>
-
   </li>
 </ul>
-
+<p><a id="toc42689898"></a>
+<a id="refheadingtoc614822007114397"></a>
+<a id="toc42690670"></a>
+<a id="toc42690284"></a></p>
+<h2 id="88-the-mainphp-script">8.8. <span style="color: #4f81bd">The [main.php] script</span></h2>
 <p>These classes and interfaces are used by the following <strong>[main.php]</strong> script:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>

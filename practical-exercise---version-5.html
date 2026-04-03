@@ -754,8 +754,52 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#13322-the-database-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3.2.2. The [Database] entity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13323-the-taxadmindata-entity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3.2.3. The [TaxAdminData] entity
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1333-the-dao-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3.3. The [dao] layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1334-the-main-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.3.4. The main script
+      
+    </span>
+  </a>
   
 </li>
         
@@ -795,6 +839,45 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1343-the-dao-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.4.3. The [dao] layer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="13.4.3. The [dao] layer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13431-the-traitdao-trait" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.4.3.1. The [TraitDao] trait
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13432-the-daoimpotswithtaxadmindataindatabase-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13.4.3.2. The [DaoImpotsWithTaxAdminDataInDatabase] class
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -1703,16 +1786,13 @@
   <li>lines 53–60: The <b>[setFromArrayOfAttributes] </b>method allows a child class to initialize all or some of its attributes from an associative array whose keys have the same names as the attributes of the child class to be initialized;
   </li>
   <li>lines 63–70: The <b>[__toString] </b>method provides the JSON representation of a child class;
-<a id="refheadingtoc185657971629160"></a>
-<a id="toc42690722"></a>
-<a id="toc42690336"></a>
-<a id="toc42689950"></a>
-
-#### 13.3.2.2. <span style="color: #4f81bd">The [Database] entity</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc185657971629160"></a>
+<a id="toc42690722"></a>
+<a id="toc42690336"></a>
+<a id="toc42689950"></a></p>
+<h4 id="13322-the-database-entity">13.3.2.2. <span style="color: #4f81bd">The [Database] entity</span></h4>
 <p>The <strong>[Database]</strong> entity is as follows:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -1841,16 +1921,13 @@
   <li>line 34: the <b>[Database] </b>instance that has just been initialized is returned;
   </li>
   <li>lines 37 and beyond: the getters and setters for the class’s attributes;
-<a id="refheadingtoc185659971629160"></a>
-<a id="toc42690723"></a>
-<a id="toc42690337"></a>
-<a id="toc42689951"></a>
-
-#### 13.3.2.3. <span style="color: #4f81bd">The [TaxAdminData] entity</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc185659971629160"></a>
+<a id="toc42690723"></a>
+<a id="toc42690337"></a>
+<a id="toc42689951"></a></p>
+<h4 id="13323-the-taxadmindata-entity">13.3.2.3. <span style="color: #4f81bd">The [TaxAdminData] entity</span></h4>
 <p>The <strong>[TaxAdminData]</strong> entity is as follows:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -2012,16 +2089,13 @@
   <li>line 27: the parent class is asked to verify that all attributes of the child class have been initialized;
   </li>
   <li>lines 29–42: we verify locally that all attributes have a positive real value or are null. This verification was already discussed in the <a href="#laclassetaxadmindata"><u><span style="color: #0563c1">“link”</span></u></a> section of version 03;
-<a id="refheadingtoc900683955410047"></a>
-<a id="toc42690724"></a>
-<a id="toc42690338"></a>
-<a id="toc42689952"></a>
-
-### 13.3.3. <span style="color: #4f81bd">The [dao] layer</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc900683955410047"></a>
+<a id="toc42690724"></a>
+<a id="toc42690338"></a>
+<a id="toc42689952"></a></p>
+<h3 id="1333-the-dao-layer">13.3.3. <span style="color: #4f81bd">The [dao] layer</span></h3>
 <p>Now we can write the code that will transfer data from the text file <strong>[taxadmindata.json]</strong> into the tables <strong>[tbtranches, tbconstantes]</strong> of the MySQL database <strong>[dbimpots-2019]</strong>. We will adopt the following architecture:</p>
 <p><img src="images/10000000000005720000019D40CA363B.png" style="width:11.06cm;height:3.277cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005720000019D40CA363B.png" /></p>
 <p><img src="images/10000000000002AD000000FEC24ED249.png" style="width:6.339cm;height:2.351cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002AD000000FEC24ED249.png" /></p>
@@ -2246,16 +2320,13 @@
   <li>lines 9–31: preparation of the SQL insert statement. It is complex because there are 10 columns to initialize in this insert operation and the column names must be retrieved from the <b>[$database] </b>attribute;
   </li>
   <li>lines 33–44: execution of the insert statement. There is only one row to insert. Here again, the code is made complex by the need to retrieve the values to be inserted from the <b>[$taxAdminData] </b>attribute;
-<a id="refheadingtoc900703955410047"></a>
-<a id="toc42690725"></a>
-<a id="toc42690339"></a>
-<a id="toc42689953"></a>
-
-### 13.3.4. <span style="color: #4f81bd">The main script</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc900703955410047"></a>
+<a id="toc42690725"></a>
+<a id="toc42690339"></a>
+<a id="toc42689953"></a></p>
+<h3 id="1334-the-main-script">13.3.4. <span style="color: #4f81bd">The main script</span></h3>
 <p><img src="images/1000000000000555000001880BB7E59F.png" style="width:10.83cm;height:3.11cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000555000001880BB7E59F.png" /></p>
 <p><img src="images/10000000000003380000014ACA8CBABD.png" style="width:7.631cm;height:3.057cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003380000014ACA8CBABD.png" /></p>
 <p>The main script relies on the <strong>[dao]</strong> layer to perform the data transfer:</p>
@@ -2442,24 +2513,19 @@
 <p><strong>Comments</strong></p>
 <ul>
   <li>line 7: the <b>[TaxPayerData] </b>class extends the <b>[BaseEntity] </b>class. Since the methods of its parent class are sufficient, the <b>[TaxPayerData] </b>class does not define any of its own. Note that the attributes of the <b>[TaxPayerData] </b>class are identical to those in the JSON file <b>[taxpayersdata.json]</b>;
-<a id="refheadingtoc900743955410047"></a>
+  </li>
+</ul>
+<p><a id="refheadingtoc900743955410047"></a>
 <a id="toc42690729"></a>
 <a id="toc42690343"></a>
-<a id="toc42689957"></a>
-
-### 13.4.3. <span style="color: #4f81bd">The [dao] layer</span>
-
-<a id="toc42690730"></a>
+<a id="toc42689957"></a></p>
+<h3 id="1343-the-dao-layer">13.4.3. <span style="color: #4f81bd">The [dao] layer</span></h3>
+<p><a id="toc42690730"></a>
 <a id="toc42690344"></a>
 <a id="toc42689958"></a>
 <a id="refheadingtoc1932293931965946"></a>
-<a id="letraittraitdao"></a>
-
-#### 13.4.3.1. <span style="color: #4f81bd">The [TraitDao] trait</span>
-
-  </li>
-</ul>
-
+<a id="letraittraitdao"></a></p>
+<h4 id="13431-the-traitdao-trait">13.4.3.1. <span style="color: #4f81bd">The [TraitDao] trait</span></h4>
 <p>The <strong>[TraitDao]</strong> trait implements part of the <strong>[InterfaceDao]</strong> interface. Let’s review it:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -2643,16 +2709,13 @@
     </ul>
   </li>
   <li><span style="color: #000000">line 92: the JSON string is saved to the JSON file </span><b><span style="color: #000000">[$resultsFilename]</span></b><span style="color: #000000">;</span>
-<a id="refheadingtoc185661971629160"></a>
-<a id="toc42690731"></a>
-<a id="toc42690345"></a>
-<a id="toc42689959"></a>
-
-#### 13.4.3.2. <span style="color: #4f81bd">The [DaoImpotsWithTaxAdminDataInDatabase] class</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc185661971629160"></a>
+<a id="toc42690731"></a>
+<a id="toc42690345"></a>
+<a id="toc42689959"></a></p>
+<h4 id="13432-the-daoimpotswithtaxadmindataindatabase-class">13.4.3.2. <span style="color: #4f81bd">The [DaoImpotsWithTaxAdminDataInDatabase] class</span></h4>
 <p><span style="color: #000000">The class </span><strong><span style="color: #000000">[DaoImpotsWithTaxAdminDataInDatabase] </span></strong><span style="color: #000000">implements the </span><strong><span style="color: #000000">[InterfaceDao] </span></strong><span style="color: #000000">interface as follows:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>

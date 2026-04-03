@@ -612,6 +612,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#94-grouping-methods-in-a-trait" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9.4. Grouping Methods in a Trait
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#95-multiple-inheritance-with-a-trait" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1457,16 +1468,13 @@
   <li>lines 2–5: we get the same results as with the trait <b>[Trait01]</b>. We can conclude that using the trait is not essential here, but it does reduce the code because there is no need for methods to access the trait’s attributes: these are an integral part of the code in which the trait has been incorporated;
   </li>
   <li>lines 7–10: Since the same reference to <b>[Class01] </b>was injected into classes <b>[Class02] </b>and  <b>[Class03]</b>, the attribute <b>[Class01::id] </b>was shared between the two classes. This is why line 9 of the results displays 20 instead of 10 when using the trait. We can conclude that if traits’ attributes need to be <b>shared </b>between classes, then the trait is not usable and a class must be used instead;
-<a id="toc42689903"></a>
-<a id="refheadingtoc788292244347140"></a>
-<a id="toc42690675"></a>
-<a id="toc42690289"></a>
-
-## 9.4. <span style="color: #4f81bd">Grouping Methods in a Trait</span>
-
   </li>
 </ul>
-
+<p><a id="toc42689903"></a>
+<a id="refheadingtoc788292244347140"></a>
+<a id="toc42690675"></a>
+<a id="toc42690289"></a></p>
+<h2 id="94-grouping-methods-in-a-trait">9.4. <span style="color: #4f81bd">Grouping Methods in a Trait</span></h2>
 <p><span style="color: #000000">In the previous example, the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">contained attributes and methods. Here, we consider the case where it contains only methods. In this case, the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">resembles a factorization of methods that can then be used in different classes. Since the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">has no attributes here, we will consider the case where the methods it groups work solely on the parameters passed to them. In fact, this is not mandatory: a trait can operate on an attribute </span><strong><span style="color: #000000">[$this→attribute1] </span></strong><span style="color: #000000">without having that attribute itself. It is then up to the classes that use this trait to provide the attribute </span><strong><span style="color: #000000">[$this→attribute1]</span></strong><span style="color: #000000">.</span></p>
 <p><span style="color: #000000">In the case where the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">has only methods that operate solely on parameters passed to them, we will show that the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">can then be replaced by a </span><strong><span style="color: #000000">class </span></strong><span style="color: #000000">having the same methods as the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">and declared static.</span></p>
 <p><span style="color: #000000">The use of the trait is illustrated by the script </span><strong><span style="color: #000000">[trait-04.php], </span></strong><span style="color: #000000">which reuses the </span><strong><span style="color: #000000">trait </span></strong><span style="color: #000000">from the previous example while removing all attributes:</span></p>

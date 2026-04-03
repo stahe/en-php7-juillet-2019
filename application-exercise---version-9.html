@@ -900,10 +900,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#1912-the-dao-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.1.2. The [dao] layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#1913-the-server-script" class="md-nav__link">
     <span class="md-ellipsis">
       
         19.1.3. The server script
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1914-codeception-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.1.4. [Codeception] Tests
       
     </span>
   </a>
@@ -926,6 +948,17 @@
   
     <nav class="md-nav" aria-label="19.2. The client">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1921-the-dao-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.2.1. The [dao] layer
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#1922-the-configuration-file" class="md-nav__link">
@@ -960,6 +993,17 @@
     <span class="md-ellipsis">
       
         19.3.1. Test 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1932-test-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        19.3.2. Test 2
       
     </span>
   </a>
@@ -1414,17 +1458,14 @@
 </code></pre></div></td></tr></table></div>
 <ul>
   <li>Lines 16–76: The <b>[send] </b>method is used to send the email. This code was presented and described in the <a href="#clientpop3"><u><span style="color: #0563c1">linked</span></u></a> section;
-<a id="toc42690845"></a>
+  </li>
+</ul>
+<p><a id="toc42690845"></a>
 <a id="toc42690459"></a>
 <a id="toc42690073"></a>
 <a id="refheadingtoc1358102222329424"></a>
-<a id="lacouchedao2"></a>
-
-### 19.1.2. <span style="color: #4f81bd">The [dao] layer</span>
-
-  </li>
-</ul>
-
+<a id="lacouchedao2"></a></p>
+<h3 id="1912-the-dao-layer">19.1.2. <span style="color: #4f81bd">The [dao] layer</span></h3>
 <p><img src="images/10000000000001D3000000DFA9C42B19.png" style="width:4.33cm;height:2.067cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D3000000DFA9C42B19.png" /></p>
 <p>The <strong>[ServeurDaoWithSession.php]</strong> script is as follows:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
@@ -1745,16 +1786,13 @@
   <li>line 158: the response is sent;
   </li>
   <li>lines 160–163: the response is logged and the logger is closed;
-<a id="refheadingtoc185695971629160"></a>
-<a id="toc42690847"></a>
-<a id="toc42690461"></a>
-<a id="toc42690075"></a>
-
-### 19.1.4. <span style="color: #4f81bd">[Codeception] Tests</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc185695971629160"></a>
+<a id="toc42690847"></a>
+<a id="toc42690461"></a>
+<a id="toc42690075"></a></p>
+<h3 id="1914-codeception-tests">19.1.4. <span style="color: #4f81bd">[Codeception] Tests</span></h3>
 <p><img src="images/100000000000020D0000020B500994C0.png" style="width:4.86cm;height:4.842cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000020D0000020B500994C0.png" /></p>
 <p>We will only test the <strong>[dao]</strong> layer, which is the only one that has changed.</p>
 <p>The <strong>[ServerDaoTest]</strong> test code is as follows:</p>
@@ -1831,17 +1869,14 @@
   <li>the configuration file <b>[config-client.json]</b>;
   </li>
   <li>the client&#x27;s <b>[dao] </b>layer;
-<a id="toc42690849"></a>
+  </li>
+</ul>
+<p><a id="toc42690849"></a>
 <a id="toc42690463"></a>
 <a id="toc42690077"></a>
 <a id="refheadingtoc1358162222329424"></a>
-<a id="lacouchedao1"></a>
-
-### 19.2.1. <span style="color: #4f81bd">The [dao] layer</span>
-
-  </li>
-</ul>
-
+<a id="lacouchedao1"></a></p>
+<h3 id="1921-the-dao-layer">19.2.1. <span style="color: #4f81bd">The [dao] layer</span></h3>
 <p>The <strong>[Dao]</strong> layer evolves as follows:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -2024,16 +2059,13 @@
   <li>lines 3-7: during the first request, authentication occurs and data is retrieved from the database;
   </li>
   <li>lines 9-14: during the next request, there is no further authentication and the data is retrieved from the session. This repeats for subsequent requests (lines 15 and beyond);
-<a id="refheadingtoc1358242222329424"></a>
-<a id="toc42690853"></a>
-<a id="toc42690467"></a>
-<a id="toc42690081"></a>
-
-### 19.3.2. <span style="color: #4f81bd">Test 2</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc1358242222329424"></a>
+<a id="toc42690853"></a>
+<a id="toc42690467"></a>
+<a id="toc42690081"></a></p>
+<h3 id="1932-test-2">19.3.2. <span style="color: #4f81bd">Test 2</span></h3>
 <p>Now let’s shut down the MySQL database. On the client side, we get the following console output:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-vbscript">
 <span class="odt-code-line">The following error occurred: {&quot;HTTP status&quot;:<span style="background-color:#ffff00">500</span>,&quot;error&quot;:&quot;SQLSTATE<span style="font-weight:bold">[HY000] [2002] </span>No connection could be established because the target computer explicitly refused it.\r\n&quot;}</span>

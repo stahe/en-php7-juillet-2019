@@ -558,10 +558,43 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#74-predefined-errors-in-php-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.4. Predefined errors in PHP 7
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#75-example-1" class="md-nav__link">
     <span class="md-ellipsis">
       
         7.5. Example 1
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#76-handling-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.6. Handling Exceptions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#77-parameters-of-the-catch-clause" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.7. Parameters of the [catch] clause
       
     </span>
   </a>
@@ -584,6 +617,17 @@
     <span class="md-ellipsis">
       
         7.9. Creating your own exception classes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#710-re-throwing-an-exception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7.10. Re-throwing an exception
       
     </span>
   </a>
@@ -1117,16 +1161,13 @@
   <li>in <b>[1]</b>, the predefined exceptions in PHP;
   </li>
   <li>in <b>[2]</b>, the exceptions from the SPL (Standard PHP Library) in PHP 7. The SPL is a collection of classes and interfaces designed to solve problems frequently encountered by developers.
-<a id="toc42689882"></a>
-<a id="refheadingtoc55569710956990"></a>
-<a id="toc42690654"></a>
-<a id="toc42690268"></a>
-
-## 7.4. <span style="color: #4f81bd">Predefined errors in PHP 7</span>
-
   </li>
 </ul>
-
+<p><a id="toc42689882"></a>
+<a id="refheadingtoc55569710956990"></a>
+<a id="toc42690654"></a>
+<a id="toc42690268"></a></p>
+<h2 id="74-predefined-errors-in-php-7">7.4. <span style="color: #4f81bd">Predefined errors in PHP 7</span></h2>
 <p>PHP 7 defines several error classes:</p>
 <p><img src="images/10000000000001B60000023C194A52DA.png" style="width:4.06cm;height:5.302cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001B60000023C194A52DA.png" /></p>
 <p>The <strong>[\Error]</strong> class is the parent class of all predefined errors in PHP. The <strong>[ErrorException]</strong> class allows you to encapsulate an instance of the <strong>[\Error]</strong> class within an instance of the <strong>[\Exception]</strong> class. This allows for standardized error handling by dealing only with exceptions.</p>
@@ -1204,16 +1245,13 @@
   <li><span style="color: #000000">Line 3 of the results: Dividing a number by zero causes a PHP error of level </span><b><span style="color: #000000">[E_WARNING]</span></b><span style="color: #000000">. This does not interrupt the execution of the script;</span>
   </li>
   <li><span style="color: #000000">lines 6–9 of the results: accessing a non-existent index of an array </span><b><span style="color: #000000">[SplFixedArray] </span></b><span style="color: #000000">causes a </span><b><span style="color: #000000">[RuntimeException] </span></b><span style="color: #000000">and interrupts script execution;</span>
-<a id="toc42689884"></a>
-<a id="refheadingtoc787992244347140"></a>
-<a id="toc42690656"></a>
-<a id="toc42690270"></a>
-
-## 7.6. <span style="color: #4f81bd">Handling Exceptions</span>
-
   </li>
 </ul>
-
+<p><a id="toc42689884"></a>
+<a id="refheadingtoc787992244347140"></a>
+<a id="toc42690656"></a>
+<a id="toc42690270"></a></p>
+<h2 id="76-handling-exceptions">7.6. <span style="color: #4f81bd">Handling Exceptions</span></h2>
 <p><span style="color: #000000">The script </span><strong><span style="color: #000000">[exceptions-02.php] </span></strong><span style="color: #000000">demonstrates how to handle exceptions:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -1270,16 +1308,13 @@
   <li><span style="color: #000000">lines 1 and 3: we see errors of level </span><b><span style="color: #000000">[E_NOTICE] </span></b><span style="color: #000000">and </span><b><span style="color: #000000">[E_WARNING]</span></b><span style="color: #000000">. These errors are not exceptions and are therefore not handled by the </span><b><span style="color: #000000">[catch] </span></b><span style="color: #000000">clause;</span>
   </li>
   <li><span style="color: #000000">line 5: we have the error message written in the </span><b><span style="color: #000000">[catch] </span></b><span style="color: #000000">clause. An exception derived from </span><b><span style="color: #000000">[\Exception] </span></b><span style="color: #000000">or an error derived from </span><b><span style="color: #000000">[\Error] </span></b><span style="color: #000000">has therefore occurred. Here we see that it is the </span><b><span style="color: #000000">[\RuntimeException] </span></b><span style="color: #000000">class;</span>
-<a id="toc42689885"></a>
-<a id="refheadingtoc788012244347140"></a>
-<a id="toc42690657"></a>
-<a id="toc42690271"></a>
-
-## 7.7. <span style="color: #4f81bd">Parameters of the [catch] clause</span>
-
   </li>
 </ul>
-
+<p><a id="toc42689885"></a>
+<a id="refheadingtoc788012244347140"></a>
+<a id="toc42690657"></a>
+<a id="toc42690271"></a></p>
+<h2 id="77-parameters-of-the-catch-clause">7.7. <span style="color: #4f81bd">Parameters of the [catch] clause</span></h2>
 <p><span style="color: #000000">Let’s examine the following </span><strong><span style="color: #000000">[exceptions-03.php] </span></strong><span style="color: #000000">script:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -1705,18 +1740,15 @@
       <li><span style="color: #000000">lines 10–11: the line where the exception occurred;</span>
       </li>
       <li><span style="color: #000000">lines 15–16: the previous exception. An exception can encapsulate another exception, thereby defining an exception stack. The </span><b><span style="color: #000000">[previous] </span></b><span style="color: #000000">attribute allows you to access this stack;</span>
-<a id="toc42689888"></a>
-<a id="refheadingtoc788072244347140"></a>
-<a id="toc42690660"></a>
-<a id="toc42690274"></a>
-
-## 7.10. <span style="color: #4f81bd">Re-throwing an exception</span>
-
       </li>
     </ul>
   </li>
 </ul>
-
+<p><a id="toc42689888"></a>
+<a id="refheadingtoc788072244347140"></a>
+<a id="toc42690660"></a>
+<a id="toc42690274"></a></p>
+<h2 id="710-re-throwing-an-exception">7.10. <span style="color: #4f81bd">Re-throwing an exception</span></h2>
 <p><span style="color: #000000">An exception can be thrown multiple times, as shown in the following </span><strong><span style="color: #000000">[exceptions-07.php] </span></strong><span style="color: #000000">script:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>

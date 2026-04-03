@@ -753,6 +753,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#127-using-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12.7. Using Transactions
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2137,16 +2148,13 @@
   <li>lines 38–43: show how to sequentially process the results of the <b>[select]</b>;
   </li>
   <li>line 42: the display of <b>[$person] </b>will use the <b>[__toString] </b>method of the <b>[Person] </b>class;
-<a id="refheadingtoc822283439697744"></a>
-<a id="toc42690714"></a>
-<a id="toc42690328"></a>
-<a id="toc42689942"></a>
-
-## 12.7. <span style="color: #4f81bd">Using Transactions</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc822283439697744"></a>
+<a id="toc42690714"></a>
+<a id="toc42690328"></a>
+<a id="toc42689942"></a></p>
+<h2 id="127-using-transactions">12.7. <span style="color: #4f81bd">Using Transactions</span></h2>
 <p>A transaction allows you to group a sequence of SQL statements into a single unit of execution: either all statements succeed, or one of them fails, in which case all SQL statements preceding it are rolled back. In other words, when using a transaction to execute SQL statements, after the transaction completes, the database is in a <strong>stable</strong> state:</p>
 <ul>
   <li>either in a <b>new state </b>created by the successful execution of all SQL statements in the transaction;

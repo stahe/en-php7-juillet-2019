@@ -727,6 +727,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#1142-the-business-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.4.2. The [Business] class
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -741,8 +752,30 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="11.5. The main script">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#116-visual-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6. Visual tests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="11.6. Visual tests">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1161-test-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11.6.1. Test #1
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#1162-test-2" class="md-nav__link">
@@ -1775,17 +1808,14 @@
   <li>line 9: the <b>[calculateTax] </b>method is a purely <b>[business] </b>method. It does not concern itself with the source of the data it uses;
   </li>
   <li>line 12: the <b>[executeBatchImpots] </b>method will interact with the <b>[dao] </b>layer to read and write data to text files. It will repeatedly call the business method <b>[calculerImpot]</b>;
-<a id="toc42690694"></a>
+  </li>
+</ul>
+<p><a id="toc42690694"></a>
 <a id="toc42690308"></a>
 <a id="toc42689922"></a>
 <a id="refheadingtoc788632244347140"></a>
-<a id="laclassemetier"></a>
-
-### 11.4.2. <span style="color: #4f81bd">The [Business] class</span>
-
-  </li>
-</ul>
-
+<a id="laclassemetier"></a></p>
+<h3 id="1142-the-business-class">11.4.2. <span style="color: #4f81bd">The [Business] class</span></h3>
 <p>The <strong>[Metier]</strong> class implements the <strong>[InterfaceMetier]</strong> interface as follows:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -2064,23 +2094,18 @@
   <li><span style="color: #000000">line 35: execution of the </span><b><span style="color: #000000">[executeBatchImpots] </span></b><span style="color: #000000">method of the </span><b><span style="color: #000000">[business] </span></b><span style="color: #000000">layer;</span>
   </li>
   <li><span style="color: #000000">lines 36–39: we saw that the </span><b><span style="color: #000000">[business] </span></b><span style="color: #000000">layer could throw exceptions. They are caught here;</span>
-<a id="refheadingtoc788652244347140"></a>
-<a id="toc42690696"></a>
-<a id="toc42690310"></a>
-<a id="toc42689924"></a>
-
-## 11.6. <span style="color: #4f81bd">Visual tests</span>
-
-<a id="refheadingtoc788672244347140"></a>
-<a id="toc42690697"></a>
-<a id="toc42690311"></a>
-<a id="toc42689925"></a>
-
-### 11.6.1. <span style="color: #4f81bd">Test #1</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc788652244347140"></a>
+<a id="toc42690696"></a>
+<a id="toc42690310"></a>
+<a id="toc42689924"></a></p>
+<h2 id="116-visual-tests">11.6. <span style="color: #4f81bd">Visual tests</span></h2>
+<p><a id="refheadingtoc788672244347140"></a>
+<a id="toc42690697"></a>
+<a id="toc42690311"></a>
+<a id="toc42689925"></a></p>
+<h3 id="1161-test-1">11.6.1. <span style="color: #4f81bd">Test #1</span></h3>
 <p>With the following taxpayer file <strong>[taxpayersdata.txt]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line">yes,2,55555</span>

@@ -493,6 +493,50 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#53-a-person-class-with-no-declared-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.3. A Person class with no declared attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-the-person-class-with-declared-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.4. The Person class with declared attributes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-the-person-class-with-a-constructor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.5. The Person class with a constructor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#56-the-person-class-with-validity-checks-in-the-constructor" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.6. The Person class with validity checks in the constructor
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#57-adding-a-method-acting-as-a-secondary-constructor" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -508,6 +552,17 @@
     <span class="md-ellipsis">
       
         5.8. An array of objects [Person]
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#59-creating-a-class-derived-from-the-person-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.9. Creating a class derived from the Person class
       
     </span>
   </a>
@@ -541,6 +596,17 @@
     <span class="md-ellipsis">
       
         5.12. Overriding a Method from the Parent Class
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#513-passing-an-object-as-a-function-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5.13. Passing an object as a function parameter
       
     </span>
   </a>
@@ -1309,16 +1375,13 @@
   <li>lines 52–54: show that an object can be traversed like a dictionary. The keys of the dictionary are the names of the attributes, and the values of the dictionary are the values of those same attributes;
   </li>
   <li>line 51: the <i>count</i> function can be applied to an object (with a warning) but does not, as one might expect, return the number of attributes. Thus, an object shares similarities with a dictionary but is not one;
-<a id="toc42689856"></a>
-<a id="refheading398941881943603"></a>
-<a id="toc42690628"></a>
-<a id="toc42690242"></a>
-
-## 5.3. <span style="color: #4f81bd">A Person class with no declared attributes</span>
-
   </li>
 </ul>
-
+<p><a id="toc42689856"></a>
+<a id="refheading398941881943603"></a>
+<a id="toc42690628"></a>
+<a id="toc42690242"></a></p>
+<h2 id="53-a-person-class-with-no-declared-attributes">5.3. <span style="color: #4f81bd">A Person class with no declared attributes</span></h2>
 <p>The script <strong>[classes-02.php]</strong> is as follows:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -1361,16 +1424,13 @@
   <li>lines 18–20: the three attributes required by the <i>identity</i> method are created in the $p object;
   </li>
   <li>line 22: the <i>identity</i> method of the <i>Person</i> class is applied to the <i>$p</i> object. In the code (lines 8–11) of the <i>identity</i> method, <i>$this </i>refers to the same object as <i>$p;</i>
-<a id="toc42689857"></a>
-<a id="refheading398961881943603"></a>
-<a id="toc42690629"></a>
-<a id="toc42690243"></a>
-
-## 5.4. <span style="color: #4f81bd">The Person class with declared attributes</span>
-
   </li>
 </ul>
-
+<p><a id="toc42689857"></a>
+<a id="refheading398961881943603"></a>
+<a id="toc42690629"></a>
+<a id="toc42690243"></a></p>
+<h2 id="54-the-person-class-with-declared-attributes">5.4. <span style="color: #4f81bd">The Person class with declared attributes</span></h2>
 <p>The script <strong>[classes-03.php]</strong> is as follows:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -1407,16 +1467,13 @@
 <p><strong>Comments</strong></p>
 <ul>
   <li>lines 6–8: the class attributes are explicitly declared using the <b>var</b> keyword<b>;</b>
-<a id="toc42689858"></a>
-<a id="refheading398981881943603"></a>
-<a id="toc42690630"></a>
-<a id="toc42690244"></a>
-
-## 5.5. <span style="color: #4f81bd">The Person class with a constructor</span>
-
   </li>
 </ul>
-
+<p><a id="toc42689858"></a>
+<a id="refheading398981881943603"></a>
+<a id="toc42690630"></a>
+<a id="toc42690244"></a></p>
+<h2 id="55-the-person-class-with-a-constructor">5.5. <span style="color: #4f81bd">The Person class with a constructor</span></h2>
 <p>The previous examples showed exotic <em>Person</em> classes as they might have been found in PHP 4. It is not recommended to follow these examples. We now present a <em>Person</em> class <strong>[classes-04.php]</strong> that follows PHP 7 best practices:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -1527,17 +1584,14 @@
   <li>Line 59: This line displays the person <i>$p </i>as a string. To do this, the <i>Person</i> class method called <i>__toString </i>(lines 45–47) is used;
   </li>
   <li>All methods of the class (functions) have been prefixed with the keyword <b>public</b>, which indicates that the function is visible outside the class. The other keywords that can be used are, as with attributes and with the same meaning, <b>private </b>and <b>protected. </b>Without an explicit visibility attribute, the function has implicit <b>public</b> visibility;
-<a id="laclassepersonne"></a>
+  </li>
+</ul>
+<p><a id="laclassepersonne"></a>
 <a id="toc42690631"></a>
 <a id="toc42690245"></a>
 <a id="toc42689859"></a>
-<a id="refheading399001881943603"></a>
-
-## 5.6. <span style="color: #4f81bd">The Person class with validity checks in the constructor</span>
-
-  </li>
-</ul>
-
+<a id="refheading399001881943603"></a></p>
+<h2 id="56-the-person-class-with-validity-checks-in-the-constructor">5.6. <span style="color: #4f81bd">The Person class with validity checks in the constructor</span></h2>
 <p>A class’s constructor is the right place to verify that the object’s initialization values are correct. However, an object can also be initialized via its <em>set</em> methods or equivalents. To avoid duplicating the same checks in two different places, these checks can be placed within the <em>set</em> methods. If an object’s initialization value is found to be incorrect, an <strong>exception</strong> is thrown. Here is an example.</p>
 <p>First, we move the definition of the <em>Person</em> class to its own file <strong>[Person.php]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
@@ -1869,17 +1923,14 @@
   <li>line 12: iterating through the array;
   </li>
   <li>line 13: <i>$group</i><i><b>[$i] </b></i>is an object of type <i>Person</i>. The method <b>[Person.__toString] </b>is used to display it;
-<a id="creationduneclasse"></a>
+  </li>
+</ul>
+<p><a id="creationduneclasse"></a>
 <a id="toc42690634"></a>
 <a id="toc42690248"></a>
 <a id="toc42689862"></a>
-<a id="refheading399061881943603"></a>
-
-## 5.9. <span style="color: #4f81bd">Creating a class derived from the Person class</span>
-
-  </li>
-</ul>
-
+<a id="refheading399061881943603"></a></p>
+<h2 id="59-creating-a-class-derived-from-the-person-class">5.9. <span style="color: #4f81bd">Creating a class derived from the Person class</span></h2>
 <p>We create the following <strong>[Teacher]</strong> class in a file <strong>named [Teacher.php]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>
@@ -2190,17 +2241,14 @@
   <li>Line 33 of the code creates an object <b>$c1 </b>of type <b>[Class1]</b>;
   </li>
   <li>Line 34 of the code calls the <b>f</b> method of the <b>$c1</b> object. Since this method exists, it is executed;
-<a id="passagedunobjet"></a>
+  </li>
+</ul>
+<p><a id="passagedunobjet"></a>
 <a id="toc42690638"></a>
 <a id="toc42690252"></a>
 <a id="toc42689866"></a>
-<a id="refheadingtoc534922660406439"></a>
-
-## 5.13. <span style="color: #4f81bd">Passing an object as a function parameter</span>
-
-  </li>
-</ul>
-
+<a id="refheadingtoc534922660406439"></a></p>
+<h2 id="513-passing-an-object-as-a-function-parameter">5.13. <span style="color: #4f81bd">Passing an object as a function parameter</span></h2>
 <p>Consider the following script <strong>[classes-14.php]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line">&lt;?php</span>

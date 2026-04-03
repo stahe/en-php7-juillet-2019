@@ -830,7 +830,18 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="18.1. Introduction">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#182-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.2. The server
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="18.2. The server">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -938,6 +949,39 @@
     <span class="md-ellipsis">
       
         18.3.1. Entities exchanged between layers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1832-the-dao-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.3.2. The [dao] layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1833-the-business-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.3.3. The [business] layer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1834-the-main-script" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        18.3.4. The main script
       
     </span>
   </a>
@@ -1212,16 +1256,13 @@
   <li>in <b>[8]</b>, the client’s <b>[business] </b>layer will conform to the <b>[BusinessInterface] </b>interface from version 5. Its implementation will, however, be different. In version 5, the <b>[business] </b>layer performed the tax calculation. Here, it is the server’s <b>[business] </b>layer that performs this calculation. The <b>[business] </b>layer will therefore call upon the <b>[DAO] </b>layer <b>[7] </b>to communicate with the server and request that it calculate the tax;
   </li>
   <li>in <b>[9]</b>, the console script will need to instantiate the client’s <b>[DAO, business] </b>layers and launch its execution;
-<a id="refheadingtoc1357842222329424"></a>
-<a id="toc42690825"></a>
-<a id="toc42690439"></a>
-<a id="toc42690053"></a>
-
-## 18.2. <span style="color: #4f81bd">The server</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc1357842222329424"></a>
+<a id="toc42690825"></a>
+<a id="toc42690439"></a>
+<a id="toc42690053"></a></p>
+<h2 id="182-the-server">18.2. <span style="color: #4f81bd">The server</span></h2>
 <p>We are focusing on the server side of the application.</p>
 <p><img src="images/10000000000006110000015EBAF9A9E4.png" style="width:12.33cm;height:2.778cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006110000015EBAF9A9E4.png" /></p>
 <p>This architecture will be implemented by the following scripts:</p>
@@ -1890,16 +1931,13 @@
   <li><b>[ExceptionImpots] </b>in the <a href="#lexceptionexceptionimpots"><u><span style="color: #0563c1">link</span></u></a> section;
   </li>
   <li><b>[TaxPayerData] </b>in the <a href="#lentitetaxpayerdata"><u><span style="color: #0563c1">link</span></u></a> section;
-<a id="refheadingtoc1357942222329424"></a>
-<a id="toc42690835"></a>
-<a id="toc42690449"></a>
-<a id="toc42690063"></a>
-
-### 18.3.2. <span style="color: #4f81bd">The [dao] layer</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc1357942222329424"></a>
+<a id="toc42690835"></a>
+<a id="toc42690449"></a>
+<a id="toc42690063"></a></p>
+<h3 id="1832-the-dao-layer">18.3.2. <span style="color: #4f81bd">The [dao] layer</span></h3>
 <p><img src="images/100000000000043E000001BCD159FE32.png" style="width:10.059cm;height:4.113cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000043E000001BCD159FE32.png" /></p>
 <p>The <strong>[dao]</strong> layer implements the following <strong>[InterfaceClientDao]</strong> interface:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
@@ -2023,17 +2061,14 @@
   <li>lines 44-49: if the HTTP status code is not 200, then our server has encountered a problem. We then throw an <b>[ExceptionImpots] </b>exception with a message consisting of the server’s JSON response appended with the HTTP status code;
   </li>
   <li>line 51: we return the result, which is an associative array with the keys <b>[tax, surcharge, discount, reduction, rate]</b>;
-<a id="toc42690836"></a>
+  </li>
+</ul>
+<p><a id="toc42690836"></a>
 <a id="toc42690450"></a>
 <a id="toc42690064"></a>
 <a id="refheadingtoc1357962222329424"></a>
-<a id="lacouchemetier2"></a>
-
-### 18.3.3. <span style="color: #4f81bd">The [business] layer</span>
-
-  </li>
-</ul>
-
+<a id="lacouchemetier2"></a></p>
+<h3 id="1833-the-business-layer">18.3.3. <span style="color: #4f81bd">The [business] layer</span></h3>
 <p><img src="images/1000000000000608000001693E68B4C3.png" style="width:12.263cm;height:2.866cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000608000001693E68B4C3.png" /></p>
 <p><img src="images/10000000000001F0000001B1C3AAED6A.png" style="width:4.59cm;height:4.008cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F0000001B1C3AAED6A.png" /></p>
 <p>The <strong>[business]</strong> layer <strong>[8]</strong> implements the following <strong>[BusinessClientInterface]</strong>:</p>
@@ -2115,17 +2150,14 @@
   <li>lines 17–19: the tax calculation is delegated to the <b>[dao] </b>layer;
   </li>
   <li>lines 20–38: the <b>[executeBatchImpots] </b>function was described in the <a href="#laclassemetier"><u><span style="color: #0563c1">link</span></u></a> section;
-<a id="toc42690837"></a>
+  </li>
+</ul>
+<p><a id="toc42690837"></a>
 <a id="toc42690451"></a>
 <a id="toc42690065"></a>
 <a id="refheadingtoc1357982222329424"></a>
-<a id="lescriptprincipal1"></a>
-
-### 18.3.4. <span style="color: #4f81bd">The main script</span>
-
-  </li>
-</ul>
-
+<a id="lescriptprincipal1"></a></p>
+<h3 id="1834-the-main-script">18.3.4. <span style="color: #4f81bd">The main script</span></h3>
 <p><img src="images/1000000000000608000001693E68B4C3.png" style="width:12.263cm;height:2.866cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000608000001693E68B4C3.png" /></p>
 <p><img src="images/100000000000019D0000016661496F02.png" style="width:3.821cm;height:3.313cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000019D0000016661496F02.png" /></p>
 <p>The client script <strong>[MainImpotsClient.php]</strong> implements the <strong>[console]</strong> layer <strong>[9]</strong>. It is configured by the following JSON file <strong>[conf-client.json]</strong>:</p>

@@ -802,6 +802,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#1613-the-client-server-relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.1.3. The client-server relationship
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#1614-client-architecture" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -996,6 +1007,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#1652-creating-a-gmail-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.5.2. Creating a [Gmail] address
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#1653-setting-up-an-smtp-server" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -1007,10 +1029,82 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#1654-the-smtp-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.5.4. The SMTP Protocol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#1655-a-basic-smtp-client-written-in-php" class="md-nav__link">
     <span class="md-ellipsis">
       
         16.5.5. A basic SMTP client written in PHP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1656-a-second-smtp-client-written-using-the-swiftmailer-library" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.5.6. A second SMTP client written using the [SwiftMailer] library
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#166-the-pop3-post-office-protocol-and-imap-internet-message-access-protocol-protocols" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.6. The POP3 (Post Office Protocol) and IMAP (Internet Message Access Protocol) protocols
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="16.6. The POP3 (Post Office Protocol) and IMAP (Internet Message Access Protocol) protocols">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1661-introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.6.1. Introduction
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1662-exploring-the-pop3-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.6.2. Exploring the POP3 protocol
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1663-a-basic-script-implementing-the-pop3-protocol" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        16.6.3. A basic script implementing the POP3 protocol
       
     </span>
   </a>
@@ -1376,16 +1470,13 @@
   <li>if, after a certain amount of time, the TCP protocol that sent a segment does not receive an acknowledgment, it retransmits the segment in question, thereby ensuring the quality of the information delivery service;
   </li>
   <li>the virtual circuit established between the two communicating processes is <i>full-duplex</i>: this means that information can flow in both directions. Thus, the destination process can send acknowledgments even while the source process continues to send information. This allows, for example, the source TCP protocol to send multiple segments without waiting for an acknowledgment. If, after a certain amount of time, it realizes it has not received an acknowledgment for a specific segment No. <i>n</i>, it will resume sending segments from that point;
-<a id="refheading10403111168783983"></a>
-<a id="toc42690755"></a>
-<a id="toc42690369"></a>
-<a id="toc42689983"></a>
-
-### 16.1.3. <span style="color: #4f81bd">The client-server relationship</span>
-
   </li>
 </ul>
-
+<p><a id="refheading10403111168783983"></a>
+<a id="toc42690755"></a>
+<a id="toc42690369"></a>
+<a id="toc42689983"></a></p>
+<h3 id="1613-the-client-server-relationship">16.1.3. <span style="color: #4f81bd">The client-server relationship</span></h3>
 <p>Communication over the Internet is often asymmetric: machine A initiates a connection to request a service from machine B, specifying that it wants to open a connection with service SB1 on machine B. Machine B either accepts or refuses. If it accepts, machine A can send its requests to service SB1. These requests must comply with the communication protocol understood by service SB1. A request-response dialogue is thus established between machine A, known as the <strong>client</strong> machine, and machine B, known as the <strong>server</strong> machine. One of the two partners will close the connection.</p>
 <p><a id="refheading10403131168783983"></a>
 <a id="toc42690756"></a>
@@ -3127,19 +3218,16 @@
       <li>a PHP script that emulates the SMTP protocol of the <b>[RawTcpClient] </b>client;
       </li>
       <li>a PHP script using the <b>[SwiftMailServer] </b>library to send all kinds of emails;
-<a id="toc42690772"></a>
-<a id="toc42690386"></a>
-<a id="toc42690000"></a>
-<a id="refheadingtoc95375381407536"></a>
-<a id="creationduneadresse"></a>
-
-### 16.5.2. <span style="color: #4f81bd">Creating a [Gmail] address</span>
-
       </li>
     </ul>
   </li>
 </ul>
-
+<p><a id="toc42690772"></a>
+<a id="toc42690386"></a>
+<a id="toc42690000"></a>
+<a id="refheadingtoc95375381407536"></a>
+<a id="creationduneadresse"></a></p>
+<h3 id="1652-creating-a-gmail-address">16.5.2. <span style="color: #4f81bd">Creating a [Gmail] address</span></h3>
 <p>To perform our SMTP tests, we’ll need an email address to send to. To do this, we’ll create an address on Gmail:</p>
 <p><img src="images/10000000000007A30000041BE0D0F52F.png" style="width:15.52cm;height:8.343cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000007A30000041BE0D0F52F.png" /></p>
 <ul>
@@ -3263,16 +3351,13 @@
   <li>in <b>[28]</b>, this service does not require authentication;
   </li>
   <li>in <b>[30]</b>, enter the welcome message that the SMTP server will send to its clients;
-<a id="refheadingtoc1357142222329424"></a>
-<a id="toc42690774"></a>
-<a id="toc42690388"></a>
-<a id="toc42690002"></a>
-
-### 16.5.4. <span style="color: #4f81bd">The SMTP Protocol</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc1357142222329424"></a>
+<a id="toc42690774"></a>
+<a id="toc42690388"></a>
+<a id="toc42690002"></a></p>
+<h3 id="1654-the-smtp-protocol">16.5.4. <span style="color: #4f81bd">The SMTP Protocol</span></h3>
 <p><img src="images/1000000000000398000001A1227FD047.png" style="width:7.303cm;height:3.311cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000398000001A1227FD047.png" /></p>
 <p>We will explore the SMTP protocol using the following environment:</p>
 <ul>
@@ -3761,16 +3846,13 @@
   <li>lines 27-52: using the SMTP server <b>[hMailServer] </b>to send an email to <b>[php7parlexemple@gmail.com] </b>works fine;
   </li>
   <li>lines 53-65: using the SMTP server <b>[Gmail] </b>to send an email to <b>[php7parlexemple@gmail.com] </b>does not go well: on line 65, the SMTP server returns error code 530 with the error message. This indicates that the SMTP client must first authenticate via a secure connection. Our client did not do this and is therefore rejected;
-<a id="refheadingtoc1357182222329424"></a>
-<a id="toc42690776"></a>
-<a id="toc42690390"></a>
-<a id="toc42690004"></a>
-
-### 16.5.6. <span style="color: #4f81bd">A second SMTP client written using the [SwiftMailer] library</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc1357182222329424"></a>
+<a id="toc42690776"></a>
+<a id="toc42690390"></a>
+<a id="toc42690004"></a></p>
+<h3 id="1656-a-second-smtp-client-written-using-the-swiftmailer-library">16.5.6. <span style="color: #4f81bd">A second SMTP client written using the [SwiftMailer] library</span></h3>
 <p>The previous client has at least two shortcomings:</p>
 <ul>
   <li>it cannot use a secure connection if the server requires one;
@@ -4230,23 +4312,18 @@
   <li>lines 58–60: the attached file <b>[test-localhost.eml]</b>;
   </li>
   <li>lines 62–114: the attached file <b>[test-localhost.eml] </b>is itself a message whose content is displayed on lines 62–114. Note that this message itself contains attachments;
-<a id="refheadingtoc1357202222329424"></a>
-<a id="toc42690777"></a>
-<a id="toc42690391"></a>
-<a id="toc42690005"></a>
-
-## 16.6. <span style="color: #4f81bd">The POP3 (Post Office Protocol) and IMAP (Internet Message Access Protocol) protocols</span>
-
-<a id="refheadingtoc1357222222329424"></a>
-<a id="toc42690778"></a>
-<a id="toc42690392"></a>
-<a id="toc42690006"></a>
-
-### 16.6.1. <span style="color: #4f81bd">Introduction</span>
-
   </li>
 </ul>
-
+<p><a id="refheadingtoc1357202222329424"></a>
+<a id="toc42690777"></a>
+<a id="toc42690391"></a>
+<a id="toc42690005"></a></p>
+<h2 id="166-the-pop3-post-office-protocol-and-imap-internet-message-access-protocol-protocols">16.6. <span style="color: #4f81bd">The POP3 (Post Office Protocol) and IMAP (Internet Message Access Protocol) protocols</span></h2>
+<p><a id="refheadingtoc1357222222329424"></a>
+<a id="toc42690778"></a>
+<a id="toc42690392"></a>
+<a id="toc42690006"></a></p>
+<h3 id="1661-introduction">16.6.1. <span style="color: #4f81bd">Introduction</span></h3>
 <p>To read emails stored on a mail server, two protocols exist:</p>
 <ul>
   <li>the POP3 (Post Office Protocol) protocol, historically the first protocol but rarely used today;
@@ -4267,18 +4344,15 @@
       <li>a PHP script emulating the POP3 protocol of the <b>[RawTcpClient] </b>client;
       </li>
       <li>a PHP script using the PHP IMAP library, which allows for the implementation of both IMAP and POP3 clients;
-<a id="refheadingtoc1357242222329424"></a>
-<a id="toc42690779"></a>
-<a id="toc42690393"></a>
-<a id="toc42690007"></a>
-
-### 16.6.2. <span style="color: #4f81bd">Exploring the POP3 protocol</span>
-
       </li>
     </ul>
   </li>
 </ul>
-
+<p><a id="refheadingtoc1357242222329424"></a>
+<a id="toc42690779"></a>
+<a id="toc42690393"></a>
+<a id="toc42690007"></a></p>
+<h3 id="1662-exploring-the-pop3-protocol">16.6.2. <span style="color: #4f81bd">Exploring the POP3 protocol</span></h3>
 <p>First, we use the <strong>[smtp-01.php]</strong> script to send an email to the user <strong>[guest@localhost]</strong>. If you have run the tests associated with the script, this user should have received emails, but we were unable to verify this. To send them a new email, use the following configuration file <strong>[config-smtp-01.json]</strong>, for example:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-13-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-13-2"> 2</a></span>
@@ -4374,18 +4448,15 @@
       <li>the first line begins with <b>[+OK]</b>;
       </li>
       <li>the last line consists of a single period;
-<a id="refheadingtoc1357262222329424"></a>
-<a id="toc42690780"></a>
-<a id="toc42690394"></a>
-<a id="toc42690008"></a>
-
-### 16.6.3. <span style="color: #4f81bd">A basic script implementing the POP3 protocol</span>
-
       </li>
     </ul>
   </li>
 </ul>
-
+<p><a id="refheadingtoc1357262222329424"></a>
+<a id="toc42690780"></a>
+<a id="toc42690394"></a>
+<a id="toc42690008"></a></p>
+<h3 id="1663-a-basic-script-implementing-the-pop3-protocol">16.6.3. <span style="color: #4f81bd">A basic script implementing the POP3 protocol</span></h3>
 <p><img src="images/10000000000001C6000001DADAEE54BB.png" style="width:4.202cm;height:4.387cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C6000001DADAEE54BB.png" /></p>
 <p>Since the POP3 protocol has the same structure as the SMTP protocol, the <strong>[pop3-01.php]</strong> script is a port of the <strong>[smtp-01.php]</strong> script. It will have the following configuration file <strong>[config-pop3-01.json]</strong>:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-14-1">1</a></span>
