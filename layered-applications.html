@@ -1063,19 +1063,19 @@
 
 
 
-<p><a id="toc42689907"></a>
-<a id="refheadingtoc788352244347140"></a>
+<p><a id="toc42690293"></a>
 <a id="toc42690679"></a>
-<a id="toc42690293"></a></p>
+<a id="refheadingtoc788352244347140"></a>
+<a id="toc42689907"></a></p>
 <h1 id="10-layered-applications">10. <span style="color: #365f91">Layered Applications</span></h1>
-<p><a id="toc42689908"></a>
-<a id="refheadingtoc788372244347140"></a>
+<p><a id="toc42690294"></a>
 <a id="toc42690680"></a>
-<a id="toc42690294"></a></p>
+<a id="refheadingtoc788372244347140"></a>
+<a id="toc42689908"></a></p>
 <h2 id="101-introduction">10.1. <span style="color: #4f81bd">Introduction</span></h2>
-<p><img src="images/1000000000000183000001D944836178.png" style="width:3.581cm;height:4.376cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000183000001D944836178.png" /></p>
+<p><img src="images/1000000000000183000001D944836178.png" width="135" height="165" style="width:3.581cm;height:4.376cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000183000001D944836178.png" /></p>
 <p>We will now explore how to structure a PHP application in layers:</p>
-<p><img src="images/10000000000004EB000001154342CD64.png" style="width:9.991cm;height:2.198cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004EB000001154342CD64.png" /></p>
+<p><img src="images/10000000000004EB000001154342CD64.png" width="378" height="83" style="width:9.991cm;height:2.198cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004EB000001154342CD64.png" /></p>
 <p>In this diagram, the <strong>left layer initiates the use of the right layer</strong>. The roles of the layers are as follows:</p>
 <ul>
   <li><b>[1]</b>: The layer called <b>[DAO] </b>(Data Access Objects) handles interactions with external data stores <b>[4] </b>(files, databases, web services, etc.). This layer is sometimes called <b>[DAL] </b>(Data Access Layer), a term that better describes the layer’s role. This layer can read data <b>[3] </b>or write data <b>[2]</b>. It is called upon by the <b>[business] </b>layer <b>[6] </b>and returns results to it <b>[7]</b>;
@@ -1111,34 +1111,34 @@
 <p>The procedures in the <strong>[business]</strong> layer will then use the <strong>[IDao]</strong> interface rather than the <strong>[Dao]</strong> class. This allows the <strong>[Dao]</strong> layer to be updated without affecting the <strong>[Business]</strong> layer. Suppose that in version 1, the <strong>[Dao1]</strong> layer uses data from a database. Following an update, this data is now provided by a web service in version 2, <strong>[Dao2]</strong>. We will ensure that both the <strong>[Dao1]</strong> and <strong>[Dao2]</strong> classes implement the same <strong>[IDao]</strong> interface and throw the same exceptions. If this is verified, the <strong>[Business]</strong> layer that works with the <strong>[IDao]</strong> interface will remain unchanged;</p>
 <p>The same reasoning applies to the <strong>[Business]</strong> layer.</p>
 <p>Let’s look at an implementation using classes and interfaces:</p>
-<p><img src="images/100000000000012A00000145FDB3E370.png" style="width:2.76cm;height:3.011cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000012A00000145FDB3E370.png" /></p>
+<p><img src="images/100000000000012A00000145FDB3E370.png" width="104" height="114" style="width:2.76cm;height:3.011cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000012A00000145FDB3E370.png" /></p>
 <p>The application will implement the following layered structure:</p>
-<p><img src="images/1000000000000338000000EDAD236403.png" style="width:6.541cm;height:1.88cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000338000000EDAD236403.png" /></p>
-<p><a id="toc42689909"></a>
-<a id="refheadingtoc788392244347140"></a>
+<p><img src="images/1000000000000338000000EDAD236403.png" width="247" height="71" style="width:6.541cm;height:1.88cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000338000000EDAD236403.png" /></p>
+<p><a id="toc42690295"></a>
 <a id="toc42690681"></a>
-<a id="toc42690295"></a></p>
+<a id="refheadingtoc788392244347140"></a>
+<a id="toc42689909"></a></p>
 <h2 id="102-objects-exchanged-between-layers">10.2. <span style="color: #4f81bd">Objects exchanged between layers</span></h2>
 <p>Normally, layers exchange various objects. Here, they will exchange the following class <strong>[Person.php]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">// a person</span>
-<span class="odt-code-line"><span style="font-weight:bold">class </span>Person {</span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// identifier</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$id</span>;</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// constructor</span>
-<span class="odt-code-line"><span style="color:#008080">  </span>public function __construct(int <span style="color:#0000ff">$id</span>) {</span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;id = </span>$id<span style="color:#000000">;</span></span>
-<span class="odt-code-line">  <span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// toString</span>
-<span class="odt-code-line"><span style="color:#008080">  </span>public function __toString(): string {</span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">return </span>&quot;[Person($this-&gt;id)]&quot;<span style="color:#000000">;</span></span>
-<span class="odt-code-line">  <span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">}</span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// a person</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">class</span><span style="color:#008080"> </span>Personne<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// identifier</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">private</span><span style="color:#008080"> </span><span style="color:#0000ff">$id</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// manufacturer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span>public<span style="color:#008080"> </span>function<span style="color:#008080"> </span>__construct(int<span style="color:#008080"> </span><span style="color:#0000ff">$id</span>)<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span>$this<span style="color:#000000">-&gt;id</span><span style="color:#008080"> </span><span style="color:#000000">=</span><span style="color:#008080"> </span>$id<span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// toString</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span>public<span style="color:#008080"> </span>function<span style="color:#008080"> </span>__toString():<span style="color:#008080"> </span>string<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="color:#000000">return</span><span style="color:#008080"> </span>&quot;[Personne($this-&gt;id)]&quot;<span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
 </code></pre></div>
 
 <p><strong>Comments</strong></p>
@@ -1150,46 +1150,46 @@
   <li>lines 14–16: the <b>[__toString] </b>method that displays the person’s identifier;
   </li>
 </ul>
-<p><a id="toc42689910"></a>
-<a id="refheadingtoc788412244347140"></a>
+<p><a id="toc42690296"></a>
 <a id="toc42690682"></a>
-<a id="toc42690296"></a></p>
+<a id="refheadingtoc788412244347140"></a>
+<a id="toc42689910"></a></p>
 <h2 id="103-dao-layer">10.3. <span style="color: #4f81bd">[DAO] Layer</span></h2>
 <p>The <strong>[IDao]</strong> interface implemented by the <strong>[dao, 1]</strong> layer is as follows <strong>[IDao.php]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">// <span style="font-weight:bold">[dao] </span>layer ------------------------</span>
-<span class="odt-code-line">interface IDao {</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// Retrieving a person from an external database</span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// pass the person&#x27;s ID</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>get(<span style="font-weight:bold">int </span><span style="color:#0000ff">$id</span>): Person;</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// Save a person to an external store</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>save(Person <span style="color:#0000ff">$p</span>): void;</span>
-<span class="odt-code-line">}</span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// layer [dao] ------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">interface<span style="color:#008080"> </span>IDao<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// recovery of a person from an external warehouse</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// pass the person&#x27;s login</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>get(<span style="font-weight:bold">int</span><span style="color:#008080"> </span><span style="color:#0000ff">$id</span>):<span style="color:#008080"> </span>Personne;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// saving a person in an external warehouse</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>save(Personne<span style="color:#008080"> </span><span style="color:#0000ff">$p</span>):<span style="color:#008080"> </span>void;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
 </code></pre></div>
 
 <p>This interface is implemented by the following <strong>[Dao1]</strong> class <strong>[Dao1.php]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">class Dao1 implements IDao {</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// Save a person to an external database</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>save(Person <span style="color:#0000ff">$p</span>): void {</span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;<span style="font-weight:bold">[Dao1]</span>: Saving person <span style="color:#0000ff">$p </span>to the <span style="font-weight:bold">[locale] </span>database\n&quot;<span style="color:#000000">;</span></span>
-<span class="odt-code-line">  <span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// Retrieve a person from an external repository</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>get(<span style="font-weight:bold">int </span><span style="color:#0000ff">$id</span>): Person {</span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;<span style="font-weight:bold">[Dao1]</span>: Retrieving the person with ID (<span style="color:#0000ff">$id</span>) from the <span style="font-weight:bold">[locale] </span>database\n&quot;<span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return new </span>Person(<span style="color:#0000ff">$id</span>);</span>
-<span class="odt-code-line">  <span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">}</span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">class<span style="color:#008080"> </span>Dao1<span style="color:#008080"> </span>implements<span style="color:#008080"> </span>IDao<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// saving a person in an external warehouse</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>save(Personne<span style="color:#008080"> </span><span style="color:#0000ff">$p</span>):<span style="color:#008080"> </span>void<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print</span><span style="color:#008080"> </span>&quot;<span style="font-weight:bold">[Dao1]</span> : Sauvegarde de la personne <span style="color:#0000ff">$p</span> en base de données <span style="font-weight:bold">[locale]</span>\n&quot;<span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// recovery of a person from an external warehouse</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>get(<span style="font-weight:bold">int</span><span style="color:#008080"> </span><span style="color:#0000ff">$id</span>):<span style="color:#008080"> </span>Personne<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print</span><span style="color:#008080"> </span>&quot;<span style="font-weight:bold">[Dao1]</span> : Récupération de la personne d&#x27;identité (<span style="color:#0000ff">$id</span>) en base de données <span style="font-weight:bold">[locale]</span>\n&quot;<span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="font-weight:bold">return</span><span style="color:#008080"> </span><span style="font-weight:bold">new</span><span style="color:#008080"> </span>Personne(<span style="color:#0000ff">$id</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
 </code></pre></div>
 
 <p><strong>Comments</strong></p>
@@ -1202,40 +1202,40 @@
 
 <p>We also implement the <strong>[IDao]</strong> interface with the following <strong>[Dao2]</strong> class <strong>[Dao2.php]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">class Dao2 implements IDao {</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// Save a person to an external database</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>save(Person <span style="color:#0000ff">$p</span>): void {</span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;<span style="font-weight:bold">[Dao2] </span>: Saving person <span style="color:#0000ff">$p </span>to the <span style="font-weight:bold">[remote] </span>database\n&quot;<span style="color:#000000">;</span></span>
-<span class="odt-code-line">  <span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// Retrieve a person from an external repository</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>get(<span style="font-weight:bold">int </span><span style="color:#0000ff">$id</span>): Person {</span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;<span style="font-weight:bold">[Dao2]</span>: Retrieving the person with ID (<span style="color:#0000ff">$id</span>) from the <span style="font-weight:bold">[remote] </span>database\n&quot;<span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return new </span>Person(<span style="color:#0000ff">$id</span>);</span>
-<span class="odt-code-line">  <span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">}</span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">class<span style="color:#008080"> </span>Dao2<span style="color:#008080"> </span>implements<span style="color:#008080"> </span>IDao<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// saving a person in an external warehouse</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>save(Personne<span style="color:#008080"> </span><span style="color:#0000ff">$p</span>):<span style="color:#008080"> </span>void<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print</span><span style="color:#008080"> </span>&quot;<span style="font-weight:bold">[Dao2]</span> : Sauvegarde de la personne <span style="color:#0000ff">$p</span> en base de données <span style="font-weight:bold">[distante]</span>\n&quot;<span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// recovery of a person from an external warehouse</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>get(<span style="font-weight:bold">int</span><span style="color:#008080"> </span><span style="color:#0000ff">$id</span>):<span style="color:#008080"> </span>Personne<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print</span><span style="color:#008080"> </span>&quot;<span style="font-weight:bold">[Dao2]</span> : Récupération de la personne d&#x27;identité (<span style="color:#0000ff">$id</span>) en base de données <span style="font-weight:bold">[distante]</span>\n&quot;<span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="font-weight:bold">return</span><span style="color:#008080"> </span><span style="font-weight:bold">new</span><span style="color:#008080"> </span>Personne(<span style="color:#0000ff">$id</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
 </code></pre></div>
 
 <p>The <strong>[Dao2]</strong> class is similar to the <strong>[Dao1]</strong> class, except that we have modified the messages displayed.</p>
-<p><a id="toc42689911"></a>
-<a id="refheadingtoc788432244347140"></a>
+<p><a id="toc42690297"></a>
 <a id="toc42690683"></a>
-<a id="toc42690297"></a></p>
+<a id="refheadingtoc788432244347140"></a>
+<a id="toc42689911"></a></p>
 <h2 id="104-business-layer">10.4. <span style="color: #4f81bd">[Business] Layer</span></h2>
 <p>The <strong>[business, 2]</strong> layer provides the following <strong>[IMetier]</strong> interface <strong>[IMetier.php]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">// <span style="font-weight:bold">[business] </span>layer ------------------------</span>
-<span class="odt-code-line"><span style="font-weight:bold">interface </span>IBusiness <span style="font-weight:bold">extends </span>IDao {</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// we use a person identified by their ID</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething(Person <span style="color:#0000ff">$p</span>): void;</span>
-<span class="odt-code-line">}</span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// business] layer ------------------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">interface</span><span style="color:#008080"> </span>IMétier<span style="color:#008080"> </span><span style="font-weight:bold">extends</span><span style="color:#008080"> </span>IDao<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// we use a person identified by his id</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>doSomething(Personne<span style="color:#008080"> </span><span style="color:#0000ff">$p</span>):<span style="color:#008080"> </span>void;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
 </code></pre></div>
 
 <p><strong>Comments</strong></p>
@@ -1248,42 +1248,42 @@
 
 <p>The <strong>[IMetier]</strong> interface will be implemented by the following <strong>[Métier]</strong> class <strong>[Métier.php]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="font-weight:bold">class </span>Business <span style="font-weight:bold">implements </span>IBusiness {</span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// <span style="font-weight:bold">[DAO] </span>layer</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">private </span><span style="color:#0000ff">$dao</span>;</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// getter / setter</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>setDao(IDao <span style="color:#0000ff">$dao</span>): void {</span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="color:#000000">$this-&gt;dao = </span>$dao<span style="color:#000000">;</span></span>
-<span class="odt-code-line">  <span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>getDao(): IDao {</span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold">return </span>$this-&gt;dao;</span>
-<span class="odt-code-line">  <span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// we use a person</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>doSomething(Person <span style="color:#0000ff">$p</span>): void {</span>
-<span class="odt-code-line"><span style="color:#008080">    </span>// processing</span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;Business: Business processing for person <span style="color:#0000ff">$p</span>\n&quot;<span style="color:#000000">;</span></span>
-<span class="odt-code-line">  <span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span>// Save the person</span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>save(Person <span style="color:#0000ff">$p</span>): void {</span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;<span style="font-weight:bold">[Business Logic] </span>: Saving person <span style="color:#0000ff">$p</span>\n&quot;<span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="color:#008080">    </span>// we ask the <span style="font-weight:bold">[dao] </span>layer to perform the save</span>
-<span class="odt-code-line"><span style="color:#008080">    </span>$this-&gt;dao-&gt;save(<span style="color:#0000ff">$p</span>);</span>
-<span class="odt-code-line">  <span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#008080">  </span><span style="font-weight:bold">public function </span>get(<span style="font-weight:bold">int </span><span style="color:#0000ff">$id</span>): Person {</span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print </span>&quot;<span style="font-weight:bold">[Business Logic] </span>: Retrieving the person with ID <span style="color:#0000ff">$id</span>\n&quot;<span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="color:#008080">    </span>// request the person from the <span style="font-weight:bold">[dao] </span>layer</span>
-<span class="odt-code-line"><span style="color:#008080">    </span>$person <span style="color:#000000">= $this-&gt;dao-&gt;get(</span>$id<span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">return </span>$person<span style="color:#000000">;</span></span>
-<span class="odt-code-line">  <span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">}</span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">class</span><span style="color:#008080"> </span>Métier<span style="color:#008080"> </span><span style="font-weight:bold">implements</span><span style="color:#008080"> </span>IMétier<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// layer [dao]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">private</span><span style="color:#008080"> </span><span style="color:#0000ff">$dao</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// getter / setter</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>setDao(IDao<span style="color:#008080"> </span><span style="color:#0000ff">$dao</span>):<span style="color:#008080"> </span>void<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span>$this<span style="color:#000000">-&gt;dao</span><span style="color:#008080"> </span><span style="color:#000000">=</span><span style="color:#008080"> </span>$dao<span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>getDao():<span style="color:#008080"> </span>IDao<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="font-weight:bold">return</span><span style="color:#008080"> </span><span style="color:#0000ff">$this</span>-&gt;dao;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// a person is exploited</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>doSomething(Personne<span style="color:#008080"> </span><span style="color:#0000ff">$p</span>):<span style="color:#008080"> </span>void<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008080">// treatment</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print</span><span style="color:#008080"> </span>&quot;Métier : Traitement métier de la personne <span style="color:#0000ff">$p</span>\n&quot;<span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#008080">// safeguarding the individual</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>save(Personne<span style="color:#008080"> </span><span style="color:#0000ff">$p</span>):<span style="color:#008080"> </span>void<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print</span><span style="color:#008080"> </span>&quot;<span style="font-weight:bold">[Métier]</span> : Sauvegarde de la personne <span style="color:#0000ff">$p</span>\n&quot;<span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008080">// the [dao] layer is asked to make the backup</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="color:#0000ff">$this</span>-&gt;dao-&gt;save(<span style="color:#0000ff">$p</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">  </span><span style="font-weight:bold">public</span><span style="color:#008080"> </span><span style="font-weight:bold">function</span><span style="color:#008080"> </span>get(<span style="font-weight:bold">int</span><span style="color:#008080"> </span><span style="color:#0000ff">$id</span>):<span style="color:#008080"> </span>Personne<span style="color:#008080"> </span>{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">print</span><span style="color:#008080"> </span>&quot;<span style="font-weight:bold">[Métier]</span> : récupération de la personne d&#x27;identifiant <span style="color:#0000ff">$id</span>\n&quot;<span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#008080">// we ask for the person in the diaper [dao]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span>$personne<span style="color:#008080"> </span><span style="color:#000000">=</span><span style="color:#008080"> </span>$this<span style="color:#000000">-&gt;dao-&gt;get(</span>$id<span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#008080">    </span><span style="font-weight:bold;color:#000000">return</span><span style="color:#008080"> </span>$personne<span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
 </code></pre></div>
 
 <p><strong>Comments</strong></p>
@@ -1302,35 +1302,35 @@
 
 <p><strong>Conclusion</strong></p>
 <p>Whenever the <strong>[business]</strong> layer needs to access data stored in the data warehouse, it must go through the <strong>[DAO]</strong> layer, which was created to access this data.</p>
-<p><a id="toc42689912"></a>
-<a id="refheadingtoc788452244347140"></a>
+<p><a id="toc42690298"></a>
 <a id="toc42690684"></a>
-<a id="toc42690298"></a></p>
+<a id="refheadingtoc788452244347140"></a>
+<a id="toc42689912"></a></p>
 <h2 id="105-main-script">10.5. <span style="color: #4f81bd">Main Script</span></h2>
 <p>We will write two scripts to act as the orchestrators for this application. The first <strong>[main1.php]</strong> will use the <strong>[Dao1]</strong> layer, while the second <strong>[main2.php]</strong> will use the <strong>[Dao2]</strong> layer. We want to demonstrate that this has no impact on the code in the <strong>[Business]</strong> layer.</p>
 <p>The <strong>[main1.php]</strong> script is as follows:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">// Strict adherence to function parameters</span>
-<span class="odt-code-line"><span style="font-weight:bold">declare </span>(<span style="color:#000080">strict_types=1</span>);</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">// include classes and interfaces</span>
-<span class="odt-code-line">require_once __DIR__.<span style="color:#008000">&quot;/Person.php&quot;</span>;</span>
-<span class="odt-code-line">require_once __DIR__.<span style="color:#008000">&quot;/IDao.php&quot;</span>;</span>
-<span class="odt-code-line">require_once __DIR__.<span style="color:#008000">&quot;/BusinessLogic.php&quot;</span>;</span>
-<span class="odt-code-line">require_once __DIR__.<span style="color:#008000">&quot;/Dao1.php&quot;</span>;</span>
-<span class="odt-code-line">require_once __DIR__.<span style="color:#008000">&quot;/Business.php&quot;</span>;</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">// test ----------------</span>
-<span class="odt-code-line">// creating the layers</span>
-<span class="odt-code-line"><span style="color:#0000ff">$dao1 </span>= <span style="font-weight:bold">new </span>Dao1();</span>
-<span class="odt-code-line"><span style="color:#0000ff">$business </span>= <span style="font-weight:bold">new </span>Business();</span>
-<span class="odt-code-line"><span style="color:#000000">$businessModel-&gt;setDao(</span>$dao1<span style="color:#000000">);</span></span>
-<span class="odt-code-line">// using the <span style="font-weight:bold">[business] </span>layer</span>
-<span class="odt-code-line">$person <span style="color:#000000">= $job-&gt;get(</span><span style="color:#000080">4</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#000000">$job-&gt;doSomething(</span>$person<span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#000000">$job-&gt;save(</span>$person<span style="color:#000000">);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// strict adherence to function parameters</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">declare</span><span style="color:#008080"> </span>(strict_types=<span style="color:#000080">1</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// inclusion classes and interfaces</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">require_once<span style="color:#008080"> </span>__DIR__.<span style="color:#008000">&quot;/Personne.php&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">require_once<span style="color:#008080"> </span>__DIR__.<span style="color:#008000">&quot;/IDao.php&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">require_once<span style="color:#008080"> </span>__DIR__.<span style="color:#008000">&quot;/IMetier.php&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">require_once<span style="color:#008080"> </span>__DIR__.<span style="color:#008000">&quot;/Dao1.php&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">require_once<span style="color:#008080"> </span>__DIR__.<span style="color:#008000">&quot;/Métier.php&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// test ----------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// layer creation</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">$dao1</span><span style="color:#008080"> </span>=<span style="color:#008080"> </span><span style="font-weight:bold">new</span><span style="color:#008080"> </span>Dao1();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">$métier</span><span style="color:#008080"> </span>=<span style="color:#008080"> </span><span style="font-weight:bold">new</span><span style="color:#008080"> </span>Métier();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">$métier<span style="color:#000000">-&gt;setDao(</span>$dao1<span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// using the [business] layer</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">$personne<span style="color:#008080"> </span><span style="color:#000000">=</span><span style="color:#008080"> </span>$métier<span style="color:#000000">-&gt;get(</span><span style="color:#000080">4</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">$métier<span style="color:#000000">-&gt;doSomething(</span>$personne<span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">$métier<span style="color:#000000">-&gt;save(</span>$personne<span style="color:#000000">);</span></span></span>
 </code></pre></div>
 
 <p><strong>Comments</strong></p>
@@ -1339,15 +1339,15 @@
   </li>
 </ul>
 
-<p><img src="images/1000000000000338000000EDAD236403.png" style="width:6.541cm;height:1.88cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000338000000EDAD236403.png" /></p>
+<p><img src="images/1000000000000338000000EDAD236403.png" width="247" height="71" style="width:6.541cm;height:1.88cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000338000000EDAD236403.png" /></p>
 <p>According to this diagram, the <strong>[main1.php]</strong> script should only interact with the <strong>[business]</strong> layer. It should not interact with the <strong>[DAO]</strong> layer, even though this is theoretically possible.</p>
 <p>The results of the execution are as follows:</p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
-<span class="odt-code-line"><span style="font-weight:bold">[Business]</span>: Retrieving the person with ID 4</span>
-<span class="odt-code-line"><span style="font-weight:bold">[Dao1]</span>: Retrieval of the person with ID (4) from the <span style="font-weight:bold">[local] </span>database</span>
-<span class="odt-code-line"><span style="font-weight:bold">[Business] </span>: Business processing of the person <span style="font-weight:bold">[Person(4)]</span></span>
-<span class="odt-code-line"><span style="font-weight:bold">[Business] </span>: Saving the person <span style="font-weight:bold">[Person(4)]</span></span>
-<span class="odt-code-line"><span style="font-weight:bold">[Dao1]</span>: Saving the person <span style="font-weight:bold">[Person(4)] </span>to the <span style="font-weight:bold">[local] </span>database</span>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[Métier]</span> : récupération de la personne d&#x27;identifiant 4</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[Dao1]</span> : Récupération de la personne d&#x27;identité (4) en base de données <span style="font-weight:bold">[locale]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[Métier]</span> : Traitement métier de la personne <span style="font-weight:bold">[Personne(4)]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[Métier]</span> : Sauvegarde de la personne <span style="font-weight:bold">[Personne(4)]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[Dao1]</span> : Sauvegarde de la personne <span style="font-weight:bold">[Personne(4)]</span> en base de données <span style="font-weight:bold">[locale]</span></span></span>
 </code></pre></div>
 
 <p><strong>Comments</strong></p>
@@ -1362,27 +1362,27 @@
 
 <p>The script <strong>[main2.php]</strong> is as follows:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">// Strict adherence to function parameters</span>
-<span class="odt-code-line"><span style="font-weight:bold">declare </span>(<span style="color:#000080">strict_types=1</span>);</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">// include classes and interfaces</span>
-<span class="odt-code-line">require_once __DIR__.<span style="color:#008000">&quot;/Person.php&quot;</span>;</span>
-<span class="odt-code-line">require_once __DIR__.<span style="color:#008000">&quot;/IDao.php&quot;</span>;</span>
-<span class="odt-code-line">require_once __DIR__.<span style="color:#008000">&quot;/BusinessLogic.php&quot;</span>;</span>
-<span class="odt-code-line">require_once __DIR__.<span style="color:#008000">&quot;/Dao2.php&quot;</span>;</span>
-<span class="odt-code-line">require_once __DIR__.<span style="color:#008000">&quot;/Business.php&quot;</span>;</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line">// test ----------------</span>
-<span class="odt-code-line">// creating the layers</span>
-<span class="odt-code-line"><span style="color:#0000ff">$dao2 </span>= <span style="font-weight:bold">new </span>Dao2();</span>
-<span class="odt-code-line"><span style="color:#0000ff">$business </span>= <span style="font-weight:bold">new </span>Business();</span>
-<span class="odt-code-line"><span style="color:#000000">$businessModel-&gt;setDao(</span>$dao2<span style="color:#000000">);</span></span>
-<span class="odt-code-line">// using the <span style="font-weight:bold">[business] </span>layer</span>
-<span class="odt-code-line">$person <span style="color:#000000">= $business = get(</span><span style="color:#000080">4</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line">$business <span style="color:#000000">= $business-&gt;doSomething(</span>$person<span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#000000">$job-&gt;save(</span>$person<span style="color:#000000">);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// strict adherence to function parameters</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">declare</span><span style="color:#008080"> </span>(strict_types=<span style="color:#000080">1</span>);</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// inclusion classes and interfaces</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">require_once<span style="color:#008080"> </span>__DIR__.<span style="color:#008000">&quot;/Personne.php&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">require_once<span style="color:#008080"> </span>__DIR__.<span style="color:#008000">&quot;/IDao.php&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">require_once<span style="color:#008080"> </span>__DIR__.<span style="color:#008000">&quot;/IMetier.php&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">require_once<span style="color:#008080"> </span>__DIR__.<span style="color:#008000">&quot;/Dao2.php&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">require_once<span style="color:#008080"> </span>__DIR__.<span style="color:#008000">&quot;/Métier.php&quot;</span>;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// test ----------------</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// layer creation</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">$dao2</span><span style="color:#008080"> </span>=<span style="color:#008080"> </span><span style="font-weight:bold">new</span><span style="color:#008080"> </span>Dao2();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#0000ff">$métier</span><span style="color:#008080"> </span>=<span style="color:#008080"> </span><span style="font-weight:bold">new</span><span style="color:#008080"> </span>Métier();</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">$métier<span style="color:#000000">-&gt;setDao(</span>$dao2<span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// using the [business] layer</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">$personne<span style="color:#008080"> </span><span style="color:#000000">=</span><span style="color:#008080"> </span>$métier<span style="color:#000000">-&gt;get(</span><span style="color:#000080">4</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">$métier<span style="color:#000000">-&gt;doSomething(</span>$personne<span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">$métier<span style="color:#000000">-&gt;save(</span>$personne<span style="color:#000000">);</span></span></span>
 </code></pre></div>
 
 <p><strong>Comments</strong></p>
@@ -1392,16 +1392,18 @@
 </ul>
 
 <p>The results of the execution are as follows:</p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
-<span class="odt-code-line"><span style="font-weight:bold">[Business] </span>: Retrieving the person with ID 4</span>
-<span class="odt-code-line"><span style="font-weight:bold">[Dao2]</span>: Retrieving the person with ID (4) from the <span style="font-weight:bold">[remote] </span>database</span>
-<span class="odt-code-line"><span style="font-weight:bold">[Business] </span>: Business processing of the person <span style="font-weight:bold">[Person(4)]</span></span>
-<span class="odt-code-line"><span style="font-weight:bold">[Business] </span>: Saving the person <span style="font-weight:bold">[Person(4)]</span></span>
-<span class="odt-code-line"><span style="font-weight:bold">[Dao2]</span>: Saving the person <span style="font-weight:bold">[Person(4)] </span>to the <span style="font-weight:bold">[remote] </span>database</span>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[Métier]</span> : récupération de la personne d&#x27;identifiant 4</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[Dao2]</span> : Récupération de la personne d&#x27;identité (4) en base de données <span style="font-weight:bold">[distante]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[Métier]</span> : Traitement métier de la personne <span style="font-weight:bold">[Personne(4)]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[Métier]</span> : Sauvegarde de la personne <span style="font-weight:bold">[Personne(4)]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold">[Dao2]</span> : Sauvegarde de la personne <span style="font-weight:bold">[Personne(4)]</span> en base de données <span style="font-weight:bold">[distante]</span></span></span>
 </code></pre></div>
 
 <p><span style="color: #000000">The </span><strong><span style="color: #000000">[Dao1] </span></strong><span style="color: #000000">layer simulates access to a local database, while the </span><strong><span style="color: #000000">[Dao2] </span></strong><span style="color: #000000">layer simulates access to a remote database. As long as these two layers adhere to the </span><strong><span style="color: #000000">[IDao] </span></strong><span style="color: #000000">interface, we can see that the code in the </span><strong><span style="color: #000000">[Business] </span></strong><span style="color: #000000">layer did not need to be changed.</span></p>
 <p><span style="color: #000000">We will apply what we have just learned to the tax calculation exercise that serves as our guiding thread.</span></p>
+<p><span style="color: #000000"> </span></p>
+<p><span style="color: #000000"> </span></p>
 
 
 
@@ -1437,8 +1439,8 @@
     <div class="md-footer-meta__inner">
 
       <div>
-        <a href="https://tahe.developpez.com" target="_blank">
-          https://tahe.developpez.com
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
         </a>
         <br>
         This tutorial written by <strong>Serge Tahé</strong> is made available to the public under the terms of the

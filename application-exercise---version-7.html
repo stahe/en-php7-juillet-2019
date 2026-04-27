@@ -1058,65 +1058,65 @@
 
 
 
-<p><a id="refheadingtoc900823955410047"></a>
-<a id="toc42690746"></a>
+<p><a id="toc42689974"></a>
 <a id="toc42690360"></a>
-<a id="toc42689974"></a></p>
+<a id="toc42690746"></a>
+<a id="refheadingtoc900823955410047"></a></p>
 <h1 id="15-application-exercise-version-7">15. <span style="color: #365f91">Application Exercise – Version 7</span></h1>
-<p><img src="images/100000000000034800000153334DDAE2.png" style="width:7.781cm;height:3.14cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000034800000153334DDAE2.png" /></p>
-<p><a id="toc42690747"></a>
-<a id="toc42690361"></a>
-<a id="toc42689975"></a>
+<p><img src="images/100000000000034800000153334DDAE2.png" width="294" height="119" style="width:7.781cm;height:3.14cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000034800000153334DDAE2.png" /></p>
+<p><a id="implementation"></a>
 <a id="refheadingtoc1808333931965946"></a>
-<a id="implementation"></a></p>
+<a id="toc42689975"></a>
+<a id="toc42690361"></a>
+<a id="toc42690747"></a></p>
 <h2 id="151-implementation">15.1. <span style="color: #4f81bd">Implementation</span></h2>
 <p><span style="color: #000000">Here, we will revisit version 6 by moving the constants used in the main scripts into a configuration file. The configuration file will be a JSON file with the following content:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line">{</span>
-<span class="odt-code-line">    <span style="color:#7f007f">&quot;rootDirectory&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;C:/Data/st-2019/dev/php7/poly/scripts-console/impots/version-07&quot;</span>,</span>
-<span class="odt-code-line">    <span style="color:#7f007f">&quot;databaseFilename&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;Data/database.json&quot;</span>,</span>
-<span class="odt-code-line">    <span style="color:#7f007f">&quot;taxAdminDataFileName&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;Data/taxadmindata.json&quot;</span>,</span>
-<span class="odt-code-line">    <span style="color:#7f007f">&quot;taxPayersDataFileName&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;Data/taxpayersdata.json&quot;</span>,</span>
-<span class="odt-code-line">    <span style="color:#7f007f">&quot;resultsFileName&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;Data/results.json&quot;</span>,</span>
-<span class="odt-code-line">    <span style="color:#7f007f">&quot;errorsFileName&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;Data/errors.json&quot;</span>,</span>
-<span class="odt-code-line">    <span style="color:#7f007f">&quot;dependencies&quot;</span>: {</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;BaseEntity&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Entities/BaseEntity.php&quot;</span>,</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;TaxAdminData&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Entities/TaxAdminData.php&quot;</span>,</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;TaxPayerData&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Entities/TaxPayerData.php&quot;</span>,</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;Database&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Entities/Database.php&quot;</span>,</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;TaxExceptions&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Entities/TaxExceptions.php&quot;</span>,</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;Utilities&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Utilities/Utilities.php&quot;</span>,</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;DaoInterface&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Dao/DaoInterface.php&quot;</span>,</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;DaoProcess&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Dao/DaoProcess.php&quot;</span>,</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;DaoInterface4TransferAdminDataToDatabase&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Dao/DaoInterface4TransferAdminDataToDatabase.php&quot;</span>,</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;DaoTransferAdminDataFromJsonFile2Database&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Dao/DaoTransferAdminDataFromJsonFile2Database.php&quot;</span>,        </span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;DaoImpotsWithTaxAdminDataInDatabase&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Dao/DaoImpotsWithTaxAdminDataInDatabase.php&quot;</span>,</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;BusinessLogicInterface&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/BusinessLogic/BusinessLogicInterface.php&quot;</span>,</span>
-<span class="odt-code-line">        <span style="color:#7f007f">&quot;BusinessLogic&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/BusinessLogic/BusinessLogic.php&quot;</span></span>
-<span class="odt-code-line">    },</span>
-<span class="odt-code-line">    <span style="color:#7f007f">&quot;dependencies4calculate&quot;</span>: [</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;BaseEntity&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;TaxAdminData&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;TaxPayerData&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;Database&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;TaxExceptions&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;Utilities&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;InterfaceDao&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;TraitDao&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;DaoTaxesWithTaxAdminDataInDatabase&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;BusinessInterface&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;Metier&quot;</span>],</span>
-<span class="odt-code-line">    <span style="color:#7f007f">&quot;dependencies4transfer&quot;</span>: [</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;BaseEntity&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;TaxAdminData&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;Database&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;TaxExceptions&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;Utilities&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;DaoInterface&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;DaoProcessing&quot;</span>,  </span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;DaoInterface4TransferAdminData2Database&quot;</span>,</span>
-<span class="odt-code-line">        <span style="font-style:italic;color:#2a00ff">&quot;DaoTransferAdminDataFromJsonFileToDatabase&quot;</span>]</span>
-<span class="odt-code-line">}</span>
+<span class="odt-code-line"><span class="odt-code-line-content">{</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#7f007f">&quot;rootDirectory&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;C:/Data/st-2019/dev/php7/poly/scripts-console/impots/version-07&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#7f007f">&quot;databaseFilename&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;Data/database.json&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#7f007f">&quot;taxAdminDataFileName&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;Data/taxadmindata.json&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#7f007f">&quot;taxPayersDataFileName&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;Data/taxpayersdata.json&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#7f007f">&quot;resultsFileName&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;Data/results.json&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#7f007f">&quot;errorsFileName&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;Data/errors.json&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#7f007f">&quot;dependencies&quot;</span>: {</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;BaseEntity&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Entities/BaseEntity.php&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;TaxAdminData&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Entities/TaxAdminData.php&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;TaxPayerData&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Entities/TaxPayerData.php&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;Database&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Entities/Database.php&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;ExceptionImpots&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Entities/ExceptionImpots.php&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;Utilitaires&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Utilities/Utilitaires.php&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;InterfaceDao&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Dao/InterfaceDao.php&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;TraitDao&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Dao/TraitDao.php&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;InterfaceDao4TransferAdminData2Database&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Dao/InterfaceDao4TransferAdminData2Database.php&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;DaoTransferAdminDataFromJsonFile2Database&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Dao/DaoTransferAdminDataFromJsonFile2Database.php&quot;</span>,        </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;DaoImpotsWithTaxAdminDataInDatabase&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Dao/DaoImpotsWithTaxAdminDataInDatabase.php&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;InterfaceMetier&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Métier/InterfaceMetier.php&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#7f007f">&quot;Metier&quot;</span>: <span style="font-style:italic;color:#2a00ff">&quot;/../version-05/Métier/Metier.php&quot;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    },</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#7f007f">&quot;dependencies4calculate&quot;</span>: [</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;BaseEntity&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;TaxAdminData&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;TaxPayerData&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;Database&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;ExceptionImpots&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;Utilitaires&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;InterfaceDao&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;TraitDao&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;DaoImpotsWithTaxAdminDataInDatabase&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;InterfaceMetier&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;Metier&quot;</span>],</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#7f007f">&quot;dependencies4transfer&quot;</span>: [</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;BaseEntity&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;TaxAdminData&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;Database&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;ExceptionImpots&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;Utilitaires&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;InterfaceDao&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;TraitDao&quot;</span>,  </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;InterfaceDao4TransferAdminData2Database&quot;</span>,</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="font-style:italic;color:#2a00ff">&quot;DaoTransferAdminDataFromJsonFile2Database&quot;</span>]</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">}</span></span>
 </code></pre></div>
 
 <p><span style="color: #000000">In this configuration:</span></p>
@@ -1135,46 +1135,46 @@
 
 <p><span style="color: #000000">The script for transferring tax administration data to the database </span><strong><span style="color: #000000">[MainTransferAdminDataFromFile2PostgresSQLDatabase.php] </span></strong><span style="color: #000000">becomes the following:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// Strict adherence to the declared types of function parameters</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">declare </span><span style="color:#000000">(strict_types=1);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// namespace</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">namespace </span><span style="color:#000000">Application;</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// PHP error handling</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// ini_set(&quot;display_errors&quot;, &quot;0&quot;);</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">//</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// path to the configuration file</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;../Data/config.json&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// retrieve the configuration</span></span>
-<span class="odt-code-line"><span style="color:#000000">$config = \</span><span style="font-style:italic;color:#000000">json_decode</span><span style="color:#000000">(\</span><span style="font-style:italic;color:#000000">file_get_contents</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">CONFIG_FILENAME</span><span style="color:#000000">), </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// include dependencies required by the script</span></span>
-<span class="odt-code-line"><span style="color:#000000">$rootDirectory = $config</span><span style="font-weight:bold;color:#000000">[&quot;rootDirectory&quot;]</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">foreach </span><span style="color:#000000">($config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies4transfer&quot;] </span><span style="font-weight:bold;color:#7f0055">as </span><span style="color:#000000">$dependency) {</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">require </span><span style="color:#000000">$rootDirectory . $config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies&quot;][$dependency]</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// Define constants</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;DATABASE_CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;$rootDirectory/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;databaseFilename&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;TAXADMINDATA_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;$rootDirectory/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;taxAdminDataFileName&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">//</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">try </span><span style="color:#000000">{</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#557f5f">// Create the </span><span style="font-weight:bold;color:#557f5f">[dao] </span><span style="color:#557f5f">layer</span></span>
-<span class="odt-code-line"><span style="color:#000000">  $dao = </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">DaoTransferAdminDataFromJsonFile2Database</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">DATABASE_CONFIG_FILENAME</span><span style="color:#000000">, </span><span style="font-style:italic;color:#0000c0">TAXADMINDATA_FILENAME</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#557f5f">// transfer data to the database</span></span>
-<span class="odt-code-line"><span style="color:#000000">  $dao-&gt;transferAdminData2Database();</span></span>
-<span class="odt-code-line"><span style="color:#000000">} </span><span style="font-weight:bold;color:#7f0055">catch </span><span style="color:#000000">(</span><span style="color:#005032">TaxException </span><span style="color:#000000">$ex) {</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#557f5f">// display the error</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">print </span><span style="color:#000000">$ex-&gt;getMessage() . </span><span style="color:#0000c0">&quot;\n&quot;</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// end</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">print </span><span style="color:#0000c0">&quot;Done\n&quot;</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">exit</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// strict adherence to declared types of function parameters</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">declare </span><span style="color:#000000">(strict_types=1);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// namespace</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">namespace </span><span style="color:#000000">Application;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// error handling by PHP</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// ini_set(&quot;display_errors&quot;, &quot;0&quot;);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">//</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// configuration file path</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;../Data/config.json&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// we retrieve the configuration</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">$config = \</span><span style="font-style:italic;color:#000000">json_decode</span><span style="color:#000000">(\</span><span style="font-style:italic;color:#000000">file_get_contents</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">CONFIG_FILENAME</span><span style="color:#000000">), </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// include the necessary script dependencies</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">$rootDirectory = $config</span><span style="font-weight:bold;color:#000000">[&quot;rootDirectory&quot;]</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">foreach </span><span style="color:#000000">($config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies4transfer&quot;]</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">as </span><span style="color:#000000">$dependency) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">require </span><span style="color:#000000">$rootDirectory . $config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies&quot;][$dependency]</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// definition of constants</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;DATABASE_CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;</span><span style="color:#000000">$rootDirectory</span><span style="color:#0000c0">/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;databaseFilename&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;TAXADMINDATA_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;</span><span style="color:#000000">$rootDirectory</span><span style="color:#0000c0">/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;taxAdminDataFileName&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">//</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">try </span><span style="color:#000000">{</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// creation of the [dao] layer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  $dao = </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">DaoTransferAdminDataFromJsonFile2Database</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">DATABASE_CONFIG_FILENAME</span><span style="color:#000000">, </span><span style="font-style:italic;color:#0000c0">TAXADMINDATA_FILENAME</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// data transfer to the database</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  $dao-&gt;transferAdminData2Database();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">} </span><span style="font-weight:bold;color:#7f0055">catch </span><span style="color:#000000">(</span><span style="color:#005032">ExceptionImpots</span><span style="color:#000000"> $ex) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// error is displayed</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">print </span><span style="color:#000000">$ex-&gt;getMessage() . </span><span style="color:#0000c0">&quot;\n&quot;</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// end</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">print </span><span style="color:#0000c0">&quot;Terminé\n&quot;</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">exit</span><span style="color:#000000">;</span></span></span>
 </code></pre></div>
 
 <p><strong><span style="color: #000000">Comments</span></strong></p>
@@ -1194,107 +1194,107 @@
 
 <p><span style="color: #000000">Similarly, the tax calculation script becomes the following </span><strong><span style="color: #000000">[MainCalculateImpotsWithTaxAdminDataInPostgresDatabase]</span></strong><span style="color: #000000">:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// Strict adherence to the declared types of function parameters</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">declare </span><span style="color:#000000">(strict_types=1);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// namespace</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">namespace </span><span style="color:#000000">Application;</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// PHP error handling</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// ini_set(&quot;display_errors&quot;, &quot;0&quot;);</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">//</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// path to the configuration file</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;../Data/config.json&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// retrieve the configuration</span></span>
-<span class="odt-code-line"><span style="color:#000000">$config = \</span><span style="font-style:italic;color:#000000">json_decode</span><span style="color:#000000">(</span><span style="background-color:#d4d4d4;color:#000000">\</span><span style="font-style:italic;background-color:#d4d4d4;color:#000000">file_get_contents</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">CONFIG_FILENAME</span><span style="color:#000000">), </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// include dependencies required by the script</span></span>
-<span class="odt-code-line"><span style="color:#000000">$rootDirectory = $config</span><span style="font-weight:bold;color:#000000">[&quot;rootDirectory&quot;]</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">foreach </span><span style="color:#000000">($config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies4calculate&quot;] </span><span style="font-weight:bold;color:#7f0055">as </span><span style="color:#000000">$dependency) {</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">require </span><span style="color:#000000">$rootDirectory . $config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies&quot;][$dependency]</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// Define constants</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;DATABASE_CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;$rootDirectory/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;databaseFilename&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;TAXPAYERSDATA_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;$rootDirectory/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;taxPayersDataFileName&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;RESULTS_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;$rootDirectory/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;resultsFileName&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;ERRORS_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;$rootDirectory/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;errorsFileName&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">//</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">try </span><span style="color:#000000">{</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#557f5f">// Create the </span><span style="font-weight:bold;color:#557f5f">[dao] </span><span style="color:#557f5f">layer</span></span>
-<span class="odt-code-line"><span style="color:#000000">  $dao = </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">DaoImpotsWithTaxAdminDataInDatabase</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">DATABASE_CONFIG_FILENAME</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#557f5f">// Create the </span><span style="font-weight:bold;color:#557f5f">[business logic] </span><span style="color:#557f5f">layer</span></span>
-<span class="odt-code-line"><span style="color:#000000">  $business = </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">Business</span><span style="color:#000000">($dao);</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#557f5f">// Calculate taxes in batch mode</span></span>
-<span class="odt-code-line"><span style="color:#000000">  $businessLogic = new BusinessLogic(</span><span style="font-style:italic;color:#0000c0">$dao</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#000000">} </span><span style="font-weight:bold;color:#7f0055">catch </span><span style="color:#000000">(</span><span style="color:#005032">TaxException </span><span style="color:#000000">$ex) {</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#557f5f">// display the error</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">print </span><span style="color:#0000c0">&quot;An error occurred: &quot; </span><span style="color:#000000">. </span><span style="font-style:italic;color:#000000">utf8_encode</span><span style="color:#000000">($ex-&gt;getMessage()) . </span><span style="color:#0000c0">&quot;\n&quot;</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// end</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">print </span><span style="color:#0000c0">&quot;Done\n&quot;</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">exit</span><span style="color:#000000">;</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// strict adherence to declared types of function parameters</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">declare </span><span style="color:#000000">(strict_types=1);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// namespace</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">namespace </span><span style="color:#000000">Application;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// error handling by PHP</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// ini_set(&quot;display_errors&quot;, &quot;0&quot;);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">//</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// configuration file path</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;../Data/config.json&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// we retrieve the configuration</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">$config = \</span><span style="font-style:italic;color:#000000">json_decode</span><span style="color:#000000">(</span><span style="background-color:#d4d4d4;color:#000000">\</span><span style="font-style:italic;background-color:#d4d4d4;color:#000000">file_get_contents</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">CONFIG_FILENAME</span><span style="color:#000000">), </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// include the necessary script dependencies</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">$rootDirectory = $config</span><span style="font-weight:bold;color:#000000">[&quot;rootDirectory&quot;]</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">foreach </span><span style="color:#000000">($config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies4calculate&quot;]</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">as </span><span style="color:#000000">$dependency) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">require </span><span style="color:#000000">$rootDirectory . $config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies&quot;][$dependency]</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// definition of constants</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;DATABASE_CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;</span><span style="color:#000000">$rootDirectory</span><span style="color:#0000c0">/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;databaseFilename&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;TAXPAYERSDATA_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;</span><span style="color:#000000">$rootDirectory</span><span style="color:#0000c0">/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;taxPayersDataFileName&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;RESULTS_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;</span><span style="color:#000000">$rootDirectory</span><span style="color:#0000c0">/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;resultsFileName&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;ERRORS_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;</span><span style="color:#000000">$rootDirectory</span><span style="color:#0000c0">/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;errorsFileName&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">//</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">try </span><span style="color:#000000">{</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// creation of the [dao] layer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  $dao = </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">DaoImpotsWithTaxAdminDataInDatabase</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">DATABASE_CONFIG_FILENAME</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// creation of the [business] layer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  $métier = </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">Metier</span><span style="color:#000000">($dao);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// tax calculation in batch mode</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  $métier-&gt;executeBatchImpots(</span><span style="font-style:italic;color:#0000c0">TAXPAYERSDATA_FILENAME</span><span style="color:#000000">, </span><span style="font-style:italic;color:#0000c0">RESULTS_FILENAME</span><span style="color:#000000">, </span><span style="font-style:italic;color:#0000c0">ERRORS_FILENAME</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">} </span><span style="font-weight:bold;color:#7f0055">catch </span><span style="color:#000000">(</span><span style="color:#005032">ExceptionImpots</span><span style="color:#000000"> $ex) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// error is displayed</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">print </span><span style="color:#0000c0">&quot;Une erreur s&#x27;est produite : &quot; </span><span style="color:#000000">. </span><span style="font-style:italic;color:#000000">utf8_encode</span><span style="color:#000000">($ex-&gt;getMessage()) . </span><span style="color:#0000c0">&quot;\n&quot;</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// end</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">print </span><span style="color:#0000c0">&quot;Terminé\n&quot;</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">exit</span><span style="color:#000000">;</span></span></span>
 </code></pre></div>
 
-<p><a id="refheadingtoc185673971629160"></a>
-<a id="toc42690748"></a>
+<p><a id="toc42689976"></a>
 <a id="toc42690362"></a>
-<a id="toc42689976"></a></p>
+<a id="toc42690748"></a>
+<a id="refheadingtoc185673971629160"></a></p>
 <h2 id="152-tests-codeception">15.2. <span style="color: #4f81bd">Tests [Codeception]</span></h2>
 <p>This version, like the previous ones, is validated by <strong>[Codeception]</strong> tests.</p>
-<p><img src="images/100000000000019E000002680528CFCC.png" style="width:3.829cm;height:5.699cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000019E000002680528CFCC.png" /></p>
-<p><a id="refheadingtoc185675971629160"></a>
-<a id="toc42690749"></a>
+<p><img src="images/100000000000019E000002680528CFCC.png" width="145" height="215" style="width:3.829cm;height:5.699cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000019E000002680528CFCC.png" /></p>
+<p><a id="toc42689977"></a>
 <a id="toc42690363"></a>
-<a id="toc42689977"></a></p>
+<a id="toc42690749"></a>
+<a id="refheadingtoc185675971629160"></a></p>
 <h3 id="1521-dao-layer-testing">15.2.1. <span style="color: #4f81bd">[DAO] layer testing</span></h3>
 <p><span style="color: #000000">The </span><strong><span style="color: #000000">[DaoTest.php] </span></strong><span style="color: #000000">test is as follows:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// Strict adherence to the declared types of function parameters</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">declare </span><span style="color:#000000">(strict_types=1);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// namespace</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">namespace </span><span style="color:#000000">Application;</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// definition of constants</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;ROOT&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;C:/Data/st-2019/dev/php7/poly/scripts-console/impots/version-07&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// path to the configuration file</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="font-style:italic;color:#0000c0">ROOT</span><span style="color:#000000">.</span><span style="color:#0000c0">&quot;/Data/config.json&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// retrieve the configuration</span></span>
-<span class="odt-code-line"><span style="color:#000000">$config = \</span><span style="font-style:italic;color:#000000">json_decode</span><span style="color:#000000">(\</span><span style="font-style:italic;color:#000000">file_get_contents</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">CONFIG_FILENAME</span><span style="color:#000000">), </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// include dependencies required by the script</span></span>
-<span class="odt-code-line"><span style="color:#000000">$rootDirectory = $config</span><span style="font-weight:bold;color:#000000">[&quot;rootDirectory&quot;]</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">foreach </span><span style="color:#000000">($config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies4calculate&quot;] </span><span style="font-weight:bold;color:#7f0055">as </span><span style="color:#000000">$dependency) {</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">require </span><span style="color:#000000">$rootDirectory . $config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies&quot;][$dependency]</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// other constants</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;DATABASE_CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;$rootDirectory/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;databaseFilename&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// test -----------------------------------------------------</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">class </span><span style="color:#005032">DaoTest </span><span style="font-weight:bold;color:#7f0055">extends </span><span style="color:#000000">\Codeception\Test\</span><span style="color:#005032">Unit </span><span style="color:#000000">{</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#557f5f">// TaxAdminData</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">private </span><span style="color:#0000c0">$taxAdminData</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function </span><span style="color:#000000">__construct() {</span></span>
-<span class="odt-code-line"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">parent</span><span style="color:#000000">::</span><span style="font-style:italic;color:#000000">__construct</span><span style="color:#000000">();</span></span>
-<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#557f5f">// Create the </span><span style="font-weight:bold;color:#557f5f">[dao] </span><span style="color:#557f5f">layer</span></span>
-<span class="odt-code-line"><span style="color:#000000">    $dao = </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">DaoImpotsWithTaxAdminDataInDatabase</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">DATABASE_CONFIG_FILENAME</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#000000">    $this-&gt;</span><span style="color:#0000c0">taxAdminData </span><span style="color:#000000">= $dao-&gt;getTaxAdminData();</span></span>
-<span class="odt-code-line"><span style="color:#000000">  }</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#557f5f">// tests</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function </span><span style="color:#000000">testTaxAdminData() {</span></span>
-<span class="odt-code-line"><span style="color:#000000">    …</span></span>
-<span class="odt-code-line"><span style="color:#000000">  }</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// strict adherence to declared function parameter types</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">declare </span><span style="color:#000000">(strict_types=1);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// namespace</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">namespace </span><span style="color:#000000">Application;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// defining constants</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;ROOT&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;C:/Data/st-2019/dev/php7/poly/scripts-console/impots/version-07&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// configuration file path</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="font-style:italic;color:#0000c0">ROOT</span><span style="color:#000000">.</span><span style="color:#0000c0">&quot;/Data/config.json&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// we retrieve the configuration</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">$config = \</span><span style="font-style:italic;color:#000000">json_decode</span><span style="color:#000000">(\</span><span style="font-style:italic;color:#000000">file_get_contents</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">CONFIG_FILENAME</span><span style="color:#000000">), </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// include the necessary script dependencies</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">$rootDirectory = $config</span><span style="font-weight:bold;color:#000000">[&quot;rootDirectory&quot;]</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">foreach </span><span style="color:#000000">($config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies4calculate&quot;]</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">as </span><span style="color:#000000">$dependency) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">require </span><span style="color:#000000">$rootDirectory . $config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies&quot;][$dependency]</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// other constants</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;DATABASE_CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;</span><span style="color:#000000">$rootDirectory</span><span style="color:#0000c0">/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;databaseFilename&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// test -----------------------------------------------------</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">class </span><span style="color:#005032">DaoTest</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">extends </span><span style="color:#000000">\Codeception\Test\</span><span style="color:#005032">Unit</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// TaxAdminData</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">private </span><span style="color:#0000c0">$taxAdminData</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span><span style="color:#000000"> __construct() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">parent</span><span style="color:#000000">::</span><span style="font-style:italic;color:#000000">__construct</span><span style="color:#000000">();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// creation of the [dao] layer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    $dao = </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">DaoImpotsWithTaxAdminDataInDatabase</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">DATABASE_CONFIG_FILENAME</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    $this-&gt;</span><span style="color:#0000c0">taxAdminData</span><span style="color:#000000"> = $dao-&gt;getTaxAdminData();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  }</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// tests</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span><span style="color:#000000"> testTaxAdminData() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    …</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  }</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">}</span></span></span>
 </code></pre></div>
 
 <p><strong><span style="color: #000000">Comments</span></strong></p>
@@ -1310,61 +1310,61 @@
 </ul>
 
 <p><span style="color: #000000">The test results are as follows:</span></p>
-<p><img src="images/1000000000000670000001BA029FABB4.png" style="width:15.259cm;height:4.092cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000670000001BA029FABB4.png" /></p>
-<p><a id="refheadingtoc185677971629160"></a>
-<a id="toc42690750"></a>
+<p><img src="images/1000000000000670000001BA029FABB4.png" width="577" height="155" style="width:15.259cm;height:4.092cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000670000001BA029FABB4.png" /></p>
+<p><a id="toc42689978"></a>
 <a id="toc42690364"></a>
-<a id="toc42689978"></a></p>
+<a id="toc42690750"></a>
+<a id="refheadingtoc185677971629160"></a></p>
 <h3 id="1522-business-layer-test">15.2.2. <span style="color: #4f81bd">[Business] layer test</span></h3>
 <p><span style="color: #000000">The </span><strong><span style="color: #000000">[MetierTest.php] </span></strong><span style="color: #000000">test is as follows:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
-<span class="odt-code-line">&lt;?php</span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// Strict adherence to the declared types of function parameters</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">declare </span><span style="color:#000000">(strict_types=1);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// namespace</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">namespace </span><span style="color:#000000">Application;</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// definition of constants</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;ROOT&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;C:/Data/st-2019/dev/php7/poly/scripts-console/impots/version-07&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// path to the configuration file</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="font-style:italic;color:#0000c0">ROOT </span><span style="color:#000000">. </span><span style="color:#0000c0">&quot;/Data/config.json&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// retrieve the configuration</span></span>
-<span class="odt-code-line"><span style="color:#000000">$config = \</span><span style="font-style:italic;color:#000000">json_decode</span><span style="color:#000000">(\</span><span style="font-style:italic;color:#000000">file_get_contents</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">CONFIG_FILENAME</span><span style="color:#000000">), </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// include dependencies required by the script</span></span>
-<span class="odt-code-line"><span style="color:#000000">$rootDirectory = $config</span><span style="font-weight:bold;color:#000000">[&quot;rootDirectory&quot;]</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">foreach </span><span style="color:#000000">($config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies4calculate&quot;] </span><span style="font-weight:bold;color:#7f0055">as </span><span style="color:#000000">$dependency) {</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">require </span><span style="color:#000000">$rootDirectory . $config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies&quot;][$dependency]</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
-<span class="odt-code-line"><span style="color:#557f5f">// other constants</span></span>
-<span class="odt-code-line"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;DATABASE_CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;$rootDirectory/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;databaseFilename&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#557f5f">// test class</span></span>
-<span class="odt-code-line"><span style="font-weight:bold;color:#7f0055">class </span><span style="color:#005032">BusinessTest </span><span style="font-weight:bold;color:#7f0055">extends </span><span style="text-decoration:underline;color:#000000">\Codeception\Test\</span><span style="text-decoration:underline;color:#005032">Unit </span><span style="color:#000000">{</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#557f5f">// business layer</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">private </span><span style="color:#0000c0">$business</span><span style="color:#000000">;</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function </span><span style="color:#000000">__construct() {</span></span>
-<span class="odt-code-line"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">parent</span><span style="color:#000000">::</span><span style="font-style:italic;color:#000000">__construct</span><span style="color:#000000">();</span></span>
-<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#557f5f">// creation of the </span><span style="font-weight:bold;color:#557f5f">[DAO] </span><span style="color:#557f5f">layer</span></span>
-<span class="odt-code-line"><span style="color:#000000">    $dao = </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">DaoImpotsWithTaxAdminDataInDatabase</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">DATABASE_CONFIG_FILENAME</span><span style="color:#000000">);</span></span>
-<span class="odt-code-line"><span style="color:#000000">    </span><span style="color:#557f5f">// Create the </span><span style="font-weight:bold;color:#557f5f">[business] </span><span style="color:#557f5f">layer</span></span>
-<span class="odt-code-line"><span style="color:#000000">    $this-&gt;</span><span style="color:#0000c0">business </span><span style="color:#000000">= </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">Business</span><span style="color:#000000">($dao);</span></span>
-<span class="odt-code-line"><span style="color:#000000">  }</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="color:#557f5f">// tests</span></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function </span><span style="color:#000000">test1() {</span></span>
-<span class="odt-code-line"><span style="color:#000000">    …</span></span>
-<span class="odt-code-line"><span style="color:#000000">  }</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">  -----------------------------------</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function </span><span style="color:#000000">test11() {</span></span>
-<span class="odt-code-line"><span style="color:#000000">    …</span></span>
-<span class="odt-code-line"><span style="color:#000000">  }</span></span>
-<span class="odt-code-line"></span>
-<span class="odt-code-line"><span style="color:#000000">}</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// strict adherence to declared types of function parameters</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">declare </span><span style="color:#000000">(strict_types=1);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// namespace</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">namespace </span><span style="color:#000000">Application;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// defining constants</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;ROOT&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;C:/Data/st-2019/dev/php7/poly/scripts-console/impots/version-07&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// configuration file path</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="font-style:italic;color:#0000c0">ROOT</span><span style="color:#000000"> . </span><span style="color:#0000c0">&quot;/Data/config.json&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// we retrieve the configuration</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">$config = \</span><span style="font-style:italic;color:#000000">json_decode</span><span style="color:#000000">(\</span><span style="font-style:italic;color:#000000">file_get_contents</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">CONFIG_FILENAME</span><span style="color:#000000">), </span><span style="font-weight:bold;color:#7f0055">true</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// include the necessary script dependencies</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">$rootDirectory = $config</span><span style="font-weight:bold;color:#000000">[&quot;rootDirectory&quot;]</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">foreach </span><span style="color:#000000">($config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies4calculate&quot;]</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">as </span><span style="color:#000000">$dependency) {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#7f0055">require </span><span style="color:#000000">$rootDirectory . $config</span><span style="font-weight:bold;color:#000000">[&quot;dependencies&quot;][$dependency]</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">}</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// other constants</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;DATABASE_CONFIG_FILENAME&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;</span><span style="color:#000000">$rootDirectory</span><span style="color:#0000c0">/</span><span style="color:#000000">{$config</span><span style="font-weight:bold;color:#000000">[&quot;databaseFilename&quot;]</span><span style="color:#000000">}</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#557f5f">// test class</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">class </span><span style="color:#005032">MetierTest</span><span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">extends </span><span style="text-decoration:underline;color:#000000">\Codeception\Test\</span><span style="text-decoration:underline;color:#005032">Unit</span><span style="color:#000000"> {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// business layer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">private </span><span style="color:#0000c0">$métier</span><span style="color:#000000">;</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span><span style="color:#000000"> __construct() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">parent</span><span style="color:#000000">::</span><span style="font-style:italic;color:#000000">__construct</span><span style="color:#000000">();</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// creation of the [dao] layer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    $dao = </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">DaoImpotsWithTaxAdminDataInDatabase</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">DATABASE_CONFIG_FILENAME</span><span style="color:#000000">);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// creation of the [business] layer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    $this-&gt;</span><span style="color:#0000c0">métier</span><span style="color:#000000"> = </span><span style="font-weight:bold;color:#7f0055">new </span><span style="color:#005032">Metier</span><span style="color:#000000">($dao);</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  }</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// tests</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span><span style="color:#000000"> test1() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    …</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  }</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">-----------------------------------</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span><span style="color:#000000"> test11() {</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    …</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  }</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
+<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">}</span></span></span>
 </code></pre></div>
 
 <p><strong><span style="color: #000000">Comments</span></strong></p>
@@ -1380,7 +1380,7 @@
 </ul>
 
 <p><span style="color: #000000">The test results are as follows:</span></p>
-<p><img src="images/10000000000006D7000001D92E33D431.png" style="width:16.221cm;height:4.382cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006D7000001D92E33D431.png" /></p>
+<p><img src="images/10000000000006D7000001D92E33D431.png" width="613" height="166" style="width:16.221cm;height:4.382cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006D7000001D92E33D431.png" /></p>
 
 
 
@@ -1416,8 +1416,8 @@
     <div class="md-footer-meta__inner">
 
       <div>
-        <a href="https://tahe.developpez.com" target="_blank">
-          https://tahe.developpez.com
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
         </a>
         <br>
         This tutorial written by <strong>Serge Tahé</strong> is made available to the public under the terms of the

@@ -969,17 +969,17 @@
 
 
 
-<p><a id="refheadingtoc19179436505072"></a>
-<a id="toc42690963"></a>
+<p><a id="toc42690191"></a>
 <a id="toc42690577"></a>
-<a id="toc42690191"></a></p>
+<a id="toc42690963"></a>
+<a id="refheadingtoc19179436505072"></a></p>
 <h1 id="24-application-exercise-version-13">24. <span style="color: #365f91">Application Exercise – Version 13</span></h1>
 <p>Version 13 brings few changes: it secures access to the application’s files.</p>
 <p>With version 12, you can request the following URL <strong>[http://localhost/php7/scripts-web/impots/version-12/config.json]</strong>. You then get the following page (Firefox):</p>
-<p><img src="images/10000000000006580000045C9B48B366.png" style="width:12.891cm;height:8.858cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006580000045C9B48B366.png" /></p>
+<p><img src="images/10000000000006580000045C9B48B366.png" width="487" height="335" style="width:12.891cm;height:8.858cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006580000045C9B48B366.png" /></p>
 <p>However, this file <strong>[config.json]</strong> contains sensitive information such as the credentials of users authorized to use the application. It must not be accessible to users. The same applies to all application files except for the files <strong>[main.php, index.php, Views/logo.jpg]</strong>, which must be accessible from the outside. This is because the views need HTTP access to the application logo. Version 13 provides a simple solution to this problem.</p>
 <p>In NetBeans, we copy and paste the <strong>[version-12]</strong> folder into <strong>[version-13]</strong>:</p>
-<p><img src="images/10000000000002EC000002AEA4603D04.png" style="width:6.93cm;height:6.357cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002EC000002AEA4603D04.png" /></p>
+<p><img src="images/10000000000002EC000002AEA4603D04.png" width="262" height="240" style="width:6.93cm;height:6.357cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000002EC000002AEA4603D04.png" /></p>
 <ul>
   <li>in <b>[1]</b>, in the application’s root folder, we leave only the scripts <b>[index.php, main.php]</b>;
   </li>
@@ -990,22 +990,22 @@
 </ul>
 
 <p>The HTTP server used here is an Apache server. This allows us to control access to a folder via an <strong>[.htaccess]</strong> file. In all folders where we want to prevent direct access via URL, we create the following <strong>[.htaccess]</strong> file:</p>
-<p><img src="images/10000000000001D6000000E31188E69B.png" style="width:4.352cm;height:2.101cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D6000000E31188E69B.png" /></p>
+<p><img src="images/10000000000001D6000000E31188E69B.png" width="164" height="79" style="width:4.352cm;height:2.101cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D6000000E31188E69B.png" /></p>
 <p>These two lines prevent anyone from accessing the folder.</p>
 <p>We place this file in all application folders except the root folder and the <strong>[Resources]</strong> folder. Ultimately, only three files are accessible from the outside: <strong>[index.php, main.php, Resources/logo.jpg]</strong>.</p>
 <p>Let’s run a few tests:</p>
-<p><img src="images/10000000000005920000018FB6DCE398.png" style="width:11.321cm;height:3.168cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005920000018FB6DCE398.png" /></p>
-<p><img src="images/10000000000005A100000182C1122D08.png" style="width:11.441cm;height:3.066cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005A100000182C1122D08.png" /></p>
-<p><img src="images/10000000000004F1000001F154479962.png" style="width:10.042cm;height:3.946cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004F1000001F154479962.png" /></p>
-<p><img src="images/10000000000007AE000001896A5FFAC4.png" style="width:15.61cm;height:3.12cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000007AE000001896A5FFAC4.png" /></p>
-<p><img src="images/1000000000000785000004EF0895F026.png" style="width:15.281cm;height:10.026cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000785000004EF0895F026.png" /></p>
+<p><img src="images/10000000000005920000018FB6DCE398.png" width="428" height="120" style="width:11.321cm;height:3.168cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005920000018FB6DCE398.png" /></p>
+<p><img src="images/10000000000005A100000182C1122D08.png" width="432" height="116" style="width:11.441cm;height:3.066cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005A100000182C1122D08.png" /></p>
+<p><img src="images/10000000000004F1000001F154479962.png" width="380" height="149" style="width:10.042cm;height:3.946cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004F1000001F154479962.png" /></p>
+<p><img src="images/10000000000007AE000001896A5FFAC4.png" width="590" height="118" style="width:15.61cm;height:3.12cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000007AE000001896A5FFAC4.png" /></p>
+<p><img src="images/1000000000000785000004EF0895F026.png" width="578" height="379" style="width:15.281cm;height:10.026cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000785000004EF0895F026.png" /></p>
 <p>A few changes need to be made to the code:</p>
 <p>In the <strong>[Config/config.json]</strong> file:</p>
-<p><img src="images/10000000000005FD0000015815E67B6D.png" style="width:12.173cm;height:2.731cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005FD0000015815E67B6D.png" /></p>
+<p><img src="images/10000000000005FD0000015815E67B6D.png" width="460" height="103" style="width:12.173cm;height:2.731cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005FD0000015815E67B6D.png" /></p>
 <p>In the <strong>[main.php]</strong> file:</p>
-<p><img src="images/10000000000003E00000012AB07990C0.png" style="width:7.87cm;height:2.364cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003E00000012AB07990C0.png" /></p>
+<p><img src="images/10000000000003E00000012AB07990C0.png" width="297" height="89" style="width:7.87cm;height:2.364cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003E00000012AB07990C0.png" /></p>
 <p>In the <strong>[Views/v-banner.php]</strong> file:</p>
-<p><img src="images/100000000000054D000001F996BE412E.png" style="width:10.77cm;height:4.008cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000054D000001F996BE412E.png" /></p>
+<p><img src="images/100000000000054D000001F996BE412E.png" width="407" height="151" style="width:10.77cm;height:4.008cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000054D000001F996BE412E.png" /></p>
 
 
 
@@ -1041,8 +1041,8 @@
     <div class="md-footer-meta__inner">
 
       <div>
-        <a href="https://tahe.developpez.com" target="_blank">
-          https://tahe.developpez.com
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
         </a>
         <br>
         This tutorial written by <strong>Serge Tahé</strong> is made available to the public under the terms of the
