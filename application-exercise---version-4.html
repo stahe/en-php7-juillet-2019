@@ -12,13 +12,13 @@
         <meta name="author" content="Serge Tahé">
       
       
-        <link rel="canonical" href="https://stahe.github.io/en-php7-juillet-2019/practice-exercise---version-4.html">
+        <link rel="canonical" href="https://stahe.github.io/en-php7-juillet-2019/application-exercise---version-4.html">
       
       
         <link rel="prev" href="layered-applications.html">
       
       
-        <link rel="next" href="using-the-mysql-dbms.html">
+        <link rel="next" href="using-sgbd-and-mysql.html">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>11. Practice Exercise – Version 4 - An Introduction to PHP7 Through Examples</title>
+        <title>11. Application Exercise – version 4 - An Introduction to PHP7 Through Examples</title>
       
     
     
@@ -56,6 +56,8 @@
     
     
       <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
     
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -92,7 +94,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#11-practice-exercise-version-4" class="md-skip">
+        <a href="#11-application-exercise-version-4" class="md-skip">
           Skip to content
         </a>
       
@@ -128,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              11. Practice Exercise – Version 4
+              11. Application Exercise – version 4
             
           </span>
         </div>
@@ -303,14 +305,14 @@
   
   
     <li class="md-nav__item">
-      <a href="introduction-to-php-7.html" class="md-nav__link">
+      <a href="introduction-to-the-php-7-language.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    1. Introduction to PHP 7
+    1. Introduction to the PHP 7 language
   
 
     
@@ -330,14 +332,14 @@
   
   
     <li class="md-nav__item">
-      <a href="setting-up-a-development-environment.html" class="md-nav__link">
+      <a href="setting-up-a-working-environment.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    2. Setting up a development environment
+    2. Setting up a working environment
   
 
     
@@ -384,14 +386,14 @@
   
   
     <li class="md-nav__item">
-      <a href="practice-exercise---versions-1-and-2.html" class="md-nav__link">
+      <a href="application-exercise---versions-1-and-2.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    4. Practice Exercise – Versions 1 and 2
+    4. Application Exercise – Versions 1 and 2
   
 
     
@@ -499,7 +501,7 @@
   <span class="md-ellipsis">
     
   
-    8. Application Exercise – Version 3
+    8. Application Exercise – version 3
   
 
     
@@ -589,7 +591,7 @@
   <span class="md-ellipsis">
     
   
-    11. Practice Exercise – Version 4
+    11. Application Exercise – version 4
   
 
     
@@ -600,14 +602,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="practice-exercise---version-4.html" class="md-nav__link md-nav__link--active">
+      <a href="application-exercise---version-4.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    11. Practice Exercise – Version 4
+    11. Application Exercise – version 4
   
 
     
@@ -633,10 +635,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#111-script-tree" class="md-nav__link">
+  <a href="#111-script-tree-structure" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11.1. Script Tree
+        11.1. Script Tree Structure
       
     </span>
   </a>
@@ -658,12 +660,12 @@
   <a href="#113-the-dao-layer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11.3. The [DAO] layer
+        11.3. The [dao] layer
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="11.3. The [DAO] layer">
+    <nav class="md-nav" aria-label="11.3. The [dao] layer">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -678,10 +680,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1132-the-traitdao-trait" class="md-nav__link">
+  <a href="#1132-the-trait-traitdao" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11.3.2. The [TraitDao] trait
+        11.3.2. The trait [TraitDao]
       
     </span>
   </a>
@@ -705,15 +707,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#114-the-business-layer" class="md-nav__link">
+  <a href="#114-the-metier-layer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11.4. The [business] layer
+        11.4. The [métier] layer
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="11.4. The [business] layer">
+    <nav class="md-nav" aria-label="11.4. The [métier] layer">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -728,10 +730,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1142-the-business-class" class="md-nav__link">
+  <a href="#1142-the-metier-class" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11.4.2. The [Business] class
+        11.4.2. The [Metier] class
       
     </span>
   </a>
@@ -767,10 +769,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#1161-test-1" class="md-nav__link">
+  <a href="#1161-test-no-1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11.6.1. Test #1
+        11.6.1. Test No. 1
       
     </span>
   </a>
@@ -794,15 +796,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#117-tests-codeception" class="md-nav__link">
+  <a href="#117-codeception-tests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11.7. Tests [Codeception]
+        11.7. [Codeception] Tests
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="11.7. Tests [Codeception]">
+    <nav class="md-nav" aria-label="11.7. [Codeception] Tests">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -820,7 +822,7 @@
   <a href="#1172-integrating-codeception-into-netbeans" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11.7.2. Integrating [Codeception] into NetBeans
+        11.7.2. Integrating [CodeCeption] into Netbeans
       
     </span>
   </a>
@@ -828,10 +830,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1173-tests-for-the-dao-layer" class="md-nav__link">
+  <a href="#1173-dao-layer-tests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11.7.3. Tests for the [dao] layer
+        11.7.3. [dao] Layer Tests
       
     </span>
   </a>
@@ -839,10 +841,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#1174-business-layer-tests" class="md-nav__link">
+  <a href="#1174-tests-for-the-metier-layer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        11.7.4. [Business] Layer Tests
+        11.7.4. Tests for the [métier] layer
       
     </span>
   </a>
@@ -880,14 +882,14 @@
   
   
     <li class="md-nav__item">
-      <a href="using-the-mysql-dbms.html" class="md-nav__link">
+      <a href="using-sgbd-and-mysql.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    12. Using the MySQL DBMS
+    12. Using SGBD and MySQL
   
 
     
@@ -914,7 +916,7 @@
   <span class="md-ellipsis">
     
   
-    13. Practical Exercise – Version 5
+    13. Practical Exercise – version 5
   
 
     
@@ -934,14 +936,14 @@
   
   
     <li class="md-nav__item">
-      <a href="application-exercise---version-6.html" class="md-nav__link">
+      <a href="practice-exercise---version-6.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    14. Application Exercise – Version 6
+    14. Practice Exercise – version 6
   
 
     
@@ -968,7 +970,7 @@
   <span class="md-ellipsis">
     
   
-    15. Application Exercise – Version 7
+    15. Application Exercise – version 7
   
 
     
@@ -995,7 +997,7 @@
   <span class="md-ellipsis">
     
   
-    16. Network Functions
+    16. Network functions
   
 
     
@@ -1042,14 +1044,14 @@
   
   
     <li class="md-nav__item">
-      <a href="practice-exercise---version-8.html" class="md-nav__link">
+      <a href="practical-exercise---version-8.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    18. Practice Exercise – Version 8
+    18. Practical Exercise – version 8
   
 
     
@@ -1076,7 +1078,7 @@
   <span class="md-ellipsis">
     
   
-    19. Application Exercise – Version 9
+    19. Application Exercise – version 9
   
 
     
@@ -1103,7 +1105,7 @@
   <span class="md-ellipsis">
     
   
-    20. Application Exercise – Version 10
+    20. Application Exercise – version 10
   
 
     
@@ -1130,7 +1132,7 @@
   <span class="md-ellipsis">
     
   
-    21. Processing XML Documents
+    21. Processing XML documents
   
 
     
@@ -1157,7 +1159,7 @@
   <span class="md-ellipsis">
     
   
-    22. Application Exercise – Version 11
+    22. Application Exercise – version 11
   
 
     
@@ -1184,7 +1186,7 @@
   <span class="md-ellipsis">
     
   
-    23. Practical Exercise – Version 12
+    23. Practical Exercise – version 12
   
 
     
@@ -1211,7 +1213,7 @@
   <span class="md-ellipsis">
     
   
-    24. Application Exercise – Version 13
+    24. Application Exercise – version 13
   
 
     
@@ -1241,63 +1243,28 @@
 
 
 
-<p><a id="toc42690193-copie-1"></a>
-<a id="toc42690579-copie-1"></a>
-<a id="toc42689807-copie-1"></a>
-<a id="toc42689810-copie-1"></a>
-<a id="toc42690196-copie-1"></a>
-<a id="toc42690582-copie-1"></a>
-<a id="refheading398461881943603-copie-1"></a>
-<a id="toc42689834-copie-1"></a>
-<a id="toc42690220-copie-1"></a>
-<a id="toc42690606-copie-1"></a>
-<a id="refheading398821881943603-copie-1"></a>
-<a id="toc42689853-copie-1"></a>
-<a id="toc42690239-copie-1"></a>
-<a id="toc42690625-copie-1"></a>
-<a id="refheading398901881943603-copie-1"></a>
-<a id="toc42689873-copie-1"></a>
-<a id="toc42690259-copie-1"></a>
-<a id="toc42690645-copie-1"></a>
-<a id="refheading49023760291743-copie-1"></a>
-<a id="toc42689878-copie-1"></a>
-<a id="toc42690264-copie-1"></a>
-<a id="toc42690650-copie-1"></a>
-<a id="refheadingtoc55563710956990-copie-1"></a>
-<a id="refheading399101881943603-copie-1"></a>
-<a id="toc42689890-copie-1"></a>
-<a id="toc42690276-copie-1"></a>
-<a id="toc42690662-copie-1"></a>
-<a id="toc42689899-copie-1"></a>
-<a id="toc42690285-copie-1"></a>
-<a id="toc42690671-copie-1"></a>
-<a id="refheadingtoc788212244347140-copie-1"></a>
-<a id="toc42689907-copie-1"></a>
-<a id="toc42690293-copie-1"></a>
-<a id="toc42690679-copie-1"></a>
-<a id="refheadingtoc788352244347140-copie-1"></a>
-<a id="toc42689913"></a>
-<a id="toc42690299"></a>
-<a id="toc42690685"></a>
-<a id="refheadingtoc788472244347140"></a></p>
-<h1 id="11-practice-exercise-version-4">11. <span style="color: #365f91">Practice Exercise – Version 4</span></h1>
-<p>The tax calculation application will implement the following layered architecture:</p>
-<p><img src="images/10000000000005400000010219E9B6A0.png" width="403" height="77" style="width:10.672cm;height:2.048cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005400000010219E9B6A0.png" /></p>
-<p>We will reuse the elements from version 3 of the <a href="#exercicedapplication-"><u><span style="color: #0563c1">linked</span></u></a> section, modifying them to adapt them to the application’s new architecture. This is sometimes called “refactoring.” Here, we assume that the data required by the application is stored in text files. The <strong>[Dao]</strong> layer will handle interactions with these files.</p>
-<p><a id="toc42689914"></a>
-<a id="toc42690300"></a>
-<a id="toc42690686"></a>
-<a id="refheadingtoc788492244347140"></a></p>
-<h2 id="111-script-tree">11.1. <span style="color: #4f81bd">Script Tree</span></h2>
+<p><span id="refheadingtoc788472244347140" name="refheadingtoc788472244347140" class="odt-bookmark-anchor"></span>
+<span id="toc42690685" name="toc42690685" class="odt-bookmark-anchor"></span>
+<span id="toc42690299" name="toc42690299" class="odt-bookmark-anchor"></span>
+<span id="toc42689913" name="toc42689913" class="odt-bookmark-anchor"></span></p>
+<h1 id="11-application-exercise-version-4">11. <span style="color: #365f91"><strong>Application Exercise – version 4</strong></span></h1>
+<p>The tax calculation application will implement the following layered structure:</p>
+<p><img src="images/10000000000005400000010219E9B6A0.png" width="403" height="77" style="width:10.672cm;height:2.05cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005400000010219E9B6A0.png" /></p>
+<p>We will reuse the elements from version 3 in the <a href="application-exercise---version-3.html#exercicedapplication-"><u><span style="color: #0563c1">linked</span></u></a> section, modifying them to adapt them to the application’s new architecture. This is sometimes called “refactoring.” Here, we assume that the data required by the application is stored in text files. The <strong>[Dao]</strong> layer will handle interactions with these files.</p>
+<p><span id="refheadingtoc788492244347140" name="refheadingtoc788492244347140" class="odt-bookmark-anchor"></span>
+<span id="toc42690686" name="toc42690686" class="odt-bookmark-anchor"></span>
+<span id="toc42690300" name="toc42690300" class="odt-bookmark-anchor"></span>
+<span id="toc42689914" name="toc42689914" class="odt-bookmark-anchor"></span></p>
+<h2 id="111-script-tree-structure">11.1. <span style="color: #4f81bd">Script Tree Structure</span></h2>
 <p><img src="images/1000000000000244000001DF217D51D2.png" width="203" height="168" style="width:5.369cm;height:4.434cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000244000001DF217D51D2.png" /></p>
-<p><a id="objetsechangesentre"></a>
-<a id="refheadingtoc1503253837603249"></a>
-<a id="toc42689915"></a>
-<a id="toc42690301"></a>
-<a id="toc42690687"></a></p>
+<p><span id="toc42690687" name="toc42690687" class="odt-bookmark-anchor"></span>
+<span id="toc42690301" name="toc42690301" class="odt-bookmark-anchor"></span>
+<span id="toc42689915" name="toc42689915" class="odt-bookmark-anchor"></span>
+<span id="refheadingtoc1503253837603249" name="refheadingtoc1503253837603249" class="odt-bookmark-anchor"></span>
+<span id="objetsechangesentre" name="objetsechangesentre" class="odt-bookmark-anchor"></span></p>
 <h2 id="112-objects-exchanged-between-layers">11.2. <span style="color: #4f81bd">Objects exchanged between layers</span></h2>
 <p><span style="color: #000000">We will retain certain objects from version 3. We list them here as a reminder.</span></p>
-<p><span style="color: #000000">The </span><strong><span style="color: #000000">[ExceptionImpots] </span></strong><span style="color: #000000">exception is the exception that the </span><strong><span style="color: #000000">[Dao] </span></strong><span style="color: #000000">layer will throw when it encounters a problem either with data access or with the nature of the data (incorrect data).</span></p>
+<p><span style="color: #000000">The </span><strong><span style="color: #000000">[ExceptionImpots]</span></strong><span style="color: #000000"> exception is the exception that the </span><strong><span style="color: #000000">[Dao]</span></strong><span style="color: #000000"> layer will throw when it encounters a problem either with data access or with the nature of the data (incorrect data).</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -1313,7 +1280,7 @@
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
 </code></pre></div>
 
-<p><span style="color: #000000">The </span><strong><span style="color: #000000">[Utilities] </span></strong><span style="color: #000000">class contains methods useful for managing text files (in this case, a single method):</span></p>
+<p><span style="color: #000000">The </span><strong><span style="color: #000000">[Utilitaires]</span></strong><span style="color: #000000"> class contains methods useful for managing text files (in this case, a single method):</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -1337,7 +1304,7 @@
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
 </code></pre></div>
 
-<p><span style="color: #000000">The </span><strong><span style="color: #000000">[TaxAdminData] </span></strong><span style="color: #000000">class is the class that encapsulates tax administration data:</span></p>
+<p><span style="color: #000000">The </span><strong><span style="color: #000000">[TaxAdminData]</span></strong><span style="color: #000000"> class is the class that encapsulates the tax administration data:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -1376,7 +1343,7 @@
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// toString</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">  <span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span> __toString() {</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// object&#x27;s Json string</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// string Json of object</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="font-weight:bold;color:#7f0055">return </span>\json_encode(\get_object_vars($this), <span style="color:#0000c0">JSON_UNESCAPED_UNICODE</span>);</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -1443,7 +1410,7 @@
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// toString</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">  <span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span> __toString() {</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// object&#x27;s Json string</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// string Json of object</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="font-weight:bold;color:#7f0055">return </span>\json_encode(\get_object_vars($this), <span style="color:#0000c0">JSON_UNESCAPED_UNICODE</span>);</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -1451,20 +1418,20 @@
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
 </code></pre></div>
 
-<p><strong><span style="color: #000000">Note</span></strong><span style="color: #000000">: Use automatic code generation to generate the constructor, getters, and setters (see the </span><a href="#laclassetaxadmindata"><u><span style="color: #0563c1">linked</span></u></a><span style="color: #000000"> section). Note that the setters are ‘fluent’.</span></p>
-<p><a id="toc42689916"></a>
-<a id="toc42690302"></a>
-<a id="toc42690688"></a>
-<a id="refheadingtoc788512244347140"></a></p>
-<h2 id="113-the-dao-layer">11.3. <span style="color: #4f81bd">The [DAO] layer</span></h2>
-<p><span style="color: #000000">Here we are focusing on the </span><strong><span style="color: #000000">[1] </span></strong><span style="color: #000000">layer of our application:</span></p>
+<p><strong><span style="color: #000000">Note</span></strong><span style="color: #000000">: Use automatic code generation to generate the constructor, getters, and setters (see </span><a href="application-exercise---version-3.html#laclassetaxadmindata"><u><span style="color: #0563c1">linked</span></u></a><span style="color: #000000"> section). Note that the setters are ‘fluent’.</span></p>
+<p><span id="refheadingtoc788512244347140" name="refheadingtoc788512244347140" class="odt-bookmark-anchor"></span>
+<span id="toc42690688" name="toc42690688" class="odt-bookmark-anchor"></span>
+<span id="toc42690302" name="toc42690302" class="odt-bookmark-anchor"></span>
+<span id="toc42689916" name="toc42689916" class="odt-bookmark-anchor"></span></p>
+<h2 id="113-the-dao-layer">11.3. <span style="color: #4f81bd"><strong>The</strong> [dao] <strong>layer</strong></span></h2>
+<p><span style="color: #000000">Here we are focusing on the </span><strong><span style="color: #000000">[1]</span></strong><span style="color: #000000"> layer of our application:</span></p>
 <p><img src="images/100000000000052F000000EA070F6D66.png" width="398" height="70" style="width:10.53cm;height:1.857cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000052F000000EA070F6D66.png" /></p>
-<p><a id="toc42689917"></a>
-<a id="toc42690303"></a>
-<a id="toc42690689"></a>
-<a id="refheadingtoc788532244347140"></a></p>
-<h3 id="1131-the-interfacedao-interface">11.3.1. <span style="color: #4f81bd">The [InterfaceDao] interface</span></h3>
-<p><span style="color: #000000">The interface for the </span><strong><span style="color: #000000">[DAO] </span></strong><span style="color: #000000">layer will be as follows </span><strong><span style="color: #000000">[InterfaceDao.php]</span></strong><span style="color: #000000">:</span></p>
+<p><span id="refheadingtoc788532244347140" name="refheadingtoc788532244347140" class="odt-bookmark-anchor"></span>
+<span id="toc42690689" name="toc42690689" class="odt-bookmark-anchor"></span>
+<span id="toc42690303" name="toc42690303" class="odt-bookmark-anchor"></span>
+<span id="toc42689917" name="toc42689917" class="odt-bookmark-anchor"></span></p>
+<h3 id="1131-the-interfacedao-interface">11.3.1. <span style="color: #4f81bd"><strong>The</strong> [InterfaceDao] <strong>interface</strong></span></h3>
+<p><span style="color: #000000">The interface for the </span><strong><span style="color: #000000">[dao]</span></strong><span style="color: #000000"> layer will be as follows: </span><strong><span style="color: #000000">[InterfaceDao.php]</span></strong><span style="color: #000000">:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -1493,15 +1460,15 @@
       </li>
       <li><span style="color: #000000">the results of the tax calculation are saved in a text file;</span>
       </li>
-      <li><span style="color: #000000">Any errors are saved in a text file;</span>
+      <li><span style="color: #000000">any errors are saved in a text file;</span>
       </li>
-      <li><span style="color: #000000">it is unknown in what format the tax authority’s data is available. For each new format, the </span><b><span style="color: #000000">[InterfaceDao] </span></b><span style="color: #000000">interface must be implemented by a new class;</span>
+      <li><span style="color: #000000">it is unknown in what format the tax authority’s data is available. For each new format, the </span><b><span style="color: #000000">[InterfaceDao]</span></b><span style="color: #000000"> interface must be implemented by a new class;</span>
       </li>
-      <li><span style="color: #000000">methods of the interface that encounter a fatal error when accessing data must throw an exception of type </span><b><span style="color: #000000">[TaxException]</span></b><span style="color: #000000">;</span>
+      <li><span style="color: #000000">methods of the interface that encounter a fatal error when accessing data must throw an exception of type </span><b><span style="color: #000000">[ExceptionImpots]</span></b><span style="color: #000000">;</span>
       </li>
     </ul>
   </li>
-  <li><span style="color: #000000">line 9: the method that retrieves the taxpayer’s data </span><b><span style="color: #000000">[marital status, number of children, annual salary]</span></b><span style="color: #000000">;</span>
+  <li><span style="color: #000000">line 9: the method that retrieves taxpayer data </span><b><span style="color: #000000">[statut marital, nombre d’enfants, salaire annuel]</span></b><span style="color: #000000">;</span>
     <ul>
       <li><span style="color: #000000">the first parameter is the name of the text file containing this data;</span>
       </li>
@@ -1509,27 +1476,27 @@
       </li>
     </ul>
   </li>
-  <li><span style="color: #000000">line 12: the method that retrieves data from the tax authority. No parameters are passed here because we do not know how the data is stored;</span>
+  <li><span style="color: #000000">line 12: the method used to retrieve data from the tax authority. No parameters are passed here because we do not know how the data is stored;</span>
   </li>
   <li><span style="color: #000000">line 15: the method used to save the tax calculation results to a text file, the name of which is passed as a parameter;</span>
   </li>
 </ul>
 
-<p><span style="color: #000000">When writing the </span><strong><span style="color: #000000">[InterfaceDao] </span></strong><span style="color: #000000">interface, we know that there will be different ways to implement the </span><strong><span style="color: #000000">[getTaxAdminData] </span></strong><span style="color: #000000">method depending on how the tax administration data is stored. The </span><strong><span style="color: #000000">[InterfaceDao] </span></strong><span style="color: #000000">interface will therefore be implemented by different classes, each handling a specific storage method for this data (arrays, text files, databases, web services). These derived classes will nevertheless share common code, specifically the implementation of the </span><strong><span style="color: #000000">[getTaxPayersData] and [saveResults] </span></strong><span style="color: #000000">methods. We know that this use case can be implemented in two ways (see </span><a href="#utiliseruntrait"><u><span style="color: #0563c1">linked</span></u></a><span style="color: #000000"> paragraph):</span></p>
+<p><span style="color: #000000">When writing the </span><strong><span style="color: #000000">[InterfaceDao]</span></strong><span style="color: #000000"> interface, we know that there will be different ways to implement the </span><strong><span style="color: #000000">[getTaxAdminData]</span></strong><span style="color: #000000"> method depending on how the tax administration data is stored. The </span><strong><span style="color: #000000">[InterfaceDao]</span></strong><span style="color: #000000"> interface will therefore be implemented by different classes, each handling a specific storage format for this data (arrays, text files, databases, web services). These derived classes will nevertheless share common code, namely the implementation of the </span><strong><span style="color: #000000">[getTaxPayersData, saveResults]</span></strong><span style="color: #000000"> methods. We know that this use case can be implemented in two ways (see </span><a href="traits.html#utiliseruntrait"><u><span style="color: #0563c1">linked</span></u></a><span style="color: #000000"> paragraph):</span></p>
 <ol>
   <li>We create an <b>abstract</b> class <b>C </b>that contains the code common to the derived classes. Class C implements interface I, but certain methods that must be declared in the derived classes are declared as abstract in class C, and therefore class C itself is abstract. We then create classes C1 and C2 derived from C, each of which implements the undefined (abstract) methods of their parent class C in their own way;
   </li>
-  <li>we create a <b>trait T that is </b>nearly identical to the abstract class C from the previous solution. This trait does not implement the interface I because, syntactically, it cannot.  We then create classes C1 and C2 that implement the interface I and use the trait T. All that remains for these classes is to implement the methods of the interface I that are not implemented by the trait T they import;
+  <li>we create a <b>trait T that is </b>nearly identical to the abstract class C from the previous solution. This trait does not implement the interface I because, syntactically, it cannot.  We then create classes C1 and C2 that implement interface I and use trait T. All that remains for these classes is to implement the methods of interface I that are not implemented by the trait T they import;
   </li>
 </ol>
 
-<p>For this example, we will use a trait <strong>[TraitDao]</strong> here.</p>
-<p><a id="toc42689918"></a>
-<a id="toc42690304"></a>
-<a id="toc42690690"></a>
-<a id="refheadingtoc788552244347140"></a></p>
-<h3 id="1132-the-traitdao-trait">11.3.2. <span style="color: #4f81bd">The [TraitDao] trait</span></h3>
-<p>The code for the <strong>[TraitDao]</strong> trait is as follows <strong>[TraitDao.php]</strong>:</p>
+<p>For this example, we will use trait <strong>[TraitDao]</strong>.</p>
+<p><span id="refheadingtoc788552244347140" name="refheadingtoc788552244347140" class="odt-bookmark-anchor"></span>
+<span id="toc42690690" name="toc42690690" class="odt-bookmark-anchor"></span>
+<span id="toc42690304" name="toc42690304" class="odt-bookmark-anchor"></span>
+<span id="toc42689918" name="toc42689918" class="odt-bookmark-anchor"></span></p>
+<h3 id="1132-the-trait-traitdao">11.3.2. <span style="color: #4f81bd"><strong>The trait</strong> [TraitDao]</span></h3>
+<p>The code for trait <strong>[TraitDao]</strong> is as follows: <strong>[TraitDao.php]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -1643,41 +1610,41 @@
 
 <p><strong><span style="color: #000000">Comments</span></strong></p>
 <ul>
-  <li><span style="color: #000000">line 6: here we define a </span><b><span style="color: #000000">trait</span></b><span style="color: #000000">, not a </span><b><span style="color: #000000">class</span></b><span style="color: #000000">;</span>
+  <li><span style="color: #000000">line 6: here we are defining a </span><b><span style="color: #000000">trait</span></b><span style="color: #000000">, not a </span><b><span style="color: #000000">class</span></b><span style="color: #000000">;</span>
   </li>
-  <li><span style="color: #000000">lines 9–89: The </span><b><span style="color: #000000">[getTaxPayersData] </span></b><span style="color: #000000">method implements the method of the same name from the </span><b><span style="color: #000000">[InterfaceDao] </span></b><span style="color: #000000">interface. It retrieves taxpayer data </span><b><span style="color: #000000">[marital status, number of children, annual salary] </span></b><span style="color: #000000">from a text file named </span><b><span style="color: #000000">[$taxPayersFilename]</span></b><span style="color: #000000">. It returns this data as an array </span><b><span style="color: #000000">[$taxPayersData] </span></b><span style="color: #000000">of elements of type </span><b><span style="color: #000000">[TaxPayerData] </span></b><span style="color: #000000">(lines 67, 81);</span>
+  <li><span style="color: #000000">Lines 9–89: The method </span><b><span style="color: #000000">[getTaxPayersData] </span></b><span style="color: #000000">implements the method of the same name from the </span><b><span style="color: #000000">[InterfaceDao]</span></b><span style="color: #000000"> interface. It retrieves the </span><b><span style="color: #000000">[statut marital, nombre d’enfants, salaire annuel]</span></b><span style="color: #000000"> taxpayer data into a text file named </span><b><span style="color: #000000">[$taxPayersFilename]</span></b><span style="color: #000000">. It returns this data in the form of a </span><b><span style="color: #000000">[$taxPayersData]</span></b><span style="color: #000000"> array of elements of type </span><b><span style="color: #000000">[TaxPayerData] </span></b><span style="color: #000000">(lines 67, 81);</span>
   </li>
-  <li><span style="color: #000000">the </span><b><span style="color: #000000">[getTaxPayersData] </span></b><span style="color: #000000">method is very similar to the </span><b><span style="color: #000000">[AbstractBaseImpots::executeBatchImpots] </span></b><span style="color: #000000">method described in the </span><a href="#laclasseabstraite"><u><span style="color: #0563c1">linked</span></u></a><span style="color: #000000"> section, with the following differences:</span>
+  <li><span style="color: #000000">The method </span><b><span style="color: #000000">[getTaxPayersData] </span></b><span style="color: #000000">is very similar to the method </span><b><span style="color: #000000">[AbstractBaseImpots::executeBatchImpots] </span></b><span style="color: #000000">described in the &quot;</span><a href="application-exercise---version-3.html#laclasseabstraite"><u><span style="color: #0563c1">Link&quot;</span></u></a><span style="color: #000000"> section, with the following differences:</span>
     <ul>
-      <li><span style="color: #000000">the </span><b><span style="color: #000000">[getTaxPayersData] </span></b><span style="color: #000000">method only retrieves taxpayer data. </span><b><span style="color: #000000">It does not perform any tax calculations</span></b><span style="color: #000000">. Here, that is the role of the </span><b><span style="color: #000000">[business] </span></b><span style="color: #000000">layer;</span>
+      <li><span style="color: #000000">The </span><b><span style="color: #000000">[getTaxPayersData]</span></b><span style="color: #000000"> method only retrieves taxpayer data. </span><b><span style="color: #000000">It does not perform tax calculations</span></b><span style="color: #000000">. This is the role of the </span><b><span style="color: #000000">[métier]</span></b><span style="color: #000000"> layer;</span>
       </li>
-      <li><span style="color: #000000">Just like the </span><b><span style="color: #000000">[executeBatchImpots]</span></b><span style="color: #000000"> method, it reports errors. Here, errors are first stored in an array </span><b><span style="color: #000000">[$errors] </span></b><span style="color: #000000">(line 13), which is then saved to a text file at the end of the process (line 79). Depending on the situation, this array may or may not be empty;</span>
+      <li><span style="color: #000000">like the </span><b><span style="color: #000000">[executeBatchImpots]</span></b><span style="color: #000000"> method, it reports errors. Here, errors are first stored in an array </span><b><span style="color: #000000">[$errors] </span></b><span style="color: #000000">(line 13), which is saved to a text file at the end of processing (line 79). Depending on the situation, it may or may not be empty;</span>
       </li>
-      <li><span style="color: #000000">in the case of a fatal error, an </span><b><span style="color: #000000">[ExceptionImpots] </span></b><span style="color: #000000">exception is thrown (lines 20, 75);</span>
+      <li><span style="color: #000000">in the case of a fatal error, a </span><b><span style="color: #000000">[ExceptionImpots]</span></b><span style="color: #000000"> exception is thrown (lines 20, 75);</span>
       </li>
     </ul>
   </li>
-  <li><span style="color: #000000">line 73: note the processing performed upon exiting the loop in lines 26–71. Indeed, the </span><b><span style="color: #000000">[fgets] </span></b><span style="color: #000000">function has the drawback of returning the boolean value FALSE both when reading lines encounters the end-of-file marker and when reading fails due to an error. To distinguish between the two cases, we check whether we have reached the end of the file using the </span><b><span style="color: #000000">[feof] </span></b><span style="color: #000000">function. If we have not reached the end of the file, it means an error has occurred, and we then throw an exception;</span>
+  <li><span style="color: #000000">line 73: note the processing performed upon exiting the loop in lines 26–71. In fact, the </span><b><span style="color: #000000">[fgets]</span></b><span style="color: #000000"> function has the drawback of setting the Boolean FALSE to true both when reading the lines has reached the end-of-file marker and when reading could not be completed due to an error. To distinguish between the two cases, we check whether we have reached the end of the file using the </span><b><span style="color: #000000">[feof]</span></b><span style="color: #000000"> function. If we have not reached the end of the file, it means an error has occurred, and we then throw an exception;</span>
   </li>
-  <li><span style="color: #000000">lines 83–88: the </span><b><span style="color: #000000">[finally] </span></b><span style="color: #000000">block is executed regardless of whether an exception occurred during file processing;</span>
+  <li><span style="color: #000000">lines 83–88: </span><b><span style="color: #000000">[finally] </span></b><span style="color: #000000">is executed regardless of whether an exception occurred during file processing;</span>
   </li>
-  <li><span style="color: #000000">line 85: if the file has been opened, then the file’s ‘handle’ </span><b><span style="color: #000000">[$taxPayersFile] </span></b><span style="color: #000000">has the Boolean value TRUE; otherwise, it is FALSE;</span>
+  <li><span style="color: #000000">line 85: if the file has been opened, then the file’s ‘handle’ </span><b><span style="color: #000000">[$taxPayersFile] </span></b><span style="color: #000000">has the Boolean value TRUE; otherwise, it has the value FALSE;</span>
   </li>
-  <li><span style="color: #000000">lines 99–105: the private method </span><b><span style="color: #000000">[saveString] </span></b><span style="color: #000000">used on line 79 to save the error array to a text file;</span>
+  <li><span style="color: #000000">lines 99–105: the private method </span><b><span style="color: #000000">[saveString] </span></b><span style="color: #000000">used on line 79 to save the error table to a text file;</span>
   </li>
-  <li><span style="color: #000000">line 99: the </span><b><span style="color: #000000">[saveString] </span></b><span style="color: #000000">method takes two parameters:</span>
+  <li><span style="color: #000000">line 99: the method </span><b><span style="color: #000000">[saveString] </span></b><span style="color: #000000">takes two parameters:</span>
     <ul>
       <li><b><span style="color: #000000">[string $filename], </span></b><span style="color: #000000">which is the name of the text file used to save the data;</span>
       </li>
-      <li><b><span style="color: #000000">[string $data]</span></b><span style="color: #000000">, which is the string to be saved to the text file. This string will be a sequence of lines terminated by the newline character \n;</span>
+      <li><b><span style="color: #000000">[string $data], </span></b><span style="color: #000000">which is the string to be saved in the text file. This string will be a set of lines terminated by the newline character \n;</span>
       </li>
     </ul>
   </li>
-  <li><span style="color: #000000">line 102: the PHP function </span><b><span style="color: #000000">[file_puts_contents] </span></b><span style="color: #000000">writes a string to a text file. It opens the file, writes the string to it, and closes the file. It returns FALSE if an error occurs;</span>
+  <li><span style="color: #000000">Line 102: The function PHP </span><b><span style="color: #000000">[file_puts_contents] </span></b><span style="color: #000000">writes a string to a text file. It opens the file, writes the string to it, and closes the file. It returns the boolean FALSE if an error occurred;</span>
   </li>
   <li><span style="color: #000000">line 103: if an error occurs, an exception is thrown;</span>
   </li>
-  <li><span style="color: #000000">lines 92–96: implementation of the </span><b><span style="color: #000000">[saveResults] </span></b><span style="color: #000000">method of the </span><b><span style="color: #000000">[InterfaceDao] </span></b><span style="color: #000000">interface. The private method </span><b><span style="color: #000000">[saveString] </span></b><span style="color: #000000">is used again. Here, the second parameter of </span><b><span style="color: #000000">[saveString] </span></b><span style="color: #000000">is a string constructed from the array </span><b><span style="color: #000000">[$taxPayersData]</span></b><span style="color: #000000">, whose elements are of type </span><b><span style="color: #000000">[TaxPayerData]</span></b><span style="color: #000000">. One might wonder what the result of the operation will be:</span>
+  <li><span style="color: #000000">lines 92–96: implementation of the </span><b><span style="color: #000000">[saveResults]</span></b><span style="color: #000000"> method of the </span><b><span style="color: #000000">[InterfaceDao]</span></b><span style="color: #000000"> interface. The private method </span><b><span style="color: #000000">[saveString]</span></b><span style="color: #000000"> is used again. Here, the second parameter of </span><b><span style="color: #000000">[saveString] </span></b><span style="color: #000000">is a string </span><span style="color: #000000">constructed from the array </span><b><span style="color: #000000">[$taxPayersData], </span></b><span style="color: #000000">whose elements are of type </span><b><span style="color: #000000">[TaxPayerData]</span></b><span style="color: #000000">. One might wonder what the result of the operation will be:</span>
   </li>
 </ul>
 
@@ -1685,10 +1652,10 @@
 <span class="odt-code-line"><span class="odt-code-line-content">implode(<span style="color:#008000">&quot;\n&quot;</span>,<span style="color:#008080"> </span>$taxPayersData)</span></span>
 </code></pre></div>
 
-<p><span style="color: #000000">We defined the following </span><strong><span style="color: #000000">[__toString] </span></strong><span style="color: #000000">method in the </span><strong><span style="color: #000000">[TaxPayerData] </span></strong><span style="color: #000000">class (see </span><a href="#objetsechangesentre"><u><span style="color: #0563c1">linked</span></u></a><span style="color: #000000"> section):</span></p>
+<p><span style="color: #000000">We have defined the following method </span><strong><span style="color: #000000">[__toString] </span></strong><span style="color: #000000">in the class </span><strong><span style="color: #000000">[TaxPayerData] </span></strong><span style="color: #000000">(</span><a href="#objetsechangesentre"><u><span style="color: #0563c1">link</span></u></a><span style="color: #000000"> paragraph):</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-markdown">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span><span style="color:#000000"> __toString() {</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// chaîne Json de l&#x27;objet</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// string Json of object</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">    </span><span style="font-weight:bold;color:#7f0055">return </span><span style="color:#000000">\</span><span style="font-style:italic;color:#000000">json_encode</span><span style="color:#000000">(\</span><span style="font-style:italic;color:#000000">get_object_vars</span><span style="color:#000000">($this), </span><span style="font-style:italic;color:#0000c0">JSON_UNESCAPED_UNICODE</span><span style="color:#000000">);</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
 </code></pre></div>
@@ -1698,11 +1665,11 @@
 <span class="odt-code-line"><span class="odt-code-line-content">implode(<span style="color:#008000">&quot;\n&quot;</span>,<span style="color:#008080"> </span>$taxPayersData)</span></span>
 </code></pre></div>
 
-<p><span style="color: #000000">will concatenate each element of the array </span><strong><span style="color: #000000">[$taxPayersData]—</span></strong><span style="color: #000000">converted to a string by its </span><strong><span style="color: #000000">[__toString] </span></strong><span style="color: #000000">method—with the newline character \n. This will result in a string of the form:</span></p>
+<p><span style="color: #000000">will concatenate each element of the array </span><strong><span style="color: #000000">[$taxPayersData]—</span></strong><span style="color: #000000">converted to a string by its method </span><strong><span style="color: #000000">[__toString]—</span></strong><span style="color: #000000">with the line break character \n. This will result in a string of the form:</span></p>
 <p><strong><span style="color: #000000"><mark style="background-color: #ffff00">json1</mark></span></strong><strong><span style="color: #000000"><mark style="background-color: #00a933">\</mark></span></strong><strong><span style="color: #000000"><mark style="background-color: #e0c2cd">njson2</mark></span></strong><strong><span style="color: #000000"><mark style="background-color: #00a933">\</mark></span></strong><span style="color: #000000">n…</span></p>
 <p><span style="color: #000000"> </span></p>
 <p><strong><span style="color: #000000">Conclusion</span></strong></p>
-<p><span style="color: #000000">The </span><strong><span style="color: #000000">[TraitDao] </span></strong><span style="color: #000000">trait has implemented two of the methods from the </span><strong><span style="color: #000000">[InterfaceDao] </span></strong><span style="color: #000000">interface, </span><strong><span style="color: #000000">[getTaxPayersData] </span></strong><span style="color: #000000">and </span><strong><span style="color: #000000">[saveResults]</span></strong><span style="color: #000000">:</span></p>
+<p><span style="color: #000000">The </span><strong><span style="color: #000000">[TraitDao]</span></strong><span style="color: #000000"> trait has implemented two of the methods from the </span><strong><span style="color: #000000">[InterfaceDao]</span></strong><span style="color: #000000"> interface, </span><strong><span style="color: #000000">[getTaxPayersData] </span></strong><span style="color: #000000">and </span><strong><span style="color: #000000">[saveResults]</span></strong><span style="color: #000000">:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -1723,14 +1690,14 @@
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
 </code></pre></div>
 
-<p><span style="color: #000000">We still need to implement the </span><strong><span style="color: #000000">[getTaxAdminData] </span></strong><span style="color: #000000">method, which retrieves data from the tax administration.</span></p>
-<p><a id="laclasseimpotswithtaxadmindatain"></a>
-<a id="refheadingtoc788572244347140"></a>
-<a id="toc42689919"></a>
-<a id="toc42690305"></a>
-<a id="toc42690691"></a></p>
-<h3 id="1133-the-impotswithtaxadmindatainjsonfile-class">11.3.3. <span style="color: #4f81bd">The [ImpotsWithTaxAdminDataInJsonFile] class</span></h3>
-<p><span style="color: #000000">The </span><strong><span style="color: #000000">[ImpotsWithTaxAdminDataInJsonFile] </span></strong><span style="color: #000000">class implements the </span><strong><span style="color: #000000">[InterfaceDao] </span></strong><span style="color: #000000">interface as follows:</span></p>
+<p><span style="color: #000000">We still need to implement the </span><strong><span style="color: #000000">[getTaxAdminData]</span></strong><span style="color: #000000"> method, which retrieves data from the tax administration.</span></p>
+<p><span id="toc42690691" name="toc42690691" class="odt-bookmark-anchor"></span>
+<span id="toc42690305" name="toc42690305" class="odt-bookmark-anchor"></span>
+<span id="toc42689919" name="toc42689919" class="odt-bookmark-anchor"></span>
+<span id="refheadingtoc788572244347140" name="refheadingtoc788572244347140" class="odt-bookmark-anchor"></span>
+<span id="laclasseimpotswithtaxadmindatain" name="laclasseimpotswithtaxadmindatain" class="odt-bookmark-anchor"></span></p>
+<h3 id="1133-the-impotswithtaxadmindatainjsonfile-class">11.3.3. <span style="color: #4f81bd"><strong>The</strong> [ImpotsWithTaxAdminDataInJsonFile] <strong>class</strong></span></h3>
+<p><span style="color: #000000">The </span><strong><span style="color: #000000">[ImpotsWithTaxAdminDataInJsonFile]</span></strong><span style="color: #000000"> class implements the </span><strong><span style="color: #000000">[InterfaceDao]</span></strong><span style="color: #000000"> interface as follows:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -1762,26 +1729,26 @@
 <ul>
   <li><span style="color: #000000">line 7: the class </span><b><span style="color: #000000">[ImpotsWithTaxAdminDataInJsonFile] </span></b><span style="color: #000000">implements the interface </span><b><span style="color: #000000">[InterfaceDao]</span></b><span style="color: #000000">;</span>
   </li>
-  <li><span style="color: #000000">line 9: the </span><b><span style="color: #000000">[ImpotsWithTaxAdminDataInJsonFile] </span></b><span style="color: #000000">class uses the </span><b><span style="color: #000000">[traitDao] </span></b><span style="color: #000000">trait, which, as we know, implements the </span><b><span style="color: #000000">[getTaxPayersData] </span></b><span style="color: #000000">and </span><b><span style="color: #000000">[saveResults] </span></b><span style="color: #000000">methods of the </span><b><span style="color: #000000">[InterfaceDao] </span></b><span style="color: #000000">interface. All that remains, therefore, is for the </span><b><span style="color: #000000">[ImpotsWithTaxAdminDataInJsonFile] </span></b><span style="color: #000000">class to implement the </span><b><span style="color: #000000">[getTaxAdminData] </span></b><span style="color: #000000">method, which retrieves data from the tax administration;</span>
+  <li><span style="color: #000000">line 9: the class </span><b><span style="color: #000000">[ImpotsWithTaxAdminDataInJsonFile] </span></b><span style="color: #000000">uses the trait </span><b><span style="color: #000000">[traitDao], </span></b><span style="color: #000000">which, as we know, implements the methods </span><b><span style="color: #000000">[getTaxPayersData] </span></b><span style="color: #000000">and </span><b><span style="color: #000000">[saveResults] </span></b><span style="color: #000000">of the</span><b><span style="color: #000000">[InterfaceDao]</span></b><span style="color: #000000"> interface. Therefore, the only thing left for the </span><b><span style="color: #000000">[ImpotsWithTaxAdminDataInJsonFile]</span></b><span style="color: #000000"> class to do is to implement the </span><b><span style="color: #000000">[getTaxAdminData]</span></b><span style="color: #000000"> method, which retrieves data from the tax administration;</span>
   </li>
-  <li><span style="color: #000000">Line 11: the attribute of type </span><b><span style="color: #000000">[TaxAdminData] </span></b><span style="color: #000000">returned by the </span><b><span style="color: #000000">[getTaxAdminData] </span></b><span style="color: #000000">method on lines 20–22. This attribute is initialized by the constructor on lines 14–17;</span>
+  <li><span style="color: #000000">line 11: the attribute of type </span><b><span style="color: #000000">[TaxAdminData] </span></b><span style="color: #000000">returned by the </span><b><span style="color: #000000">[getTaxAdminData]</span></b><span style="color: #000000"> method in lines 20–22. This attribute is initialized by the constructor in lines 14–17;</span>
   </li>
 </ul>
 
-<p><span style="color: #000000">We are now done with the </span><strong><span style="color: #000000">[DAO] </span></strong><span style="color: #000000">layer of our application: we have a class that fully implements the </span><strong><span style="color: #000000">[InterfaceDao] </span></strong><span style="color: #000000">interface we defined. We can now move on to the </span><strong><span style="color: #000000">[business] </span></strong><span style="color: #000000">layer.</span></p>
-<p><a id="toc42689920"></a>
-<a id="toc42690306"></a>
-<a id="toc42690692"></a>
-<a id="refheadingtoc788592244347140"></a></p>
-<h2 id="114-the-business-layer">11.4. <span style="color: #4f81bd">The [business] layer</span></h2>
-<p>We will now implement layer <strong>[2]</strong> of our architecture:</p>
+<p><span style="color: #000000">We are now finished with the </span><strong><span style="color: #000000">[dao]</span></strong><span style="color: #000000"> layer of our application: we have a class that fully implements the </span><strong><span style="color: #000000">[InterfaceDao]</span></strong><span style="color: #000000"> interface we defined. We can now move on to the </span><strong><span style="color: #000000">[métier] layer</span></strong><span style="color: #000000">.</span></p>
+<p><span id="refheadingtoc788592244347140" name="refheadingtoc788592244347140" class="odt-bookmark-anchor"></span>
+<span id="toc42690692" name="toc42690692" class="odt-bookmark-anchor"></span>
+<span id="toc42690306" name="toc42690306" class="odt-bookmark-anchor"></span>
+<span id="toc42689920" name="toc42689920" class="odt-bookmark-anchor"></span></p>
+<h2 id="114-the-metier-layer">11.4. <span style="color: #4f81bd"><strong>The</strong> [métier] <strong>layer</strong></span></h2>
+<p>We will now implement the <strong>[2]</strong> layer of our architecture:</p>
 <p><img src="images/100000000000053C0000010980051F51.png" width="402" height="80" style="width:10.642cm;height:2.104cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000053C0000010980051F51.png" /></p>
-<p><a id="toc42689921"></a>
-<a id="toc42690307"></a>
-<a id="toc42690693"></a>
-<a id="refheadingtoc788612244347140"></a></p>
-<h3 id="1141-the-interfacemetier-interface">11.4.1. <span style="color: #4f81bd">The [InterfaceMétier] interface</span></h3>
-<p>The interface for the <strong>[business]</strong> layer will be as follows:</p>
+<p><span id="refheadingtoc788612244347140" name="refheadingtoc788612244347140" class="odt-bookmark-anchor"></span>
+<span id="toc42690693" name="toc42690693" class="odt-bookmark-anchor"></span>
+<span id="toc42690307" name="toc42690307" class="odt-bookmark-anchor"></span>
+<span id="toc42689921" name="toc42689921" class="odt-bookmark-anchor"></span></p>
+<h3 id="1141-the-interfacemetier-interface">11.4.1. <span style="color: #4f81bd"><strong>The</strong> [InterfaceMétier] <strong>interface</strong></span></h3>
+<p>The interface for the <strong>[métier]</strong> layer will be as follows:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -1801,21 +1768,21 @@
 
 <p><strong>Comments</strong></p>
 <ul>
-  <li>line 9: the <b>[BusinessInterface] </b>interface can calculate the tax amount for an individual taxpayer provided it is given the following information: marital status, number of children, annual salary. The <b>[calculateTax] </b>method does not use the <b>[DAO] </b>layer, so it does not throw exceptions;
+  <li>line 9: The <b>[InterfaceMétier]</b> interface can calculate a taxpayer’s tax amount provided it is given the following information: marital status, number of children, annual salary. The <b>[calculerImpot]</b> method does not use the <b>[dao]</b> layer, so it does not throw any exceptions;
   </li>
-  <li>Line 9: The <b>[BusinessInterface] </b>interface can also calculate the tax amount for a group of taxpayers whose data is collected in the text file named <b>[$taxPayersFileName]</b>. It writes the results to a text file named <b>[$resultsFileName]</b>. The <b>[executeBatchImpots] </b>method must communicate with the <b>[dao] </b>layer, which handles file system access. Exceptions may then be propagated from the <b>[dao] </b>layer, which the <b>[executeBatchImpots] </b>method will not catch: it will allow them to propagate to the main script. Non-fatal errors are logged in the text file named <b>[$errorsFileName]</b>;
+  <li>Line 9: The <b>[InterfaceMétier]</b> interface can also calculate the tax amount for a group of taxpayers whose data is contained in the text file named <b>[$taxPayersFileName]</b>. It writes the results to a text file named <b>[$resultsFileName]</b>. The <b>[executeBatchImpots]</b> method must call the <b>[dao]</b> layer, which handles file system access. Exceptions may then be propagated from the <b>[dao]</b> layer, which the <b>[executeBatchImpots]</b> method will not intercept: it will allow them to propagate to the main script. Non-fatal errors are logged in the text file named <b>[$errorsFileName]</b>;
   </li>
-  <li>line 9: the <b>[calculateTax] </b>method is a purely <b>[business] </b>method. It does not concern itself with the source of the data it uses;
+  <li>line 9: the <b>[calculerImpot]</b> method is a purely <b>[métier]</b> method. It does not concern itself with the source of the data it uses;
   </li>
-  <li>line 12: the <b>[executeBatchImpots] </b>method will interact with the <b>[dao] </b>layer to read and write data to text files. It will repeatedly call the business method <b>[calculerImpot]</b>;
+  <li>line 12: the <b>[executeBatchImpots]</b> method will interact with the <b>[dao]</b> layer to read and write data to text files. It will repeatedly call the business method <b>[calculerImpot]</b>;
   </li>
 </ul>
-<p><a id="laclassemetier"></a>
-<a id="refheadingtoc788632244347140"></a>
-<a id="toc42689922"></a>
-<a id="toc42690308"></a>
-<a id="toc42690694"></a></p>
-<h3 id="1142-the-business-class">11.4.2. <span style="color: #4f81bd">The [Business] class</span></h3>
+<p><span id="toc42690694" name="toc42690694" class="odt-bookmark-anchor"></span>
+<span id="toc42690308" name="toc42690308" class="odt-bookmark-anchor"></span>
+<span id="toc42689922" name="toc42689922" class="odt-bookmark-anchor"></span>
+<span id="refheadingtoc788632244347140" name="refheadingtoc788632244347140" class="odt-bookmark-anchor"></span>
+<span id="laclassemetier" name="laclassemetier" class="odt-bookmark-anchor"></span></p>
+<h3 id="1142-the-metier-class">11.4.2. <span style="color: #4f81bd"><strong>The</strong> [Metier] <strong>class</strong></span></h3>
 <p>The <strong>[Metier]</strong> class implements the <strong>[InterfaceMetier]</strong> interface as follows:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
@@ -1824,20 +1791,20 @@
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">namespace </span>Application;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#7f0055">class </span>Metier<span style="color:#000000"> </span><span style="font-weight:bold;color:#7f0055">implements </span>InterfaceMetier<span style="color:#000000"> {</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// dao layer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// layer Dao</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span>private <span style="color:#0000c0">$dao</span><span style="color:#000000">;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// tax administration data</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">  </span><span style="font-weight:bold;color:#008040">private </span>$taxAdminData<span style="color:#000000">;</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">//---------------------------------------------</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// setter couche [dao]</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">  <span style="color:#000000">// setter layer [dao]</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">  <span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span> setDao(<span style="color:#005032">InterfaceDao</span> $dao) {</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    $this-&gt;<span style="color:#0000c0">dao</span> = $dao;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="font-weight:bold;color:#7f0055">return </span>$this;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">  <span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span> __construct(<span style="color:#005032">InterfaceDao</span> $dao) {</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// a reference is stored on the [dao] layer</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// we store a reference on the [dao] layer</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    $this-&gt;<span style="color:#0000c0">dao</span> = $dao;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// recover data for tax calculation</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// method [getTaxAdminData] may throw a ExceptionImpots exception</span></span></span>
@@ -1895,56 +1862,56 @@
 
 <p><strong><span style="color: #000000">Comments</span></strong></p>
 <ul>
-  <li><span style="color: #000000">line 6: the </span><b><span style="color: #000000">[Business] </span></b><span style="color: #000000">class implements the </span><b><span style="color: #000000">[BusinessInterface] </span></b><span style="color: #000000">interface, i.e., the </span><b><span style="color: #000000">[calculateTax] </span></b><span style="color: #000000">(lines 30–34) and </span><b><span style="color: #000000">[executeBatchTaxes] </span></b><span style="color: #000000">(lines 66–70) methods;</span>
+  <li><span style="color: #000000">line 6: the class </span><b><span style="color: #000000">[Metier] </span></b><span style="color: #000000">implements the interface </span><b><span style="color: #000000">[InterfaceMetier]</span></b><span style="color: #000000">, i.e., the methods </span><b><span style="color: #000000">[calculerImpot] </span></b><span style="color: #000000">(lines 30–34) and </span><b><span style="color: #000000">[executeBatchImpots] </span></b><span style="color: #000000">(lines 66–70);</span>
   </li>
-  <li><span style="color: #000000">line 8: a reference to the </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">layer. This is required so that the </span><b><span style="color: #000000">[business] </span></b><span style="color: #000000">layer knows where to look when it needs external data. This attribute will be initialized via the setter in lines 14–17 or via the constructor in lines 19–26;</span>
+  <li><span style="color: #000000">line 8: a reference to the </span><b><span style="color: #000000">[dao]</span></b><span style="color: #000000"> layer. This is required so that the </span><b><span style="color: #000000">[métier]</span></b><span style="color: #000000"> layer knows whom to contact when it needs external data. This attribute will be initialized via the setter in lines 14–17 or via the constructor in lines 19–26;</span>
   </li>
-  <li><span style="color: #000000">line 10: the object of type </span><b><span style="color: #000000">[TaxAdminData] </span></b><span style="color: #000000">that encapsulates the tax administration data. This data is required by the business method </span><b><span style="color: #000000">[calculateTax]</span></b><span style="color: #000000">. This attribute is initialized via the constructor in lines 19–26;</span>
+  <li><span style="color: #000000">line 10: the object of type </span><b><span style="color: #000000">[TaxAdminData] </span></b><span style="color: #000000">that encapsulates the tax administration data. This data is required by the business method </span><b><span style="color: #000000">[calculerImpot]</span></b><span style="color: #000000">. This attribute is initialized via the constructor in lines 19–26;</span>
   </li>
-  <li><span style="color: #000000">lines 19–26: the constructor initializes the class’s two attributes:</span>
+  <li><span style="color: #000000">Lines 19–26: The constructor initializes the two attributes of the class:</span>
     <ul>
-      <li><span style="color: #000000">the </span><b><span style="color: #000000">[$dao] </span></b><span style="color: #000000">attribute is initialized with the reference passed as a parameter to the constructor. Note that the type of this parameter is that of the </span><b><span style="color: #000000">[InterfaceDao] </span></b><span style="color: #000000">interface, allowing the </span><b><span style="color: #000000">[Metier] </span></b><span style="color: #000000">class to be initialized by any class implementing this interface;</span>
+      <li><span style="color: #000000">the </span><b><span style="color: #000000">[$dao]</span></b><span style="color: #000000"> attribute is initialized with the reference passed as a parameter to the constructor. Note that the type of this parameter is that of the </span><b><span style="color: #000000">[InterfaceDao]</span></b><span style="color: #000000"> interface, thus allowing the </span><b><span style="color: #000000">[Metier]</span></b><span style="color: #000000"> class to be initialized by any class implementing this interface;</span>
       </li>
-      <li><span style="color: #000000">the attribute </span><b><span style="color: #000000">[$taxAdminData] </span></b><span style="color: #000000">is initialized by calling the </span><b><span style="color: #000000">[getTaxAdminData] </span></b><span style="color: #000000">method of the </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">layer;</span>
+      <li><span style="color: #000000">the attribute </span><b><span style="color: #000000">[$taxAdminData] </span></b><span style="color: #000000">is initialized by calling the method </span><b><span style="color: #000000">[getTaxAdminData] </span></b><span style="color: #000000">of the layer </span><b><span style="color: #000000">[dao]</span></b><span style="color: #000000">;</span>
       </li>
     </ul>
   </li>
 </ul>
 
-<p><span style="color: #000000">We conclude that when the methods </span><strong><span style="color: #000000">[calculateTaxes] </span></strong><span style="color: #000000">and </span><strong><span style="color: #000000">[executeBatchTaxes] </span></strong><span style="color: #000000">are executed, both attributes </span><strong><span style="color: #000000">[$dao] </span></strong><span style="color: #000000">and </span><strong><span style="color: #000000">[$taxAdminData] </span></strong><span style="color: #000000">are initialized.</span></p>
-<p><span style="color: #000000">The </span><strong><span style="color: #000000">[calculateTaxes] </span></strong><span style="color: #000000">method is as follows:</span></p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-bash">
+<p><span style="color: #000000">We conclude that when the methods </span><strong><span style="color: #000000">[calculerImpots] </span></strong><span style="color: #000000">and </span><strong><span style="color: #000000">[executeBatchImpots] </span></strong><span style="color: #000000">are executed, the two attributes </span><strong><span style="color: #000000">[$dao] </span></strong><span style="color: #000000">and </span><strong><span style="color: #000000">[$taxAdminData] </span></strong><span style="color: #000000">are initialized.</span></p>
+<p><span style="color: #000000">The </span><strong><span style="color: #000000">[calculerImpots]</span></strong><span style="color: #000000"> method is as follows:</span></p>
+<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span> calculerImpot(<span style="font-weight:bold;color:#7f0055">string </span>$marié, <span style="font-weight:bold;color:#7f0055">int </span>$enfants, <span style="font-weight:bold;color:#7f0055">int </span>$salaire): <span style="font-weight:bold;color:#7f0055">array </span>{</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// $marié : oui, non</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// $enfants : nombre d&#x27;enfants</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// $salaire : salaire annuel</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// $this-&gt;taxAdminData : données de l&#x27;administration fiscale</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// $marié : yes, no</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// $enfants : number of children</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// $salaire: annual salary</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// $this-&gt;taxAdminData: tax administration data</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#557f5f">//</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// on vérifie qu&#x27;on a bien les données de l&#x27;administration fiscale</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// we check that we have the correct data from the tax authorities</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="font-weight:bold;color:#7f0055">if </span>($this-&gt;<span style="color:#0000c0">taxAdminData</span> === <span style="font-weight:bold;color:#7f0055">NULL</span>) {</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      $this-&gt;<span style="color:#0000c0">taxAdminData</span> = $this-&gt;getTaxAdminData();</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// calcul de l&#x27;impôt avec enfants</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// tax calculation with children</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    $result1 = $this-&gt;calculerImpot2($marié, $enfants, $salaire);</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    $impot1 = $result1<span style="font-weight:bold">[&quot;impôt&quot;]</span>;</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// calcul de l&#x27;impôt sans les enfants</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// tax calculation without children</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="font-weight:bold;color:#7f0055">if </span>($enfants != 0) {</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      $result2 = $this-&gt;calculerImpot2($marié, 0, $salaire);</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      $impot2 = $result2<span style="font-weight:bold">[&quot;impôt&quot;]</span>;</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#000000">// application du plafonnement du quotient familial</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">      <span style="color:#000000">// application of the family allowance ceiling</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      $plafonDemiPart = $this-&gt;<span style="color:#0000c0">taxAdminData</span>-&gt;getPlafondQfDemiPart();</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      <span style="font-weight:bold;color:#7f0055">if </span>($enfants &lt; 3) {</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// $PLAFOND_QF_DEMI_PART euros pour les 2 premiers enfants</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// $PLAFOND_QF_DEMI_PART euros for the first 2 children</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">        $impot2 = $impot2 - $enfants * $plafonDemiPart;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      } <span style="font-weight:bold;color:#7f0055">else </span>{</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// $PLAFOND_QF_DEMI_PART euros pour les 2 premiers enfants, le double pour les suivants</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">        <span style="color:#000000">// $PLAFOND_QF_DEMI_PART euros for the first 2 children, double for subsequent children</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">        $impot2 = $impot2 - 2 * $plafonDemiPart - ($enfants - 2) * 2 * $plafonDemiPart;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      }</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    } <span style="font-weight:bold;color:#7f0055">else </span>{</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      $impot2 = $impot1;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      $result2 = $result1;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// on prend l&#x27;impôt le plus fort</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// we take the highest tax</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="font-weight:bold;color:#7f0055">if </span>($impot1 &gt; $impot2) {</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      $impot = $impot1;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      $taux = $result1<span style="font-weight:bold">[&quot;taux&quot;]</span>;</span></span>
@@ -1954,13 +1921,13 @@
 <span class="odt-code-line"><span class="odt-code-line-content">      $impot = $impot2;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">      $taux = $result2<span style="font-weight:bold">[&quot;taux&quot;]</span>;</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    }</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// calcul d&#x27;une éventuelle décôte</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// calculation of any discount</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    $décôte = $this-&gt;getDecôte($marié, $salaire, $impot);</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    $impot -= $décôte;</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// calcul d&#x27;une éventuelle réduction d&#x27;impôts</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// calculation of any tax reduction</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    $réduction = $this-&gt;getRéduction($marié, $salaire, $enfants, $impot);</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    $impot -= $réduction;</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// résultat</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// result</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#7f0055">return </span>[&quot;impôt&quot; =&gt; floor($impot), &quot;surcôte&quot; =&gt; $surcôte, &quot;décôte&quot; =&gt; $décôte, &quot;réduction&quot; =&gt; $réduction, &quot;taux&quot; =&gt; $taux];</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">  }</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -1968,14 +1935,14 @@
 
 <p><strong><span style="color: #000000">Comments</span></strong></p>
 <ul>
-  <li><span style="color: #000000">This code is from the </span><b><span style="color: #000000">[AbstractBaseImpots::calculateTax] </span></b><span style="color: #000000">method in version 3, explained in the </span><a href="#laclasseabstraite"><u><span style="color: #0563c1">linked</span></u></a><span style="color: #000000"> section. The same applies to the private methods </span><b><span style="color: #000000">[calculateTax2, getDiscount, getReduction, getTaxableIncome]</span></b><span style="color: #000000">;</span>
+  <li><span style="color: #000000">This code corresponds to method </span><b><span style="color: #000000">[AbstractBaseImpots::calculerImpot] </span></b><span style="color: #000000">of version 3, explained in the </span><a href="application-exercise---version-3.html#laclasseabstraite"><u><span style="color: #0563c1">linked</span></u></a><span style="color: #000000"> section. The same applies to the private methods </span><b><span style="color: #000000">[calculerImpot2, getDecôte, getRéduction, getRevenuImposable]</span></b><span style="color: #000000">;</span>
   </li>
 </ul>
 
-<p><span style="color: #000000">The </span><strong><span style="color: #000000">[Metier::executeBatchImpots] </span></strong><span style="color: #000000">method is as follows:</span></p>
+<p><span style="color: #000000">The </span><strong><span style="color: #000000">[Metier::executeBatchImpots]</span></strong><span style="color: #000000"> method is as follows:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-weight:bold;color:#008040">public </span><span style="font-weight:bold;color:#7f0055">function</span> executeBatchImpots(<span style="font-weight:bold;color:#7f0055">string </span>$taxPayersFileName, <span style="font-weight:bold;color:#7f0055">string </span>$resultsFileName, <span style="font-weight:bold;color:#7f0055">string </span>$errorsFileName): <span style="font-weight:bold;color:#7f0055">void </span>{</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// we let the exceptions coming from the [dao] layer flow upwards</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// exceptions from the [dao] layer are allowed to bubble up</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// retrieve taxpayer data</span></span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    $taxPayersData = $this-&gt;<span style="color:#0000c0">dao</span>-&gt;getTaxPayersData($taxPayersFileName, $errorsFileName);</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">    <span style="color:#000000">// results table</span></span></span>
@@ -2004,32 +1971,32 @@
 
 <p><strong><span style="color: #000000">Comments</span></strong></p>
 <ul>
-  <li><span style="color: #000000">line 1: the method must repeatedly call the </span><b><span style="color: #000000">[calculateTax] </span></b><span style="color: #000000">method for each taxpayer found in the text file named </span><b><span style="color: #000000">[$taxPayersFileName]</span></b><span style="color: #000000">. It must write the results to the text file named </span><b><span style="color: #000000">[$resultsFileName]</span></b><span style="color: #000000">. Non-fatal errors encountered are logged in the text file named </span><b><span style="color: #000000">[$errorsFileName]</span></b><span style="color: #000000">. The method does not throw exceptions itself but allows those thrown by the </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">layer to propagate;</span>
+  <li><span style="color: #000000">Line 1: The method must repeatedly call the </span><b><span style="color: #000000">[calculerImpot]</span></b><span style="color: #000000"> method for each taxpayer found in the text file named </span><b><span style="color: #000000">[$taxPayersFileName]</span></b><span style="color: #000000">. It must write the results to the text file named </span><b><span style="color: #000000">[$resultsFileName]</span></b><span style="color: #000000">. Non-fatal errors encountered are logged in the text file named </span><b><span style="color: #000000">[$errorsFileName]</span></b><span style="color: #000000">. The method does not throw exceptions itself but allows those thrown by the </span><b><span style="color: #000000">[dao]</span></b><span style="color: #000000"> layer to propagate;</span>
   </li>
-  <li><span style="color: #000000">Line 4: taxpayer data is requested from the </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">layer. This returns an array of elements of type </span><b><span style="color: #000000">[TaxPayerData]</span></b><span style="color: #000000">, which is a class of attributes </span><b><span style="color: #000000">[married, numberOfChildren, salary, amount, deduction, reduction, surcharge, rate] </span></b><span style="color: #000000">(see </span><a href="#objetsechangesentre"><u><span style="color: #0563c1">linked</span></u></a><span style="color: #000000"> paragraph). If an exception occurs here, since it is not caught by a </span><i><span style="color: #000000">catch block</span></i><span style="color: #000000">, it will automatically propagate back to the calling code. This means that in the event of an exception, line 6 is not executed;</span>
+  <li><span style="color: #000000">Line 4: taxpayer data is requested from the </span><b><span style="color: #000000">[dao]</span></b><span style="color: #000000"> layer. This layer returns an array of elements of type </span><b><span style="color: #000000">[TaxPayerData], </span></b><span style="color: #000000">which is a class of </span><b><span style="color: #000000">[marié, nbEnfants, salaire, montant, décôte, réduction, surcôte, taux]</span></b><span style="color: #000000"> attributes (see the </span><a href="#objetsechangesentre"><u><span style="color: #0563c1">&quot;link&quot;</span></u></a><span style="color: #000000"> section). If an exception occurs here, since it is not caught by a </span><i><span style="color: #000000">catch block</span></i><span style="color: #000000">, it will automatically propagate to the calling code. This means that in the event of an exception, line 6 is not executed;</span>
   </li>
   <li><span style="color: #000000">line 6: the results array of type </span><b><span style="color: #000000">[TaxPayerData]</span></b><span style="color: #000000">;</span>
   </li>
-  <li><span style="color: #000000">lines 8–22: the tax is calculated for each element of the taxpayer array </span><b><span style="color: #000000">[$taxPayersData]</span></b><span style="color: #000000">. To do this, the internal method </span><b><span style="color: #000000">[calculateTax] </span></b><span style="color: #000000">is called (line 10);</span>
+  <li><span style="color: #000000">lines 8–22: the tax is calculated for each element of the taxpayer array </span><b><span style="color: #000000">[$taxPayersData]</span></b><span style="color: #000000">. To do this, the internal method </span><b><span style="color: #000000">[calculerImpot]</span></b><span style="color: #000000"> is called (line 10);</span>
   </li>
-  <li><span style="color: #000000">lines 15–19: the result is used to initialize the attributes of </span><b><span style="color: #000000">[TaxPayerData] </span></b><span style="color: #000000">that were not yet initialized;</span>
+  <li><span style="color: #000000">lines 15–19: The result obtained is used to initialize the attributes of </span><b><span style="color: #000000">[TaxPayerData] </span></b><span style="color: #000000">that had not yet been initialized;</span>
   </li>
-  <li><span style="color: #000000">line 21: the result is added to the results array </span><b><span style="color: #000000">[$results]</span></b><span style="color: #000000">;</span>
+  <li><span style="color: #000000">line 21: the result is accumulated in the results table </span><b><span style="color: #000000">[$results]</span></b><span style="color: #000000">;</span>
   </li>
-  <li><span style="color: #000000">line 24: once the tax has been calculated for all taxpayers, the results are saved to a text file. The </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">layer handles this task;</span>
+  <li><span style="color: #000000">line 24: once the tax has been calculated for all taxpayers, the results are saved to a text file. The </span><b><span style="color: #000000">[dao]</span></b><span style="color: #000000"> layer performs this task;</span>
   </li>
 </ul>
 
 <p><strong><span style="color: #000000">Conclusion</span></strong></p>
-<p><span style="color: #000000">In general, the </span><strong><span style="color: #000000">[business] </span></strong><span style="color: #000000">layer is fairly simple to write because it interfaces with the </span><strong><span style="color: #000000">[DAO] </span></strong><span style="color: #000000">layer, which manages data access along with the associated error handling.</span></p>
-<p><a id="toc42689923"></a>
-<a id="toc42690309"></a>
-<a id="toc42690695"></a>
-<a id="refheadingtoc816053160985256"></a></p>
+<p><span style="color: #000000">In general, the </span><strong><span style="color: #000000">[métier]</span></strong><span style="color: #000000"> layer is fairly simple to write because it interfaces with the </span><strong><span style="color: #000000">[dao]</span></strong><span style="color: #000000"> layer, which handles data access and the associated error handling.</span></p>
+<p><span id="refheadingtoc816053160985256" name="refheadingtoc816053160985256" class="odt-bookmark-anchor"></span>
+<span id="toc42690695" name="toc42690695" class="odt-bookmark-anchor"></span>
+<span id="toc42690309" name="toc42690309" class="odt-bookmark-anchor"></span>
+<span id="toc42689923" name="toc42689923" class="odt-bookmark-anchor"></span></p>
 <h2 id="115-the-main-script">11.5. <span style="color: #4f81bd">The main script</span></h2>
-<p><span style="color: #000000">We will now write the script for layer </span><strong><span style="color: #000000">[3] </span></strong><span style="color: #000000">of our architecture:</span></p>
-<p><img src="images/10000000000005540000010420FC1713.png" width="409" height="78" style="width:10.83cm;height:2.066cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005540000010420FC1713.png" /></p>
-<p><span style="color: #000000">The main script is as follows </span><strong><span style="color: #000000">[main.php]</span></strong><span style="color: #000000">:</span></p>
+<p><span style="color: #000000">We will now write the script for the </span><strong><span style="color: #000000">[3]</span></strong><span style="color: #000000"> layer of our architecture:</span></p>
+<p><img src="images/10000000000005540000010420FC1713.png" width="409" height="78" style="width:10.83cm;height:2.064cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000005540000010420FC1713.png" /></p>
+<p><span style="color: #000000">The main script is as follows: </span><strong><span style="color: #000000">[main.php]</span></strong><span style="color: #000000">:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -2079,33 +2046,33 @@
 
 <p><strong><span style="color: #000000">Comments</span></strong></p>
 <ul>
-  <li><span style="color: #000000">Line 24: the name of the taxpayer data file;</span>
+  <li><span style="color: #000000">line 24: the name of the taxpayer data file;</span>
   </li>
   <li><span style="color: #000000">line 25: the name of the results file;</span>
   </li>
   <li><span style="color: #000000">line 26: the name of the error file;</span>
   </li>
-  <li><span style="color: #000000">line 27: the name of the JSON file containing the tax authority data;</span>
+  <li><span style="color: #000000">line 27: the name of the file jSON containing the tax administration data;</span>
   </li>
-  <li><span style="color: #000000">line 31: creation of the </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">layer;</span>
+  <li><span style="color: #000000">line 31: creation of the </span><b><span style="color: #000000">[dao]</span></b><span style="color: #000000"> layer;</span>
   </li>
-  <li><span style="color: #000000">line 33: creation of the </span><b><span style="color: #000000">[business] </span></b><span style="color: #000000">layer based on this </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">layer;</span>
+  <li><span style="color: #000000">line 33: creation of the </span><b><span style="color: #000000">[métier]</span></b><span style="color: #000000"> layer based on this </span><b><span style="color: #000000">[dao]</span></b><span style="color: #000000"> layer;</span>
   </li>
-  <li><span style="color: #000000">line 35: execution of the </span><b><span style="color: #000000">[executeBatchImpots] </span></b><span style="color: #000000">method of the </span><b><span style="color: #000000">[business] </span></b><span style="color: #000000">layer;</span>
+  <li><span style="color: #000000">line 35: execution of method </span><b><span style="color: #000000">[executeBatchImpots] </span></b><span style="color: #000000">of layer </span><b><span style="color: #000000">[métier]</span></b><span style="color: #000000">;</span>
   </li>
-  <li><span style="color: #000000">lines 36–39: we saw that the </span><b><span style="color: #000000">[business] </span></b><span style="color: #000000">layer could throw exceptions. They are caught here;</span>
+  <li><span style="color: #000000">lines 36–39: we saw that the </span><b><span style="color: #000000">[métier]</span></b><span style="color: #000000"> layer could throw exceptions. They are intercepted here;</span>
   </li>
 </ul>
-<p><a id="toc42689924"></a>
-<a id="toc42690310"></a>
-<a id="toc42690696"></a>
-<a id="refheadingtoc788652244347140"></a></p>
+<p><span id="refheadingtoc788652244347140" name="refheadingtoc788652244347140" class="odt-bookmark-anchor"></span>
+<span id="toc42690696" name="toc42690696" class="odt-bookmark-anchor"></span>
+<span id="toc42690310" name="toc42690310" class="odt-bookmark-anchor"></span>
+<span id="toc42689924" name="toc42689924" class="odt-bookmark-anchor"></span></p>
 <h2 id="116-visual-tests">11.6. <span style="color: #4f81bd">Visual tests</span></h2>
-<p><a id="toc42689925"></a>
-<a id="toc42690311"></a>
-<a id="toc42690697"></a>
-<a id="refheadingtoc788672244347140"></a></p>
-<h3 id="1161-test-1">11.6.1. <span style="color: #4f81bd">Test #1</span></h3>
+<p><span id="refheadingtoc788672244347140" name="refheadingtoc788672244347140" class="odt-bookmark-anchor"></span>
+<span id="toc42690697" name="toc42690697" class="odt-bookmark-anchor"></span>
+<span id="toc42690311" name="toc42690311" class="odt-bookmark-anchor"></span>
+<span id="toc42689925" name="toc42689925" class="odt-bookmark-anchor"></span></p>
+<h3 id="1161-test-no-1">11.6.1. <span style="color: #4f81bd">Test No. 1</span></h3>
 <p>With the following taxpayer file <strong>[taxpayersdata.txt]</strong>:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span class="odt-code-line-content">oui,2,55555</span></span>
@@ -2121,13 +2088,13 @@
 <span class="odt-code-line"><span class="odt-code-line-content">oui,3,200000</span></span>
 </code></pre></div>
 
-<p>We obtain the following error file <strong>[errors.txt]</strong>:</p>
+<p>This produces the following <strong>[errors.txt]</strong> error file:</p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
 <span class="odt-code-line"><span class="odt-code-line-content">la ligne <span style="font-weight:bold">[5]</span> du fichier <span style="font-weight:bold">[taxpayersdata.txt]</span> est erronée</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content">la ligne <span style="font-weight:bold">[7]</span> du fichier <span style="font-weight:bold">[taxpayersdata.txt]</span> est erronée</span></span>
 </code></pre></div>
 
-<p>and the following results file <strong>[resultats.txt]</strong>:</p>
+<p>and the following <strong>[resultats.txt]</strong> results file:</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1">1</a></span>
 <span class="normal"><a href="#__codelineno-0-2">2</a></span>
 <span class="normal"><a href="#__codelineno-0-3">3</a></span>
@@ -2146,119 +2113,119 @@
 <a id="__codelineno-0-8" name="__codelineno-0-8"></a>{&quot;marié&quot;:&quot;non&quot;,&quot;enfants&quot;:0,&quot;salaire&quot;:200000,&quot;impôt&quot;:64210,&quot;surcôte&quot;:7498,&quot;décôte&quot;:0,&quot;réduction&quot;:0,&quot;taux&quot;:0.45}
 <a id="__codelineno-0-9" name="__codelineno-0-9"></a>{&quot;marié&quot;:&quot;oui&quot;,&quot;enfants&quot;:3,&quot;salaire&quot;:200000,&quot;impôt&quot;:42842,&quot;surcôte&quot;:17283,&quot;décôte&quot;:0,&quot;réduction&quot;:0,&quot;taux&quot;:0.41}
 </code></pre></div></td></tr></table></div>
-<p><a id="toc42689926"></a>
-<a id="toc42690312"></a>
-<a id="toc42690698"></a>
-<a id="refheadingtoc788692244347140"></a></p>
-<h3 id="1162-test-2">11.6.2. <span style="color: #4f81bd">Test #2</span></h3>
+<p><span id="refheadingtoc788692244347140" name="refheadingtoc788692244347140" class="odt-bookmark-anchor"></span>
+<span id="toc42690698" name="toc42690698" class="odt-bookmark-anchor"></span>
+<span id="toc42690312" name="toc42690312" class="odt-bookmark-anchor"></span>
+<span id="toc42689926" name="toc42689926" class="odt-bookmark-anchor"></span></p>
+<h3 id="1162-test-2">11.6.2. <span style="color: #4f81bd"><strong>Test #2</strong></span></h3>
 <p><span style="color: #000000">In the main script, we assign a filename that does not exist to the taxpayer file:</span></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>const TAXPAYERS_DATA_FILENAME = &quot;taxpayersdata2.txt&quot;;
 </code></pre></div>
 <p><span style="color: #000000">The results displayed in the console are as follows:</span></p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content">Warning: fopen(taxpayersdata2.txt): failed to open stream: No such file or directory in C:\Data\st-2019\dev\php7\poly\scripts-console\impots\version-04\TraitDao.php on line 18</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">Impossible d&#x27;ouvrir en lecture les déclarations des contribuables <span style="font-weight:bold">[taxpayersdata2.txt]</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">Terminé</span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">Done.</span></span>
-</code></pre></div>
-
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a>Warning: fopen(taxpayersdata2.txt): failed to open stream: No such file or directory in C:\Data\st-2019\dev\php7\poly\scripts-console\impots\version-04\TraitDao.php on line 18
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>Impossible d&#39;open taxpayer returns for reading [taxpayersdata2.txt]
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>Terminé
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>Done.
+</code></pre></div></td></tr></table></div>
 <ul>
   <li><span style="color: #000000">line 1: warnings from the PHP interpreter;</span>
   </li>
-  <li><span style="color: #000000">line 2: error message from the exception thrown by the </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">layer;</span>
+  <li><span style="color: #000000">line 2: error message from the exception thrown by the </span><b><span style="color: #000000">[dao]</span></b><span style="color: #000000"> layer;</span>
   </li>
 </ul>
 
-<p><span style="color: #000000">It is possible to suppress PHP interpreter error messages:</span></p>
+<p><span style="color: #000000">It is possible to suppress the error messages from the PHP interpreter:</span></p>
 <p><img src="images/10000000000004910000016E22CC2B26.png" width="351" height="110" style="width:9.282cm;height:2.905cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004910000016E22CC2B26.png" /></p>
-<p><span style="color: #000000">Line 21 of the code above instructs the system not to display PHP errors. During the development phase, it is necessary for them to be displayed. In production mode, they must be hidden.</span></p>
+<p><span style="color: #000000">Line 21 of the code above instructs the system not to display PHP errors. During the development phase, these errors must be displayed. In production mode, they must be hidden.</span></p>
 <p><span style="color: #000000">The execution results are then as follows:</span></p>
-<div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-text">
-<span class="odt-code-line"><span class="odt-code-line-content">Impossible d&#x27;ouvrir en lecture les déclarations des contribuables <span style="font-weight:bold">[taxpayersdata2.txt]</span></span></span>
-<span class="odt-code-line"><span class="odt-code-line-content">Terminé</span></span>
-</code></pre></div>
-
-<p><a id="testscodeception"></a>
-<a id="refheadingtoc1740952705769808"></a>
-<a id="toc42689927"></a>
-<a id="toc42690313"></a>
-<a id="toc42690699"></a></p>
-<h2 id="117-tests-codeception">11.7. <span style="color: #4f81bd">Tests [Codeception]</span></h2>
-<p>Visual tests are very inadequate:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span>
+<span class="normal"><a href="#__codelineno-3-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a>Impossible d&#39;open taxpayer returns for reading [taxpayersdata2.txt]
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>Terminé
+</code></pre></div></td></tr></table></div>
+<p><span id="toc42690699" name="toc42690699" class="odt-bookmark-anchor"></span>
+<span id="toc42690313" name="toc42690313" class="odt-bookmark-anchor"></span>
+<span id="toc42689927" name="toc42689927" class="odt-bookmark-anchor"></span>
+<span id="refheadingtoc1740952705769808" name="refheadingtoc1740952705769808" class="odt-bookmark-anchor"></span>
+<span id="testscodeception" name="testscodeception" class="odt-bookmark-anchor"></span></p>
+<h2 id="117-codeception-tests">11.7. <span style="color: #4f81bd">[Codeception] <strong>Tests</strong></span></h2>
+<p>Visual tests are highly insufficient:</p>
 <ul>
   <li>we generally limit ourselves to just a few tests;
   </li>
-  <li>we may not pay close enough attention during this visual inspection, and details can slip past us;
+  <li>attention during this visual check varies, and details may be overlooked;
   </li>
 </ul>
 
-<p>In the real world of professional development, tests are written by dedicated individuals for whom this is their primary role. They strive to make the tests as comprehensive as possible. To do this, they use testing frameworks.</p>
-<p>Here, we will use the <strong>Codeception</strong> framework <strong>[https://codeception.com/]</strong> because it can be integrated into NetBeans. It is a framework with a wide range of capabilities. We will use only a few of them. The idea is to have a quick way, after each new version of the application exercise, to verify that it works. The existence of successful tests gives the developer confidence in the code they have written. This is an important factor.</p>
-<p><a id="installationduframework"></a>
-<a id="refheadingtoc185651971629160"></a>
-<a id="toc42689928"></a>
-<a id="toc42690314"></a>
-<a id="toc42690700"></a></p>
-<h3 id="1171-installing-the-codeception-framework">11.7.1. <span style="color: #4f81bd">Installing the [Codeception] framework</span></h3>
-<p><span style="color: #000000">Like many PHP libraries, the </span><strong><span style="color: #000000">[Codeception] </span></strong><span style="color: #000000">framework is installed using </span><strong><span style="color: #000000">[Composer]</span></strong><span style="color: #000000">. So we open a Laragon terminal (see </span><a href="#installationdelaragon"><u><span style="color: #0563c1">link in</span></u></a><span style="color: #000000"> the paragraph).</span></p>
-<p><span style="color: #000000">First, we need to install the PHPUnit testing framework </span><strong><span style="color: #000000">[https://phpunit.de/]</span></strong><span style="color: #000000">. This is because Codeception uses the PHPUnit framework behind the scenes:</span></p>
+<p>In the reality of professional development, tests are written by dedicated individuals for whom this is their primary role. They therefore strive to make the tests as comprehensive as possible. To do this, they use testing frameworks.</p>
+<p>Here, we will use the <strong>Codeception</strong> framework <strong>[https://codeception.com/]</strong> because it can be integrated into Netbeans. It is a framework with a wide range of capabilities. We will use only a few of them. The idea is to have a quick way, after each new version of the application exercise, to verify that it works. The existence of successful tests gives the developer confidence in the code they have written. This is an important factor.</p>
+<p><span id="toc42690700" name="toc42690700" class="odt-bookmark-anchor"></span>
+<span id="toc42690314" name="toc42690314" class="odt-bookmark-anchor"></span>
+<span id="toc42689928" name="toc42689928" class="odt-bookmark-anchor"></span>
+<span id="refheadingtoc185651971629160" name="refheadingtoc185651971629160" class="odt-bookmark-anchor"></span>
+<span id="installationduframework" name="installationduframework" class="odt-bookmark-anchor"></span></p>
+<h3 id="1171-installing-the-codeception-framework">11.7.1. <span style="color: #4f81bd"><strong>Installing the</strong> [Codeception] <strong>framework</strong></span></h3>
+<p><span style="color: #000000">Like many PHP libraries, the </span><strong><span style="color: #000000">[Codeception]</span></strong><span style="color: #000000"> framework is installed with </span><strong><span style="color: #000000">[Composer]</span></strong><span style="color: #000000">. We therefore open a Laragon terminal (see </span><a href="setting-up-a-working-environment.html#installationdelaragon"><u><span style="color: #0563c1">link</span></u></a><span style="color: #000000"> section).</span></p>
+<p><span style="color: #000000">First, we need to install the PHPUnit </span><strong><span style="color: #000000">[https://phpunit.de/]</span></strong><span style="color: #000000"> testing framework. This is because Codeception uses the PHPUnit framework behind the scenes:</span></p>
 <p><img src="images/10000000000004590000022B1399293C.png" width="334" height="166" style="width:8.832cm;height:4.404cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000004590000022B1399293C.png" /></p>
 <p><span style="color: #000000">Next, we install the Codeception framework:</span></p>
 <p><img src="images/10000000000003CB000001BD280D571A.png" width="291" height="134" style="width:7.712cm;height:3.535cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000003CB000001BD280D571A.png" /></p>
-<p><span style="color: #000000">That’s it. Now let’s look at integrating </span><strong><span style="color: #000000">[Codeception] </span></strong><span style="color: #000000">into NetBeans.</span></p>
-<p><a id="toc42689929"></a>
-<a id="toc42690315"></a>
-<a id="toc42690701"></a>
-<a id="refheadingtoc1787322861440889"></a></p>
-<h3 id="1172-integrating-codeception-into-netbeans">11.7.2. <span style="color: #4f81bd">Integrating [Codeception] into NetBeans</span></h3>
+<p><span style="color: #000000">That’s it. Now let’s look at integrating </span><strong><span style="color: #000000">[Codeception] </span></strong><span style="color: #000000">into Netbeans.</span></p>
+<p><span id="refheadingtoc1787322861440889" name="refheadingtoc1787322861440889" class="odt-bookmark-anchor"></span>
+<span id="toc42690701" name="toc42690701" class="odt-bookmark-anchor"></span>
+<span id="toc42690315" name="toc42690315" class="odt-bookmark-anchor"></span>
+<span id="toc42689929" name="toc42689929" class="odt-bookmark-anchor"></span></p>
+<h3 id="1172-integrating-codeception-into-netbeans">11.7.2. <span style="color: #4f81bd"><strong>Integrating</strong> [CodeCeption] <strong>into Netbeans</strong></span></h3>
 <p><img src="images/100000000000052E0000044F2F84E725.png" width="398" height="331" style="width:10.53cm;height:8.759cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000052E0000044F2F84E725.png" /></p>
 <ul>
-  <li><span style="color: #000000">In </span><b><span style="color: #000000">[1-2]</span></b><span style="color: #000000">, access the project properties;</span>
+  <li><span style="color: #000000">In </span><b><span style="color: #000000">[1-2]</span></b><span style="color: #000000">, we access the project properties;</span>
   </li>
-  <li><span style="color: #000000">In </span><b><span style="color: #000000">[3-4]</span></b><span style="color: #000000">, we set </span><b><span style="color: #000000">[Codeception] </span></b><span style="color: #000000">as one of the project’s testing frameworks;</span>
+  <li><span style="color: #000000">In </span><b><span style="color: #000000">[3-4]</span></b><span style="color: #000000">, make </span><b><span style="color: #000000">[Codeception] </span></b><span style="color: #000000">one of the project&#x27;s test frameworks;</span>
   </li>
 </ul>
 
 <p><img src="images/10000000000006E1000002FEF872F121.png" width="528" height="230" style="width:13.981cm;height:6.08cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006E1000002FEF872F121.png" /></p>
 <p><img src="images/10000000000006D9000002FE51505EEE.png" width="526" height="230" style="width:13.912cm;height:6.078cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006D9000002FE51505EEE.png" /></p>
 <ul>
-  <li><span style="color: #000000">In </span><b><span style="color: #000000">[5-8]</span></b><span style="color: #000000">, initialize the </span><b><span style="color: #000000">[Codeception] </span></b><span style="color: #000000">framework for the project;</span>
+  <li><span style="color: #000000">in </span><b><span style="color: #000000">[5-8]</span></b><span style="color: #000000">, the </span><b><span style="color: #000000">[Codeception]</span></b><span style="color: #000000"> framework is initialized for the project;</span>
   </li>
 </ul>
 
-<p><img src="images/100000000000045F000003F59033C0CE.png" width="336" height="304" style="width:8.879cm;height:8.04cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000045F000003F59033C0CE.png" /></p>
+<p><img src="images/100000000000045F000003F59033C0CE.png" width="336" height="304" style="width:8.879cm;height:8.038cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000045F000003F59033C0CE.png" /></p>
 <ul>
-  <li><span style="color: #000000">In </span><b><span style="color: #000000">[9]</span></b><span style="color: #000000">, a </span><b><span style="color: #000000">[tests] </span></b><span style="color: #000000">folder has been created, along with a </span><b><span style="color: #000000">[codeception.yml] </span></b><span style="color: #000000">configuration file in </span><b><span style="color: #000000">[10-11]</span></b><span style="color: #000000">. File </span><b><span style="color: #000000">[11] </span></b><span style="color: #000000">is the same as file </span><b><span style="color: #000000">[10]</span></b><span style="color: #000000">. Codeception simply created an </span><b><span style="color: #000000">[Important Files] </span></b><span style="color: #000000">folder to give file </span><b><span style="color: #000000">[10] </span></b><span style="color: #000000">a special designation;</span>
+  <li><span style="color: #000000">In </span><b><span style="color: #000000">[9]</span></b><span style="color: #000000">, a folder named </span><b><span style="color: #000000">[tests] </span></b><span style="color: #000000">was created, along with a configuration file named </span><b><span style="color: #000000">[codeception.yml] </span></b><span style="color: #000000">in </span><b><span style="color: #000000">[10-11]</span></b><span style="color: #000000">. The file </span><b><span style="color: #000000">[11] </span></b><span style="color: #000000">is the same as the file </span><b><span style="color: #000000">[10]</span></b><span style="color: #000000">. Codeception simply created a folder named </span><b><span style="color: #000000">[Important Files] </span></b><span style="color: #000000">to give the file </span><b><span style="color: #000000">[10]</span></b><span style="color: #000000"> a specific meaning;</span>
   </li>
   <li><span style="color: #000000">in </span><b><span style="color: #000000">[12-13]</span></b><span style="color: #000000">, we return to the project properties;</span>
   </li>
 </ul>
 
-<p><img src="images/10000000000007A20000037615D6D14F.png" width="586" height="266" style="width:15.512cm;height:7.033cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000007A20000037615D6D14F.png" /></p>
+<p><img src="images/10000000000007A20000037615D6D14F.png" width="586" height="266" style="width:15.512cm;height:7.034cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000007A20000037615D6D14F.png" /></p>
 <ul>
-  <li><span style="color: #000000">in </span><b><span style="color: #000000">[14-16]</span></b><span style="color: #000000">, the </span><b><span style="color: #000000">[tests] </span></b><span style="color: #000000">folder </span><b><span style="color: #000000">[16] </span></b><span style="color: #000000">is designated as the project’s test folder;</span>
+  <li><span style="color: #000000">in </span><b><span style="color: #000000">[14-16]</span></b><span style="color: #000000">, the folder </span><b><span style="color: #000000">[tests] [16] </span></b><span style="color: #000000">is designated as the project’s test folder;</span>
   </li>
-  <li><span style="color: #000000">in </span><b><span style="color: #000000">[16]</span></b><span style="color: #000000">, the </span><b><span style="color: #000000">[tests] </span></b><span style="color: #000000">folder then appears under the new name </span><b><span style="color: #000000">[Test Files]</span></b><span style="color: #000000">. The presence of this folder in a PHP project indicates that the project incorporates a unit testing framework;</span>
+  <li><span style="color: #000000">in </span><b><span style="color: #000000">[16]</span></b><span style="color: #000000">, the folder </span><b><span style="color: #000000">[tests] </span></b><span style="color: #000000">then appears under the new name </span><b><span style="color: #000000">[Test Files]</span></b><span style="color: #000000">. The presence of this folder in a PHP project indicates that this project includes a programmatic testing framework;</span>
   </li>
-  <li><span style="color: #000000">we will create our tests in the </span><b><span style="color: #000000">[unit] </span></b><span style="color: #000000">folder </span><b><span style="color: #000000">[17];</span></b>
+  <li><span style="color: #000000">we will create our tests in the </span><b><span style="color: #000000">[unit] and [17] </span></b><span style="color: #000000">folders</span><b><span style="color: #000000">;</span></b>
   </li>
 </ul>
 
-<p><a id="testsdela"></a>
-<a id="refheadingtoc1703904100479126"></a>
-<a id="toc42689930"></a>
-<a id="toc42690316"></a>
-<a id="toc42690702"></a></p>
-<h3 id="1173-tests-for-the-dao-layer">11.7.3. <span style="color: #4f81bd">Tests for the [dao] layer</span></h3>
-<p><img src="images/10000000000001D00000034E225C8212.png" width="163" height="296" style="width:4.3cm;height:7.842cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D00000034E225C8212.png" /></p>
+<p><span id="toc42690702" name="toc42690702" class="odt-bookmark-anchor"></span>
+<span id="toc42690316" name="toc42690316" class="odt-bookmark-anchor"></span>
+<span id="toc42689930" name="toc42689930" class="odt-bookmark-anchor"></span>
+<span id="refheadingtoc1703904100479126" name="refheadingtoc1703904100479126" class="odt-bookmark-anchor"></span>
+<span id="testsdela" name="testsdela" class="odt-bookmark-anchor"></span></p>
+<h3 id="1173-dao-layer-tests">11.7.3. <span style="color: #4f81bd">[dao] <strong>Layer Tests</strong></span></h3>
+<p><img src="images/10000000000001D00000034E225C8212.png" width="163" height="296" style="width:4.3cm;height:7.84cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001D00000034E225C8212.png" /></p>
 <ul>
-  <li><span style="color: #000000">We will create all our tests in the </span><b><span style="color: #000000">[unit] </span></b><span style="color: #000000">folder </span><b><span style="color: #000000">[1]</span></b><span style="color: #000000">;</span>
+  <li><span style="color: #000000">We will create all our tests in the </span><b><span style="color: #000000">[unit] and [1] </span></b><span style="color: #000000">folders;</span>
   </li>
-  <li><span style="color: #000000">The names of </span><b><span style="color: #000000">[Codeception] </span></b><span style="color: #000000">test classes </span><b><span style="color: #000000">must end with the keyword [Test], otherwise the classes will not be recognized as test classes</span></b><span style="color: #000000">;</span>
+  <li><span style="color: #000000">The names of the test classes </span><b><span style="color: #000000">[Codeception] must end with the keyword [Test]; otherwise, the classes will not be recognized as test classes</span></b><span style="color: #000000">;</span>
   </li>
 </ul>
 
-<p><span style="color: #000000">Our </span><strong><span style="color: #000000">[Codeception] </span></strong><span style="color: #000000">test classes will have the following format </span><strong><span style="color: #000000">[https://codeception.com/docs/05-UnitTests]</span></strong><span style="color: #000000">:</span></p>
+<p><span style="color: #000000">Our test classes </span><strong><span style="color: #000000">[Codeception] </span></strong><span style="color: #000000">will have the following format </span><strong><span style="color: #000000">[https://codeception.com/docs/05-UnitTests]</span></strong><span style="color: #000000">:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -2301,19 +2268,19 @@
 <ul>
   <li><span style="color: #000000">line 7: the test classes will be in the same namespace as the application under test;</span>
   </li>
-  <li><span style="color: #000000">lines 9–10: here are the </span><b><span style="color: #000000">[require] </span></b><span style="color: #000000">statements to load the tested classes and interfaces;</span>
+  <li><span style="color: #000000">lines 9–10: here you will find the </span><b><span style="color: #000000">[require]</span></b><span style="color: #000000"> operations to load the tested classes and interfaces;</span>
   </li>
   <li><span style="color: #000000">line 12: the name of the test class </span><b><span style="color: #000000">must end with the keyword [Test]</span></b><span style="color: #000000">. This class must extend the class </span><b><span style="color: #000000">[\Codeception\Test\Unit]</span></b><span style="color: #000000">;</span>
   </li>
   <li><span style="color: #000000">lines 16–20: the constructor allows us to initialize the test environment;</span>
   </li>
-  <li><span style="color: #000000">line 23: the names of test methods </span><b><span style="color: #000000">must begin with the keyword [test]</span></b><span style="color: #000000">;</span>
+  <li><span style="color: #000000">line 23: the names of the test methods </span><b><span style="color: #000000">must begin with the keyword [test]</span></b><span style="color: #000000">;</span>
   </li>
   <li><span style="color: #000000">lines 25–31: various test methods can be used;</span>
   </li>
 </ul>
 
-<p><span style="color: #000000">The </span><strong><span style="color: #000000">[DaoTest] </span></strong><span style="color: #000000">test class will be as follows:</span></p>
+<p><span style="color: #000000">The test class </span><strong><span style="color: #000000">[DaoTest] </span></strong><span style="color: #000000">will be as follows:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -2361,7 +2328,7 @@
 </code></pre></div>
 
 <p><strong><span style="color: #000000">Comments</span></strong></p>
-<p><span style="color: #000000">To build the tests for a version of the application exercise, we will use an environment identical to the one used by the version’s main script. For version 04, this is the following </span><strong><span style="color: #000000">[main.php] </span></strong><span style="color: #000000">script:</span></p>
+<p><span style="color: #000000">To build the tests for a version from the application exercise, we will use an environment identical to the one used by the main script of version. The one for version 04 is the following </span><strong><span style="color: #000000">[main.php]</span></strong><span style="color: #000000"> script:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -2407,11 +2374,11 @@
 <span class="odt-code-line"><span class="odt-code-line-content">exit;</span></span>
 </code></pre></div>
 
-<p><span style="color: #000000">To test the </span><strong><span style="color: #000000">[dao] </span></strong><span style="color: #000000">layer, in the test class:</span></p>
+<p><span style="color: #000000">To test the </span><strong><span style="color: #000000">[dao]</span></strong><span style="color: #000000"> layer, in the test class:</span></p>
 <ul>
-  <li><span style="color: #000000">we use the environment from lines 13–27 of </span><b><span style="color: #000000">[main.php]</span></b><span style="color: #000000">;</span>
+  <li><span style="color: #000000">we reuse the environment from lines 13–27 of </span><b><span style="color: #000000">[main.php]</span></b><span style="color: #000000">;</span>
   </li>
-  <li><span style="color: #000000">in the test class constructor, we instantiate the </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">layer as in line 31;</span>
+  <li><span style="color: #000000">in the test class constructor, we construct the </span><b><span style="color: #000000">[dao]</span></b><span style="color: #000000"> layer as in line 31;</span>
   </li>
   <li><span style="color: #000000">we write the test methods;</span>
   </li>
@@ -2483,49 +2450,49 @@
 <ul>
   <li><span style="color: #000000">lines 10–25: loading the environment required for testing and defining constants;</span>
   </li>
-  <li><span style="color: #000000">lines 31–36: construction of the </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">layer (line 34), followed by initialization of the </span><b><span style="color: #000000">[$taxAdminData] </span></b><span style="color: #000000">attribute (line 29). This attribute contains tax administration data;</span>
+  <li><span style="color: #000000">lines 31–36: construction of the </span><b><span style="color: #000000">[dao]</span></b><span style="color: #000000"> layer (line 34), followed by initialization of the </span><b><span style="color: #000000">[$taxAdminData]</span></b><span style="color: #000000"> attribute (line 29). This attribute contains tax administration data;</span>
   </li>
-  <li><span style="color: #000000">lines 39–55: the single test method. This consists of verifying that the content of the </span><b><span style="color: #000000">[$taxAdminData] </span></b><span style="color: #000000">attribute matches what is expected;</span>
+  <li><span style="color: #000000">lines 39–55: the sole test method. This consists of verifying that the content of the </span><b><span style="color: #000000">[$taxAdminData]</span></b><span style="color: #000000"> attribute matches what is expected;</span>
   </li>
-  <li><span style="color: #000000">lines 41–50: checks on the tax calculation constants;</span>
+  <li><span style="color: #000000">lines 41–50: checks on the constants used in the tax calculation;</span>
   </li>
-  <li><span style="color: #000000">lines 52–55: checks on tax brackets. The </span><b><span style="color: #000000">[assertSame] </span></b><span style="color: #000000">method verifies that two PHP entities—in this case, arrays—are identical;</span>
+  <li><span style="color: #000000">lines 52–55: checks on tax brackets. The </span><b><span style="color: #000000">[assertSame]</span></b><span style="color: #000000"> method verifies that two PHP entities, in this case tables, are identical;</span>
   </li>
 </ul>
 
 <p><span style="color: #000000">To run this test class, proceed as follows:</span></p>
 <p><img src="images/100000000000078B0000017A585A23B7.png" width="579" height="113" style="width:15.332cm;height:3cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000078B0000017A585A23B7.png" /></p>
 <ul>
-  <li><span style="color: #000000">in </span><b><span style="color: #000000">[1-2]</span></b><span style="color: #000000">, run the test;</span>
+  <li><span style="color: #000000">In </span><b><span style="color: #000000">[1-2]</span></b><span style="color: #000000">, run the test;</span>
   </li>
   <li><b><span style="color: #000000">[3]</span></b><span style="color: #000000">: the test results window;</span>
   </li>
   <li><b><span style="color: #000000">[4]</span></b><span style="color: #000000">: the executed test class;</span>
   </li>
-  <li><b><span style="color: #000000">[5]</span></b><span style="color: #000000">: the results. Here, the single test method passed;</span>
+  <li><b><span style="color: #000000">[5]</span></b><span style="color: #000000">: the results. Here, the single test method was successful;</span>
   </li>
-  <li><b><span style="color: #000000">[6]</span></b><span style="color: #000000">: when the test fails, or more commonly when no test has been run, check window </span><b><span style="color: #000000">[6]</span></b><span style="color: #000000">. Most often, the test environment failed to load, so no test could be executed. The errors displayed in </span><b><span style="color: #000000">[6] </span></b><span style="color: #000000">are the same as those you would see when running a standard PHP script;</span>
+  <li><b><span style="color: #000000">[6]</span></b><span style="color: #000000">: When the test fails, or more commonly when no test was executed, you must check the </span><b><span style="color: #000000">[6]</span></b><span style="color: #000000"> window. Most often, the test environment failed to load, and therefore no test could be executed. The errors displayed in </span><b><span style="color: #000000">[6] </span></b><span style="color: #000000">are the same as those that would occur when running a standard PHP script;</span>
   </li>
 </ul>
 
 <p><span style="color: #000000">Let’s look at an example of a failed test:</span></p>
 <p><span style="color: #000000">In the test class, we introduce an error in the definition of a constant:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-python">
-<span class="odt-code-line"><span class="odt-code-line-content"><span style="color:#000000">// constantes</span></span></span>
+<span class="odt-code-line"><span class="odt-code-line-content">// constants</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"><span style="font-style:italic;color:#000000">define</span><span style="color:#000000">(</span><span style="font-style:italic;color:#0000c0">&quot;ROOT&quot;</span><span style="color:#000000">, </span><span style="color:#0000c0">&quot;C:/Data/st-2019/dev/php7/poly/scripts-console/impots/version-04</span><span style="font-weight:bold;color:#c9211e">x</span><span style="color:#0000c0">&quot;</span><span style="color:#000000">);</span></span></span>
 </code></pre></div>
 
 <p><span style="color: #000000">then we run the test. The result is as follows:</span></p>
 <p><img src="images/1000000000000517000000F306AAA51E.png" width="391" height="73" style="width:10.342cm;height:1.93cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000517000000F306AAA51E.png" /></p>
-<p><span style="color: #000000">In window </span><strong><span style="color: #000000">[4]</span></strong><span style="color: #000000">:</span></p>
+<p><span style="color: #000000">In the </span><strong><span style="color: #000000">[4]</span></strong><span style="color: #000000"> window:</span></p>
 <p><img src="images/10000000000006BC00000164FA0036A0.png" width="517" height="107" style="width:13.681cm;height:2.826cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000006BC00000164FA0036A0.png" /></p>
-<p><a id="testsdela1"></a>
-<a id="refheadingtoc1707494100479126"></a>
-<a id="toc42689931"></a>
-<a id="toc42690317"></a>
-<a id="toc42690703"></a></p>
-<h3 id="1174-business-layer-tests">11.7.4. <span style="color: #4f81bd">[Business] Layer Tests</span></h3>
-<p><span style="color: #000000">The </span><strong><span style="color: #000000">[MetierTest] </span></strong><span style="color: #000000">test class follows the same construction rules as the </span><strong><span style="color: #000000">[DaoTest] </span></strong><span style="color: #000000">class, but there are more test methods:</span></p>
+<p><span id="toc42690703" name="toc42690703" class="odt-bookmark-anchor"></span>
+<span id="toc42690317" name="toc42690317" class="odt-bookmark-anchor"></span>
+<span id="toc42689931" name="toc42689931" class="odt-bookmark-anchor"></span>
+<span id="refheadingtoc1707494100479126" name="refheadingtoc1707494100479126" class="odt-bookmark-anchor"></span>
+<span id="testsdela1" name="testsdela1" class="odt-bookmark-anchor"></span></p>
+<h3 id="1174-tests-for-the-metier-layer">11.7.4. <span style="color: #4f81bd"><strong>Tests for the</strong> [métier] <strong>layer</strong></span></h3>
+<p><span style="color: #000000">The </span><strong><span style="color: #000000">[MetierTest]</span></strong><span style="color: #000000"> test class follows the same construction rules as the </span><strong><span style="color: #000000">[DaoTest]</span></strong><span style="color: #000000"> class, but there are more test methods:</span></p>
 <div class="odt-code-rich" data-linenums="true" style="counter-reset: odtline 0;"><pre><code class="language-php">
 <span class="odt-code-line"><span class="odt-code-line-content">&lt;?php</span></span>
 <span class="odt-code-line"><span class="odt-code-line-content"> </span></span>
@@ -2669,13 +2636,13 @@
 
 <p><strong><span style="color: #000000">Comments</span></strong></p>
 <ul>
-  <li><span style="color: #000000">lines 10–25: loading of files defining the test environment. This is the same as for the </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">layer;</span>
+  <li><span style="color: #000000">lines 10–25: loading of files defining the test environment. This is the same as for layer </span><b><span style="color: #000000">[dao]</span></b><span style="color: #000000">;</span>
   </li>
-  <li><span style="color: #000000">lines 31–37: instantiation of the </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">and </span><b><span style="color: #000000">[business] </span></b><span style="color: #000000">layers;</span>
+  <li><span style="color: #000000">lines 31-37: instantiation of the </span><b><span style="color: #000000">[dao] </span></b><span style="color: #000000">and </span><b><span style="color: #000000">[métier] </span></b><span style="color: #000000">layers;</span>
   </li>
   <li><span style="color: #000000">lines 40–47: a tax calculation test;</span>
   </li>
-  <li><span style="color: #000000">line 41: a specific tax calculation is performed using the </span><b><span style="color: #000000">[business] </span></b><span style="color: #000000">layer;</span>
+  <li><span style="color: #000000">line 41: a specific tax calculation is performed using layer </span><b><span style="color: #000000">[métier]</span></b><span style="color: #000000">;</span>
   </li>
   <li><span style="color: #000000">lines 42–46: verification that the results obtained match those of the tax authority’s simulator </span><b><span style="color: #000000">[https://www3.impots.gouv.fr/simulateur/calcul_impot/2019/simplifie/index.htm]</span></b><span style="color: #000000">;</span>
   </li>
@@ -2689,12 +2656,12 @@
 
 <p><span style="color: #000000">The tests yield the following results:</span></p>
 <p><img src="images/100000000000077D000001B1B3AD815F.png" width="575" height="130" style="width:15.221cm;height:3.438cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000077D000001B1B3AD815F.png" /></p>
-<p><a id="toc42689932"></a>
-<a id="toc42690318"></a>
-<a id="toc42690704"></a>
-<a id="refheadingtoc185653971629160"></a></p>
-<h3 id="1175-tests-for-future-versions">11.7.5. <span style="color: #4f81bd">Tests for future versions</span></h3>
-<p><span style="color: #000000">Moving forward, the tests for the </span><strong><span style="color: #000000">[dao] </span></strong><span style="color: #000000">and </span><strong><span style="color: #000000">[business] </span></strong><span style="color: #000000">layers will be identical to those in version 04. Only the test environment will change. We will therefore present only this environment and the test results.</span></p>
+<p><span id="refheadingtoc185653971629160" name="refheadingtoc185653971629160" class="odt-bookmark-anchor"></span>
+<span id="toc42690704" name="toc42690704" class="odt-bookmark-anchor"></span>
+<span id="toc42690318" name="toc42690318" class="odt-bookmark-anchor"></span>
+<span id="toc42689932" name="toc42689932" class="odt-bookmark-anchor"></span></p>
+<h3 id="1175-tests-for-future-versions">11.7.5. <span style="color: #4f81bd"><strong>Tests for future versions</strong></span></h3>
+<p><span style="color: #000000">In the following section, the tests for the </span><strong><span style="color: #000000">[dao] </span></strong><span style="color: #000000">and </span><strong><span style="color: #000000">[métier] </span></strong><span style="color: #000000">layers will be identical to those for the version 04. The only difference will be the test environment. We will therefore present only this layer and its test results.</span></p>
 
 
 
